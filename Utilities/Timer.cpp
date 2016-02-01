@@ -22,19 +22,17 @@ Timer::Timer(const Timer& orig) {
 Timer::~Timer() {
 }
 
-void Timer::start() { startTime = clock(); }
+void Timer::start()   { startTime = clock(); }
 void Timer::refresh() { startTime = clock(); }
 
+double Timer::getSeconds() {
+    double eClocks = (double)clock() - (double)startTime;
+    return eClocks/PER_SEC;
+}
+
 unsigned long Timer::getMillis() {
-    return ((unsigned long)clock()-startTime)/ (CLOCKS_PER_SEC/1000);
+    return ((unsigned long)clock() - startTime )/CLOCKS_PER_SEC;
 }
 
-unsigned long Timer::getSeconds() {
-    return ((unsigned long)clock()-startTime)/ (CLOCKS_PER_SEC);
-}
-
-unsigned long Timer::getMinutes() {
-    return ((unsigned long)clock()-startTime)/ (60000*CLOCKS_PER_SEC);
-}
 
 

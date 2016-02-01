@@ -12,8 +12,13 @@
  */
 
 #include "Game.h"
+#include <iostream>
+#include <stdio.h>
 
 Game::Game() {
+    timeDelta = 0;
+    frameCount = 0;
+    targetFrameTime = 1.0/targetFPS;
 }
 
 Game::Game(const Game& orig) {
@@ -26,7 +31,7 @@ bool Game::init() {
     bool success = true;
     
     //Initialize SDL
-    if( SDL_Init( SDL_INIT_VIDEO ) < 0 ) {
+    if( SDL_Init( SDL_INIT_VIDEO | SDL_INIT_JOYSTICK ) < 0 ) {
         printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
         success = false;
     }
@@ -44,6 +49,9 @@ bool Game::init() {
         
         globalTimer.start();
     }
+    inputComponent = InputComponent();
+    inputComponent.init();
+    
     return success;
 }
 
@@ -53,27 +61,39 @@ void Game::run() {
     tex.setWindow(&gameWindow);
     tex.loadFromFile("Sprites/Sprite5.png");
     
+    
     quit = false;
-
+    
     loopTimer.start();
-    timeDelta = loopTimer.getMillis();
-    
-    
+    deltaTimer.start();
+
+    int frameRate = 0;
+
     //While application is running
     while( !quit ) {
+        
+        inputUpdate();
         loopTimer.refresh();
         
         // gameUpdate loop
-        do {
-            inputUpdate();
-            gameUpdate();
+        while( loopTimer.getSeconds() < targetFrameTime ){
             
-            timeDelta = loopTimer.getMillis();
-            
-        }   while( timeDelta*1000 < targetFPS );
-        
+            timeDelta = deltaTimer.getSeconds();
+            deltaTimer.refresh();
+
+            gameUpdate(timeDelta);   
+        }
+
         render();
         
+        
+        
+        frameCount++;
+        
+        if (globalTimer.getSeconds() > 0) {
+            frameRate = frameCount/globalTimer.getSeconds();
+            std::cout << frameRate << std::endl;
+        }
     }
 
     //Free resources and close SDL
@@ -86,16 +106,10 @@ unsigned long Game::getGLobalTime() { return globalTimer.getMillis();
 void Game::inputUpdate() {
     SDL_Event e;
     
-    //Handle events on queue
-    while( SDL_PollEvent( &e ) != 0 ) {
-        
-        if( e.type == SDL_QUIT ) {
-            quit = true;
-        }
-    }
+    if (inputComponent.updateInputs()) quit = true;
 }
 
-void Game::gameUpdate() {
+void Game::gameUpdate(double _d) {
 
 }
 

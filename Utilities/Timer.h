@@ -13,6 +13,7 @@
 
 #ifndef TIMER_H
 #define TIMER_H
+#define PER_SEC (double)(CLOCKS_PER_SEC)
 
 #include <time.h>
 
@@ -24,10 +25,9 @@ public:
     
     void start();
     void refresh();
-    
+
+    double getSeconds();
     unsigned long getMillis();
-    unsigned long getSeconds();
-    unsigned long getMinutes();
 
 private:
     unsigned long startTime;

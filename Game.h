@@ -21,6 +21,7 @@
 #include "Window/Window.h"
 #include "Window/Texture.h"
 #include "Utilities/Timer.h"
+#include "InputComponent.h"
 
 
 
@@ -48,16 +49,22 @@ public:
 private:
     Timer globalTimer;
     Timer loopTimer;  
+    Timer deltaTimer;
     
     const int targetFPS = 60;
+    double targetFrameTime;
+    
+    unsigned long frameCount;
     
     bool quit;
     
-    unsigned long timeDelta;
+    double timeDelta;
     
     void inputUpdate();
-    void gameUpdate();
+    void gameUpdate(double _d);
     void render();
+    
+    InputComponent inputComponent;
     
     
     Texture tex;

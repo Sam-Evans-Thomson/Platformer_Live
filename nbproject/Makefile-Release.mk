@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/_ext/20e7374d/Game.o \
+	${OBJECTDIR}/_ext/20e7374d/InputComponent.o \
 	${OBJECTDIR}/_ext/ee4cd6a8/Timer.o \
 	${OBJECTDIR}/_ext/4d4d1112/Texture.o \
 	${OBJECTDIR}/_ext/4d4d1112/Window.o \
@@ -80,6 +81,11 @@ ${OBJECTDIR}/_ext/20e7374d/Game.o: /home/sam/NetBeansProjects/Platformer_Live/Ga
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/20e7374d/Game.o /home/sam/NetBeansProjects/Platformer_Live/Game.cpp
 
+${OBJECTDIR}/_ext/20e7374d/InputComponent.o: /home/sam/NetBeansProjects/Platformer_Live/InputComponent.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/20e7374d
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/20e7374d/InputComponent.o /home/sam/NetBeansProjects/Platformer_Live/InputComponent.cpp
+
 ${OBJECTDIR}/_ext/ee4cd6a8/Timer.o: /home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/ee4cd6a8
 	${RM} "$@.d"
@@ -123,6 +129,19 @@ ${OBJECTDIR}/_ext/20e7374d/Game_nomain.o: ${OBJECTDIR}/_ext/20e7374d/Game.o /hom
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/20e7374d/Game_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Game.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/20e7374d/Game.o ${OBJECTDIR}/_ext/20e7374d/Game_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/20e7374d/InputComponent_nomain.o: ${OBJECTDIR}/_ext/20e7374d/InputComponent.o /home/sam/NetBeansProjects/Platformer_Live/InputComponent.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/20e7374d
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/20e7374d/InputComponent.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/20e7374d/InputComponent_nomain.o /home/sam/NetBeansProjects/Platformer_Live/InputComponent.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/20e7374d/InputComponent.o ${OBJECTDIR}/_ext/20e7374d/InputComponent_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/ee4cd6a8/Timer_nomain.o: ${OBJECTDIR}/_ext/ee4cd6a8/Timer.o /home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp 
