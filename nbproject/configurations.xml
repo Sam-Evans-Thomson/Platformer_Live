@@ -4,6 +4,10 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Game.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Texture.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Window.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -12,12 +16,21 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Game.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Texture.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Window.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
+      <logicalFolder name="f1"
+                     displayName="New C++ Simple Test"
+                     projectFiles="true"
+                     kind="TEST">
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -35,7 +48,72 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <ccTool>
+          <standard>11</standard>
+          <incDir>
+            <pElem>/usr/include/SDL2</pElem>
+            <pElem>/usr/include/c++/5.2.1</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <commandLine>-lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer</commandLine>
+        </linkerTool>
       </compileType>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Game.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Game.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Window/Texture.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Window/Texture.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Window/Window.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Window/Window.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <folder path="TestFiles/f1">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+        </linkerTool>
+      </folder>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -59,6 +137,61 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Game.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Game.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Window/Texture.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Window/Texture.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Window/Window.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Window/Window.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <folder path="TestFiles/f1">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+        </linkerTool>
+      </folder>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>

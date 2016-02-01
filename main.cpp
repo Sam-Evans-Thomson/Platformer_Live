@@ -1,25 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*This source code copyrighted by Lazy Foo' Productions (2004-2015)
+and may not be redistributed without written permission.*/
 
-/* 
- * File:   main.cpp
- * Author: sam
- *
- * Created on 30 January 2016, 9:39 PM
- */
+//Using SDL, SDL_image, standard IO, and strings
 
-#include <cstdlib>
+#include "Game.h"
 
-using namespace std;
 
-/*
- * 
- */
-int main(int argc, char** argv) {
+
+int main( int argc, char* args[] ) {
+    
+    Game game;   
+    if (!game.init()) {
+        printf( "Failed to initialize!\n" );
+    }
+    else game.run();
 
     return 0;
 }
-
