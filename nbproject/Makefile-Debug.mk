@@ -37,6 +37,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/_ext/20e7374d/Game.o \
 	${OBJECTDIR}/_ext/20e7374d/InputComponent.o \
+	${OBJECTDIR}/_ext/417fd003/Player.o \
+	${OBJECTDIR}/_ext/417fd003/StateComponent.o \
 	${OBJECTDIR}/_ext/ee4cd6a8/Timer.o \
 	${OBJECTDIR}/_ext/4d4d1112/Texture.o \
 	${OBJECTDIR}/_ext/4d4d1112/Window.o \
@@ -85,6 +87,16 @@ ${OBJECTDIR}/_ext/20e7374d/InputComponent.o: /home/sam/NetBeansProjects/Platform
 	${MKDIR} -p ${OBJECTDIR}/_ext/20e7374d
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/SDL2 -I/usr/include/c++/5.2.1 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/20e7374d/InputComponent.o /home/sam/NetBeansProjects/Platformer_Live/InputComponent.cpp
+
+${OBJECTDIR}/_ext/417fd003/Player.o: /home/sam/NetBeansProjects/Platformer_Live/Player/Player.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/417fd003
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SDL2 -I/usr/include/c++/5.2.1 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/417fd003/Player.o /home/sam/NetBeansProjects/Platformer_Live/Player/Player.cpp
+
+${OBJECTDIR}/_ext/417fd003/StateComponent.o: /home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/417fd003
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SDL2 -I/usr/include/c++/5.2.1 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/417fd003/StateComponent.o /home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.cpp
 
 ${OBJECTDIR}/_ext/ee4cd6a8/Timer.o: /home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/ee4cd6a8
@@ -142,6 +154,32 @@ ${OBJECTDIR}/_ext/20e7374d/InputComponent_nomain.o: ${OBJECTDIR}/_ext/20e7374d/I
 	    $(COMPILE.cc) -g -I/usr/include/SDL2 -I/usr/include/c++/5.2.1 -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/20e7374d/InputComponent_nomain.o /home/sam/NetBeansProjects/Platformer_Live/InputComponent.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/20e7374d/InputComponent.o ${OBJECTDIR}/_ext/20e7374d/InputComponent_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/417fd003/Player_nomain.o: ${OBJECTDIR}/_ext/417fd003/Player.o /home/sam/NetBeansProjects/Platformer_Live/Player/Player.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/417fd003
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/417fd003/Player.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -I/usr/include/SDL2 -I/usr/include/c++/5.2.1 -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/417fd003/Player_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Player/Player.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/417fd003/Player.o ${OBJECTDIR}/_ext/417fd003/Player_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/417fd003/StateComponent_nomain.o: ${OBJECTDIR}/_ext/417fd003/StateComponent.o /home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/417fd003
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/417fd003/StateComponent.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -I/usr/include/SDL2 -I/usr/include/c++/5.2.1 -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/417fd003/StateComponent_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/417fd003/StateComponent.o ${OBJECTDIR}/_ext/417fd003/StateComponent_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/ee4cd6a8/Timer_nomain.o: ${OBJECTDIR}/_ext/ee4cd6a8/Timer.o /home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp 

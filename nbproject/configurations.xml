@@ -6,6 +6,8 @@
                    projectFiles="true">
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Game.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/InputComponent.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/Player.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Texture.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Window.h</itemPath>
@@ -19,6 +21,8 @@
                    projectFiles="true">
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Game.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/InputComponent.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/Player.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Texture.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Window.cpp</itemPath>
@@ -77,6 +81,26 @@
             flavor2="0">
       </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/InputComponent.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/Player.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/Player.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -165,6 +189,26 @@
             flavor2="0">
       </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/InputComponent.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/Player.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/Player.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.h"
             ex="false"
             tool="3"
             flavor2="0">
