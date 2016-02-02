@@ -35,7 +35,7 @@ void InputComponent::init() {
 }
 
 bool InputComponent::updateInputs() {
-    bool quit = false;
+    quit = false;
     incrementAllButtons();
     
     SDL_Event event;
@@ -44,6 +44,8 @@ bool InputComponent::updateInputs() {
         switch(event.type) {
             case SDL_QUIT          : quit = true;
                 break;
+            case SDL_KEYDOWN       : keyEvent(event);
+                break; 
             case SDL_JOYAXISMOTION : axisMotion(event);
                 break;
             case SDL_JOYBUTTONDOWN : buttonEvent(event, BUTTON_DOWN);
@@ -115,6 +117,13 @@ void InputComponent::updateButton(unsigned int* button, bool state) {
     else if(state == BUTTON_UP)   *button = 0;
           
 }
+
+void InputComponent::keyEvent(SDL_Event& _event) {
+    SDL_Keycode key = _event.key.keysym.sym;
+    
+    if (key == SDLK_ESCAPE) quit = true;
+}
+
 
 void InputComponent::testAxis(int axis, double value) {
     std::cout << axis << ":  " << value << std::endl;

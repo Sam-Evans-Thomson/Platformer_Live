@@ -52,6 +52,8 @@ bool Game::init() {
     inputComponent = InputComponent();
     inputComponent.init();
     
+    
+    
     return success;
 }
 
@@ -60,8 +62,7 @@ void Game::run() {
     tex2.setWindow(&gameWindow);
     tex.setWindow(&gameWindow);
     tex.loadFromFile("Sprites/Sprite5.png");
-    
-    
+
     quit = false;
     
     loopTimer.start();
@@ -92,7 +93,6 @@ void Game::run() {
         
         if (globalTimer.getSeconds() > 0) {
             frameRate = frameCount/globalTimer.getSeconds();
-            std::cout << frameRate << std::endl;
         }
     }
 
@@ -116,28 +116,21 @@ void Game::gameUpdate(double _d) {
 void Game::render() {
 
     if (!gameWindow.isMinimized()) {
-            gameWindow.clearScreen();
-            tex.renderToTexture(&tex2,
-                        80,
-                        80, 
+            
+            for (int i = 0; i < 20; i++ ) {
+                tex.renderToTexture(&tex2,
+                        100*i,
+                        60*i, 
                         NULL, 
                         0.0, 
                         NULL, 
                         SDL_FLIP_NONE);
-            
-            tex.renderToTexture(&tex2,
-                        gameWindow.getWidth() + 3,
-                        gameWindow.getHeight() + 3, 
-                        NULL, 
-                        30, 
-                        NULL, 
-                        SDL_FLIP_NONE);
-            
+            }
             
             // render all textures to gameWindow;
-            tex2.render( gameWindow.getWidth(),
-                        gameWindow.getHeight(), 
-                        NULL, 
+            tex2.render(0,
+                        0, 
+                        NULL,
                         0.0, 
                         NULL, 
                         SDL_FLIP_NONE);

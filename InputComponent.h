@@ -74,9 +74,13 @@ private:
     void buttonEvent(SDL_Event &_event, bool state);
     void updateButton(unsigned int* button, bool state);
     
+    void keyEvent(SDL_Event &_event);
+    
     void testAxis(int axis, double value);
     void testButton(unsigned int button, bool value);
     void testDPad(unsigned int button, Uint8 dir);
+    
+    bool quit;
     
 };
 
