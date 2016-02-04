@@ -14,30 +14,32 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <SDL.h>
-#include <SDL_image.h>
-#include <stdio.h>
-#include <string>
 #include "Window/Window.h"
-#include "Window/Texture.h"
 #include "Utilities/Timer.h"
-#include "InputComponent.h"
+#include "Window/Texture.h"
 
+
+class Player;
+class InputComponent;
 
 
 class Game {
 public:
     
     Window gameWindow;
+    Player* p;
     
     Game();
     Game(const Game& orig);
-    virtual ~Game();
+    ~Game();
     
     unsigned long getGLobalTime();
 
         //Starts up SDL and creates window
     bool init();
+        
+        // initialize Heap objects.
+    void initHeap();
     
     void run();
 
@@ -64,7 +66,7 @@ private:
     void gameUpdate(double _d);
     void render();
     
-    InputComponent inputComponent;
+    InputComponent* inputComponent;
     
     
     Texture tex;

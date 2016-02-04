@@ -12,8 +12,14 @@
  */
 
 #include "Game.h"
+#include "Player/Player.h"
+#include "InputComponent.h"
+
 #include <iostream>
 #include <stdio.h>
+#include <string>
+#include <SDL.h>
+#include <SDL_image.h>
 
 Game::Game() {
     timeDelta = 0;
@@ -22,9 +28,11 @@ Game::Game() {
 }
 
 Game::Game(const Game& orig) {
+    
 }
 
 Game::~Game() {
+    close();
 }
 
 bool Game::init() {
@@ -47,14 +55,20 @@ bool Game::init() {
             success = false;
         }
         
+        initHeap();
+        
         globalTimer.start();
     }
-    inputComponent = InputComponent();
-    inputComponent.init();
-    
-    
-    
+
+    inputComponent->init();
+
     return success;
+}
+
+void Game::initHeap() {
+    inputComponent = new InputComponent();
+    p = new Player(inputComponent);
+
 }
 
 void Game::run() {
@@ -106,7 +120,7 @@ unsigned long Game::getGLobalTime() { return globalTimer.getMillis();
 void Game::inputUpdate() {
     SDL_Event e;
     
-    if (inputComponent.updateInputs()) quit = true;
+    if (inputComponent->updateInputs()) quit = true;
 }
 
 void Game::gameUpdate(double _d) {

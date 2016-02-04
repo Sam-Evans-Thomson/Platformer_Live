@@ -36,10 +36,20 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/_ext/20e7374d/Game.o \
+	${OBJECTDIR}/_ext/8e7b6eb9/Actor.o \
+	${OBJECTDIR}/_ext/7e1371f3/GameObject.o \
+	${OBJECTDIR}/_ext/7e1371f3/Hitbox.o \
+	${OBJECTDIR}/_ext/7e1371f3/Vec2.o \
+	${OBJECTDIR}/_ext/76c91f2d/Graphic.o \
 	${OBJECTDIR}/_ext/20e7374d/InputComponent.o \
+	${OBJECTDIR}/_ext/417fd003/GraphicsComponent.o \
 	${OBJECTDIR}/_ext/417fd003/Player.o \
+	${OBJECTDIR}/_ext/314faef/PrimaryState.o \
+	${OBJECTDIR}/_ext/314faef/RunningState.o \
+	${OBJECTDIR}/_ext/314faef/SecondaryState.o \
 	${OBJECTDIR}/_ext/417fd003/StateComponent.o \
 	${OBJECTDIR}/_ext/ee4cd6a8/Timer.o \
+	${OBJECTDIR}/_ext/4d4d1112/Canvas.o \
 	${OBJECTDIR}/_ext/4d4d1112/Texture.o \
 	${OBJECTDIR}/_ext/4d4d1112/Window.o \
 	${OBJECTDIR}/main.o
@@ -83,15 +93,60 @@ ${OBJECTDIR}/_ext/20e7374d/Game.o: /home/sam/NetBeansProjects/Platformer_Live/Ga
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/20e7374d/Game.o /home/sam/NetBeansProjects/Platformer_Live/Game.cpp
 
+${OBJECTDIR}/_ext/8e7b6eb9/Actor.o: /home/sam/NetBeansProjects/Platformer_Live/GameObject/Actor/Actor.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/8e7b6eb9
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/8e7b6eb9/Actor.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Actor/Actor.cpp
+
+${OBJECTDIR}/_ext/7e1371f3/GameObject.o: /home/sam/NetBeansProjects/Platformer_Live/GameObject/GameObject.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/7e1371f3
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/7e1371f3/GameObject.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/GameObject.cpp
+
+${OBJECTDIR}/_ext/7e1371f3/Hitbox.o: /home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitbox.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/7e1371f3
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/7e1371f3/Hitbox.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitbox.cpp
+
+${OBJECTDIR}/_ext/7e1371f3/Vec2.o: /home/sam/NetBeansProjects/Platformer_Live/GameObject/Vec2.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/7e1371f3
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/7e1371f3/Vec2.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Vec2.cpp
+
+${OBJECTDIR}/_ext/76c91f2d/Graphic.o: /home/sam/NetBeansProjects/Platformer_Live/Graphics/Graphic.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/76c91f2d
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/76c91f2d/Graphic.o /home/sam/NetBeansProjects/Platformer_Live/Graphics/Graphic.cpp
+
 ${OBJECTDIR}/_ext/20e7374d/InputComponent.o: /home/sam/NetBeansProjects/Platformer_Live/InputComponent.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/20e7374d
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/20e7374d/InputComponent.o /home/sam/NetBeansProjects/Platformer_Live/InputComponent.cpp
 
+${OBJECTDIR}/_ext/417fd003/GraphicsComponent.o: /home/sam/NetBeansProjects/Platformer_Live/Player/GraphicsComponent.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/417fd003
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/417fd003/GraphicsComponent.o /home/sam/NetBeansProjects/Platformer_Live/Player/GraphicsComponent.cpp
+
 ${OBJECTDIR}/_ext/417fd003/Player.o: /home/sam/NetBeansProjects/Platformer_Live/Player/Player.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/417fd003
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/417fd003/Player.o /home/sam/NetBeansProjects/Platformer_Live/Player/Player.cpp
+
+${OBJECTDIR}/_ext/314faef/PrimaryState.o: /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/PrimaryState.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/314faef
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/314faef/PrimaryState.o /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/PrimaryState.cpp
+
+${OBJECTDIR}/_ext/314faef/RunningState.o: /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/RunningState.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/314faef
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/314faef/RunningState.o /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/RunningState.cpp
+
+${OBJECTDIR}/_ext/314faef/SecondaryState.o: /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/314faef
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/314faef/SecondaryState.o /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.cpp
 
 ${OBJECTDIR}/_ext/417fd003/StateComponent.o: /home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/417fd003
@@ -102,6 +157,11 @@ ${OBJECTDIR}/_ext/ee4cd6a8/Timer.o: /home/sam/NetBeansProjects/Platformer_Live/U
 	${MKDIR} -p ${OBJECTDIR}/_ext/ee4cd6a8
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ee4cd6a8/Timer.o /home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp
+
+${OBJECTDIR}/_ext/4d4d1112/Canvas.o: /home/sam/NetBeansProjects/Platformer_Live/Window/Canvas.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/4d4d1112
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4d4d1112/Canvas.o /home/sam/NetBeansProjects/Platformer_Live/Window/Canvas.cpp
 
 ${OBJECTDIR}/_ext/4d4d1112/Texture.o: /home/sam/NetBeansProjects/Platformer_Live/Window/Texture.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/4d4d1112
@@ -143,6 +203,71 @@ ${OBJECTDIR}/_ext/20e7374d/Game_nomain.o: ${OBJECTDIR}/_ext/20e7374d/Game.o /hom
 	    ${CP} ${OBJECTDIR}/_ext/20e7374d/Game.o ${OBJECTDIR}/_ext/20e7374d/Game_nomain.o;\
 	fi
 
+${OBJECTDIR}/_ext/8e7b6eb9/Actor_nomain.o: ${OBJECTDIR}/_ext/8e7b6eb9/Actor.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Actor/Actor.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/8e7b6eb9
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/8e7b6eb9/Actor.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/8e7b6eb9/Actor_nomain.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Actor/Actor.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/8e7b6eb9/Actor.o ${OBJECTDIR}/_ext/8e7b6eb9/Actor_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/7e1371f3/GameObject_nomain.o: ${OBJECTDIR}/_ext/7e1371f3/GameObject.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/GameObject.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/7e1371f3
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/7e1371f3/GameObject.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/7e1371f3/GameObject_nomain.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/GameObject.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/7e1371f3/GameObject.o ${OBJECTDIR}/_ext/7e1371f3/GameObject_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/7e1371f3/Hitbox_nomain.o: ${OBJECTDIR}/_ext/7e1371f3/Hitbox.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitbox.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/7e1371f3
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/7e1371f3/Hitbox.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/7e1371f3/Hitbox_nomain.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitbox.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/7e1371f3/Hitbox.o ${OBJECTDIR}/_ext/7e1371f3/Hitbox_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/7e1371f3/Vec2_nomain.o: ${OBJECTDIR}/_ext/7e1371f3/Vec2.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Vec2.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/7e1371f3
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/7e1371f3/Vec2.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/7e1371f3/Vec2_nomain.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Vec2.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/7e1371f3/Vec2.o ${OBJECTDIR}/_ext/7e1371f3/Vec2_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/76c91f2d/Graphic_nomain.o: ${OBJECTDIR}/_ext/76c91f2d/Graphic.o /home/sam/NetBeansProjects/Platformer_Live/Graphics/Graphic.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/76c91f2d
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/76c91f2d/Graphic.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/76c91f2d/Graphic_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Graphics/Graphic.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/76c91f2d/Graphic.o ${OBJECTDIR}/_ext/76c91f2d/Graphic_nomain.o;\
+	fi
+
 ${OBJECTDIR}/_ext/20e7374d/InputComponent_nomain.o: ${OBJECTDIR}/_ext/20e7374d/InputComponent.o /home/sam/NetBeansProjects/Platformer_Live/InputComponent.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/20e7374d
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/20e7374d/InputComponent.o`; \
@@ -156,6 +281,19 @@ ${OBJECTDIR}/_ext/20e7374d/InputComponent_nomain.o: ${OBJECTDIR}/_ext/20e7374d/I
 	    ${CP} ${OBJECTDIR}/_ext/20e7374d/InputComponent.o ${OBJECTDIR}/_ext/20e7374d/InputComponent_nomain.o;\
 	fi
 
+${OBJECTDIR}/_ext/417fd003/GraphicsComponent_nomain.o: ${OBJECTDIR}/_ext/417fd003/GraphicsComponent.o /home/sam/NetBeansProjects/Platformer_Live/Player/GraphicsComponent.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/417fd003
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/417fd003/GraphicsComponent.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/417fd003/GraphicsComponent_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Player/GraphicsComponent.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/417fd003/GraphicsComponent.o ${OBJECTDIR}/_ext/417fd003/GraphicsComponent_nomain.o;\
+	fi
+
 ${OBJECTDIR}/_ext/417fd003/Player_nomain.o: ${OBJECTDIR}/_ext/417fd003/Player.o /home/sam/NetBeansProjects/Platformer_Live/Player/Player.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/417fd003
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/417fd003/Player.o`; \
@@ -167,6 +305,45 @@ ${OBJECTDIR}/_ext/417fd003/Player_nomain.o: ${OBJECTDIR}/_ext/417fd003/Player.o 
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/417fd003/Player_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Player/Player.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/417fd003/Player.o ${OBJECTDIR}/_ext/417fd003/Player_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/314faef/PrimaryState_nomain.o: ${OBJECTDIR}/_ext/314faef/PrimaryState.o /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/PrimaryState.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/314faef
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/314faef/PrimaryState.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/314faef/PrimaryState_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/PrimaryState.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/314faef/PrimaryState.o ${OBJECTDIR}/_ext/314faef/PrimaryState_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/314faef/RunningState_nomain.o: ${OBJECTDIR}/_ext/314faef/RunningState.o /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/RunningState.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/314faef
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/314faef/RunningState.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/314faef/RunningState_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/RunningState.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/314faef/RunningState.o ${OBJECTDIR}/_ext/314faef/RunningState_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/314faef/SecondaryState_nomain.o: ${OBJECTDIR}/_ext/314faef/SecondaryState.o /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/314faef
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/314faef/SecondaryState.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/314faef/SecondaryState_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/314faef/SecondaryState.o ${OBJECTDIR}/_ext/314faef/SecondaryState_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/417fd003/StateComponent_nomain.o: ${OBJECTDIR}/_ext/417fd003/StateComponent.o /home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.cpp 
@@ -193,6 +370,19 @@ ${OBJECTDIR}/_ext/ee4cd6a8/Timer_nomain.o: ${OBJECTDIR}/_ext/ee4cd6a8/Timer.o /h
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ee4cd6a8/Timer_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/ee4cd6a8/Timer.o ${OBJECTDIR}/_ext/ee4cd6a8/Timer_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/4d4d1112/Canvas_nomain.o: ${OBJECTDIR}/_ext/4d4d1112/Canvas.o /home/sam/NetBeansProjects/Platformer_Live/Window/Canvas.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/4d4d1112
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/4d4d1112/Canvas.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4d4d1112/Canvas_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Window/Canvas.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/4d4d1112/Canvas.o ${OBJECTDIR}/_ext/4d4d1112/Canvas_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/4d4d1112/Texture_nomain.o: ${OBJECTDIR}/_ext/4d4d1112/Texture.o /home/sam/NetBeansProjects/Platformer_Live/Window/Texture.cpp 

@@ -23,7 +23,7 @@
 #include <stdio.h>
 #include <iostream>
 
-
+#define TR_BFR 0.9
 
 class InputComponent {
 public:
@@ -46,6 +46,8 @@ public:
     unsigned int Strt;
     unsigned int LB;
     unsigned int RB;
+    unsigned int lTr;
+    unsigned int rTr;
     
     unsigned int LTh;
     unsigned int RTh;
@@ -59,8 +61,8 @@ public:
     double lTh_Y;
     double rTh_X;
     double rTh_Y;
-    double rTr;
-    double lTr;
+    double lTrig;
+    double rTrig;
     
 private:
     SDL_Joystick *joystick;

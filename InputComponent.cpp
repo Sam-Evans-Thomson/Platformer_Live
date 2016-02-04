@@ -17,6 +17,7 @@
 #include <iostream>
 
 InputComponent::InputComponent() {
+    
 }
 
 InputComponent::InputComponent(const InputComponent& orig) {
@@ -30,8 +31,8 @@ void InputComponent::init() {
     joystick = SDL_JoystickOpen(0);
     std::cout << "init inputComponent" << std::endl;
     
-    A=B=X=Y=U=D=L=R=Sel=Strt=LB=RB=LTh=RTh      = 0;
-    lTh_X=lTh_Y=rTh_X=rTh_Y=lTr=rTr             = 0.0;
+    A=B=X=Y=U=D=L=R=Sel=Strt=LB=RB=LTh=RTh=lTr=rTr      = 0;
+    lTh_X=lTh_Y=rTh_X=rTh_Y=lTrig=rTrig                 = 0.0;
 }
 
 bool InputComponent::updateInputs() {
@@ -71,8 +72,16 @@ void InputComponent::axisMotion(SDL_Event& _event) {
         else if( axis == 1 ) lTh_Y = value;
         else if( axis == 2 ) rTh_X = value;
         else if( axis == 3 ) rTh_Y = value;
-        else if( axis == 4 ) lTr =   value;
-        else if( axis == 5 ) rTr =   value;
+        else if( axis == 4 ) {
+            if (lTr < TR_BFR && value > TR_BFR) lTr   = 1;
+            else lTr = 0;
+            lTrig = value;
+        }
+        else if( axis == 5 ) {
+            if( rTr < TR_BFR && value > TR_BFR) rTr   = 1;
+            else rTr = 0;
+            rTrig = value;
+        }    
     }
 }
 

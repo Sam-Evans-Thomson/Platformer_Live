@@ -12,193 +12,49 @@
  */
 
 #include "StateComponent.h"
+#include "PlayerStates/RunningState.h"
+#include "PlayerStates/PrimaryState.h"
+#include "PlayerStates/SecondaryState.h"
 
-StateComponent::StateComponent(Player* p) : p(p) {
-    primary = nullptr;
+StateComponent::StateComponent(Player* p, InputComponent* ic) : p(p) {
+    init();
+}
+
+StateComponent::StateComponent(const StateComponent& orig) { }
+
+StateComponent::~StateComponent() { 
+    delete running;
     secondary = nullptr;
-}
-
-StateComponent::StateComponent(const StateComponent& orig) {
-}
-
-StateComponent::~StateComponent() {
-}
-
-void StateComponent::init() { primary = &running; }
-
-SecondaryState::SecondaryState() {
-
-}
-
-SecondaryState::SecondaryState(const SecondaryState& orig) {
-
-}
-
-PrimaryState::PrimaryState() {
-
-}
-
-PrimaryState::PrimaryState(const PrimaryState& orig) {
-
-}
-
-void PrimaryState::setInputComponent(InputComponent* ic) { inputComp = ic; }
-
-void SecondaryState::setInputComponent(InputComponent* ic) { inputComp = ic; }
-
-void PrimaryState::setStateComponent(StateComponent* sc) { stateComp = sc; }
-
-void SecondaryState::setStateComponent(StateComponent* sc) { stateComp = sc; }
-
-
-ActivateState::ActivateState() {
-
-}
-
-BlockState::BlockState() {
-
-}
-
-ClimbingState::ClimbingState() {
-    
-}
-
-DodgeState::DodgeState() {
-
-}
-
-DropAttackState::DropAttackState() {
-
-}
-
-EatingState::EatingState() {
-
-}
-
-GrabbingState::GrabbingState() {
-
-}
-
-JumpingState::JumpingState() {
-
-}
-
-void RunningState::inputs() {
-         if (inputComp->A == 1 )    { stateComp->jump();  }
-    else if (inputComp->B == 1)     { stateComp->dodge(); }
-    else if (inputComp->X == 1)     { stateComp->useItem(); }
-    else if (inputComp->Y == 1)     { stateComp->activate(); }
-    else if (inputComp->LB == 1)    { stateComp->block(); }
-    else if (inputComp->RB == 1)    { stateComp->melee1(); }
-}
-
-
-Melee1State::Melee1State() {
-
-}
-
-Melee2State::Melee2State() {
-
-}
-
-NullState::NullState() {
-
-}
-
-RangeState::RangeState() {
-
-}
-
-RunningState::RunningState() {
-    
-}
-
-RunningState::RunningState(const RunningState& orig) {
-
-}
-
-StunState::StunState() {
-
+    primary =   nullptr;
+    inputs =    nullptr;
+    p =         nullptr;
 }
 
 void StateComponent::update(double timeDelta) {
 
 }
 
-void ActivateState::update(double timeDelta) {
+
+void StateComponent::init() {
+    primary = nullptr;
+    secondary = nullptr;
+    running = new RunningState(this);
     
+    // character starts in running state.
+    primary = running;
 }
 
-void SecondaryState::update(double timeDelta) {
-
+void StateComponent::changePrimaryState(PrimaryState* primeState) {
+    primary->exit();
+    primary = primeState;
+    primary->enter();
 }
 
-void BlockState::update(double timeDelta) {
-
+void StateComponent::changeSecondaryState(SecondaryState* secondState) {
+    if (secondary != nullptr) secondary->exit();
+    secondary = secondState;
+    if (secondary != nullptr) secondary->enter();
 }
 
-void Melee1State::update(double timeDelta) {
 
-}
-
-void PrimaryState::update(double timeDelta) {
-
-}
-
-void NullState::update(double timeDelta) {
-
-}
-
-void ClimbingState::update(double timeDelta) {
-
-}
-
-void StunState::update(double timeDelta) {
-
-}
-
-void DodgeState::update(double timeDelta) {
-
-    
-}
-
-void RangeState::update(double timeDelta) {
-
-}
-
-void DropAttackState::update(double timeDelta) {
-
-}
-
-void EatingState::update(double timeDelta) {
-
-}
-
-void Melee2State::update(double timeDelta) {
-
-}
-
-void RunningState::update(double timeDelta) {
-
-}
-
-void GrabbingState::update(double timeDelta) {
-
-}
-
-void JumpingState::update(double timeDelta) {
-
-}
-
-PrimaryState::~PrimaryState() {
-
-}
-
-RunningState::~RunningState() {
-
-}
-
-SecondaryState::~SecondaryState() {
-
-}
 
