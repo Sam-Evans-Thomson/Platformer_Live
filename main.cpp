@@ -5,15 +5,21 @@ and may not be redistributed without written permission.*/
 
 #include "Game.h"
 
-
+Game game; 
+Window gameWindow;
+Canvas canvas;
+Player player;
+InputComponent inputComponent;
+ 
 
 int main( int argc, char* args[] ) {
     
-    Game game;   
+    
     if (!game.init()) {
         printf( "Failed to initialize!\n" );
     }
     else game.run();
 
     return 0;
+    
 }

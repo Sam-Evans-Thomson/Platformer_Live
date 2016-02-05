@@ -15,11 +15,9 @@
 #include "../Graphics/Graphic.h"
 #include "../Player/PlayerStates/PrimaryState.h"
 
-GraphicsComponent::GraphicsComponent(Player* p) : p(p) {
-    playerGraphic = nullptr;
-    enterGraphic = nullptr;
-    graphic = nullptr;
-    exitGraphic = nullptr;
+
+GraphicsComponent::GraphicsComponent() {
+
 }
 
 GraphicsComponent::GraphicsComponent(const GraphicsComponent& orig) {
@@ -41,6 +39,7 @@ void GraphicsComponent::updateGraphics() {
     else if (playerGraphic == exitGraphic && exitGraphic->hasFinished()) {
         if(enterGraphic != nullptr ) playerGraphic = enterGraphic;
     }
+    
 }
 
 void GraphicsComponent::exit() {

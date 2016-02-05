@@ -13,28 +13,41 @@
 
 #include "Graphic.h"
 
-Graphic::Graphic() {
+Graphic::Graphic(int frameCount, std::string path) : numFrames(frameCount), path(path) {
+    timer = Timer();
+
 }
 
 Graphic::Graphic(const Graphic& orig) {
 }
 
 Graphic::~Graphic() {
+    delete &timer;
 }
 
+void Graphic::setFrameTime(double time) { frameTime = time; }
+
 void Graphic::loadTextures() {
-    Texture tex;
+    Texture tex = Texture();
     for (int i = 0; i<numFrames; i++ ) {
         std::string _path;
         _path = path + std::to_string(i) + ".png";
-        tex.loadFromFile(_path);
-        textures.push_back(&tex);
+        
+        if (&tex == nullptr ) printf("texture failed to loasd: \n");
+        else {
+            tex.loadFromFile(_path);
+            textures.push_back(&tex);
+        }
+        _path.clear();
     } 
+    tex.free();
+    start();
 }
 
 
 void Graphic::start() {
-    timer.start();
+    timer.start();    
+    currentFrame = 0;
 }
 
 bool Graphic::hasFinished() {
@@ -46,15 +59,18 @@ void Graphic::render(Canvas* canvas, double x, double y, int z, double scale, do
         incFrame();
         timer.refresh();
     }
-    currentTexture = textures.at(currentFrame);
+    
+    //currentTexture = textures[currentFrame];
+    currentTexture = textures[0];
     
     canvas->addTexture(currentTexture,x,y,z,scale,rotation);
     
 }
 
 void Graphic::incFrame() {
+
     currentFrame++;
-    if (currentFrame == numFrames) currentFrame = 0;
+    if (currentFrame >= numFrames) currentFrame = 0;
 }
 
 

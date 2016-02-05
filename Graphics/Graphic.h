@@ -24,9 +24,11 @@
 
 class Graphic {
 public:
-    Graphic();
+    Graphic(int frameCount, std::string str);
     Graphic(const Graphic& orig);
     virtual ~Graphic();
+    
+    void setFrameTime(double time);
     
     void start();
     
@@ -42,10 +44,10 @@ private:
     
     void incFrame();
     
-    const int numFrames = 6;
-    int currentFrame;
+    int const numFrames = 6;
+    int currentFrame = 0;
     
-    std::string path = "../Sprites/Sprite";
+    std::string path;
     std::vector<Texture*> textures;
     Texture* currentTexture;
 

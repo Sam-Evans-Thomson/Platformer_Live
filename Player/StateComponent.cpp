@@ -16,7 +16,8 @@
 #include "PlayerStates/PrimaryState.h"
 #include "PlayerStates/SecondaryState.h"
 
-StateComponent::StateComponent(Player* p, InputComponent* ic) : p(p) {
+
+StateComponent::StateComponent(){
     init();
 }
 
@@ -26,8 +27,6 @@ StateComponent::~StateComponent() {
     delete running;
     secondary = nullptr;
     primary =   nullptr;
-    inputs =    nullptr;
-    p =         nullptr;
 }
 
 void StateComponent::update(double timeDelta) {
@@ -39,7 +38,7 @@ void StateComponent::init() {
     primary = nullptr;
     secondary = nullptr;
     running = new RunningState(this);
-    
+
     // character starts in running state.
     primary = running;
 }

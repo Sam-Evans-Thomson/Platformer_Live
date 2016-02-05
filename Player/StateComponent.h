@@ -17,14 +17,12 @@
 
 
 class RunningState;
-class Player;
-class InputComponent;
 class PrimaryState;
 class SecondaryState;
 
 class StateComponent {
 public:
-    StateComponent(Player* p, InputComponent* ic);
+    StateComponent();
     StateComponent(const StateComponent& orig);
     virtual ~StateComponent();
     
@@ -35,8 +33,6 @@ public:
     void changePrimaryState(PrimaryState* primeState);
     void changeSecondaryState(SecondaryState* secondState);
     
-    Player* p;
-    InputComponent* inputs;
     PrimaryState* primary;
     SecondaryState* secondary;
 

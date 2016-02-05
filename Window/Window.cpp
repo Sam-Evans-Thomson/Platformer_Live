@@ -53,7 +53,8 @@ bool Window::open() {
     
     bool success = window!=NULL;
     
-    renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED );
+    renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED | 
+            SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_TARGETTEXTURE);
         if( renderer == NULL ) {
             printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
             success = false;
@@ -113,8 +114,6 @@ void Window::applyScreenDim(ScreenDimensions scDim) {
         renderX = (double)(windowW - renderW)/2.0;
     }
     
-    std::cout << renderH << std::endl;
-    std::cout << renderW << std::endl;
 
     renderArea.x = renderX/scale;
     renderArea.y = renderY/scale;
@@ -126,6 +125,7 @@ void Window::applyScreenDim(ScreenDimensions scDim) {
 }
 
 void Window::render() {
+
     SDL_RenderPresent( renderer );
     clearScreen();
 }

@@ -13,28 +13,32 @@
 
 #include "Texture.h"
 
+extern Window gameWindow;
+
 Texture::Texture() {
     texture = NULL;
-    window = NULL;
     width = height = 0;
 }
 
 Texture::Texture(const Texture& orig) {
+    
 }
 
 Texture::~Texture() {
     free();
 }
 
-bool Texture::createBlank(int access, int w, int h) {
-    texture = SDL_CreateTexture(window->getRenderer(), SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, width, height);
+bool Texture::createBlank(int w, int h) {
+    
+    texture = SDL_CreateTexture(gameWindow.getRenderer(), SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, w, h);
     
     if( texture == NULL ) { 
         printf( "Unable to create blank texture! SDL Error: %s\n", SDL_GetError() );
     } 
     else { 
-        width = width; 
-        height = height; 
+        width = w; 
+        height = h; 
+        wipe();
     } 
     return texture != NULL;
 }
@@ -79,14 +83,16 @@ bool Texture::loadFromFile(std::string path) {
         if (formattedSurface == NULL) { printf( "Unable to convert loaded surface to display format! %s\n", SDL_GetError() ); }
         
         else {
-            
-            newTexture = SDL_CreateTexture(window->getRenderer(), 
+            if (&gameWindow == nullptr) printf("window is null: \n");
+            else {
+            newTexture = SDL_CreateTexture(gameWindow.getRenderer(), 
                 SDL_PIXELFORMAT_RGBA8888, 
                 SDL_TEXTUREACCESS_STREAMING,
                 formattedSurface->w,
                 formattedSurface->h );
+            }
             
-            if ( newTexture == NULL ) { printf( "Unable to create blank texture" ); }
+            if ( newTexture == NULL ) { printf( "Unable to create blank texture: \n" ); }
             else {
                 SDL_SetTextureBlendMode( newTexture, SDL_BLENDMODE_BLEND );
                 SDL_LockTexture( newTexture, &formattedSurface->clip_rect, &pixels, &pitch);
@@ -124,10 +130,6 @@ bool Texture::loadFromFile(std::string path) {
     
 }
 
-void Texture::setWindow(Window* _window) {
-    window = _window;
-}
-
 void Texture::setAlpha(Uint8 alpha) {
     SDL_SetTextureAlphaMod(texture, alpha);
 }
@@ -141,11 +143,20 @@ void Texture::setColor(Uint8 red, Uint8 green, Uint8 blue) {
 }
 
 void Texture::setAsRenderTarget() {
-    SDL_SetRenderTarget( window->getRenderer() , texture );
+    SDL_SetRenderTarget( gameWindow.getRenderer() , texture );
 }
 
 void Texture::resetRenderTarget() {
-    SDL_SetRenderTarget( window->getRenderer() , NULL );
+    SDL_SetRenderTarget( gameWindow.getRenderer() , NULL );
+}
+
+void Texture::wipe() {
+    SDL_SetRenderTarget( gameWindow.getRenderer() , texture );
+    SDL_SetRenderDrawColor(gameWindow.getRenderer(), 255, 0, 0, 0);
+    SDL_RenderClear(gameWindow.getRenderer());
+    SDL_SetRenderTarget( gameWindow.getRenderer() , NULL );
+    SDL_SetTextureAlphaMod(texture, 255);
+    SDL_SetTextureBlendMode( texture, SDL_BLENDMODE_BLEND );
 }
 
 
@@ -211,8 +222,9 @@ void Texture::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* cent
         renderQuad.h = clip->h;
     }
     
-    if ( window->getRenderer() != NULL ) {
-        SDL_RenderCopyEx( window->getRenderer(), texture, clip, &renderQuad, angle, center, flip);
+    if ( gameWindow.getRenderer() != NULL ) {
+        SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
+        SDL_RenderCopyEx( gameWindow.getRenderer(), texture, clip, &renderQuad, angle, center, flip);
     }
     else { printf( "Window does not have a valid renderer"); }
 }

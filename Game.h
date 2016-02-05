@@ -15,19 +15,15 @@
 #define GAME_H
 
 #include "Window/Window.h"
+#include "Window/Canvas.h"
+#include "Player/Player.h"
+#include "InputComponent.h"
+
 #include "Utilities/Timer.h"
-#include "Window/Texture.h"
-
-
-class Player;
-class InputComponent;
-
 
 class Game {
 public:
-    
-    Window gameWindow;
-    Player* p;
+
     
     Game();
     Game(const Game& orig);
@@ -65,12 +61,8 @@ private:
     void inputUpdate();
     void gameUpdate(double _d);
     void render();
-    
-    InputComponent* inputComponent;
-    
-    
-    Texture tex;
-    Texture tex2;
+    void display();
+
 };
 
 #endif /* GAME_H */

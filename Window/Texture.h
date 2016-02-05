@@ -21,6 +21,8 @@
 #include <string>
 #include "Window.h"
 
+
+
 class Texture {
 public:
     Texture();
@@ -30,16 +32,17 @@ public:
     int getWidth();
     int getHeight();
     
-    void setWindow(Window* _window);
     void setColor( Uint8 red, Uint8 green, Uint8 blue );
     void setBlendMode( SDL_BlendMode blending );
     void setAlpha( Uint8 alpha );
+    
+    void wipe();
     
     void setAsRenderTarget();
     void resetRenderTarget();
     
     // These function will initialize this texture.
-    bool createBlank(int access, int w, int h);
+    bool createBlank(int w, int h);
     bool loadFromFile( std::string path );
     bool loadFromRendererText( std::string textureText, SDL_Color textColor );
     
@@ -58,7 +61,6 @@ public:
     
 private:
     SDL_Texture* texture;
-    Window* window;
     
     void* pixels;
     int pitch;

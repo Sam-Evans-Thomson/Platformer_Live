@@ -31,6 +31,10 @@ void PrimaryState::enter() {
 
 }
 
+void PrimaryState::loadGraphics() {
+    
+}
+
 void PrimaryState::exit() {
 
 }

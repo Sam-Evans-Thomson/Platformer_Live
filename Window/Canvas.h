@@ -14,7 +14,13 @@
 #ifndef CANVAS_H
 #define CANVAS_H
 
+#include <string>
+#include <vector>
+
 class Texture;
+class Window;
+
+#define NUM_LAYERS 10
 
 class Canvas {
 public:
@@ -22,10 +28,28 @@ public:
     Canvas(const Canvas& orig);
     virtual ~Canvas();
     
+    void init();
+    
+    void render();
+    
+    void clearBackground();
+    void clearForeground();
+    void clearLayer(int i);
+    void clearLayers();
+    void clearAll();
+    
     void addTexture(Texture* tex, double x, double y, int z, double scale, double rot);
+    void addBackgroundTexture(Texture* tex, double x, double y, double scale, double rot);
+    void addForegroundTexture(Texture* tex, double x, double y, double scale, double rot);
+    
+    Texture* foreground;
+    Texture* background;
+    
 private:
+
     
     
+    Texture* layers[NUM_LAYERS];
 
 };
 

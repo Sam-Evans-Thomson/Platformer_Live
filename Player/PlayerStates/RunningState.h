@@ -16,8 +16,9 @@
 
 #include "PrimaryState.h"
 
-class Player;
 class StateComponent;
+
+#define RUNNING_PATH "Sprites/Running"
 
 class RunningState : public PrimaryState {
 public:
@@ -27,11 +28,12 @@ public:
     
     void init() override;
     
+    void loadGraphics() override;
+    
     void enter() override;
     void exit() override;
     void handleInputs(InputComponent* ic) override;
     void update(double timeDelta) override;
-    void loadGraphics();
 
 private:
     

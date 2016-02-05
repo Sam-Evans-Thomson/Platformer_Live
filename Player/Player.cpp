@@ -15,21 +15,26 @@
 #include "GraphicsComponent.h"
 #include "StateComponent.h"
 
-Player::Player(InputComponent* ic) : inputComp(ic){
-    init();
+#include "../InputComponent.h"
+extern InputComponent inputComponent;
+
+Player::Player() {
+
 }
 
 Player::Player(const Player& orig) {
 }
 
 Player::~Player() {
-    //delete stateComp;
-    //delete graphicsComp;
+    delete stateComp;
+    delete graphicsComp;
 }
 
 void Player::init() {
-    //stateComp = new StateComponent(this, inputComp);
-    //graphicsComp = new GraphicsComponent(this);
+    setPos(100,100);
+    setAngle(0.0);
+    stateComp = new StateComponent();
+    graphicsComp = new GraphicsComponent();
 
     
     //climbBox = nullptr;
@@ -37,6 +42,16 @@ void Player::init() {
     //terrainBox = nullptr;
     // platform = nullptr;
 }
+
+void Player::render(Canvas* canvas) {
+    graphicsComp->render(canvas, 
+            getPos().getX(), 
+            getPos().getY(),
+            getZ(),
+            1.0,
+            getAngle());
+}
+
 
 
     //_________________________________________________________//

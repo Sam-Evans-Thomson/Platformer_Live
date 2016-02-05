@@ -15,6 +15,7 @@
 #define PRIMARYSTATE_H
 
 #include "../../Graphics/Graphic.h"
+#include <string>
 
 class InputComponent;
 class StateComponent;
@@ -35,14 +36,18 @@ public:
     
     virtual void update(double timeDelta);
     
+    virtual void loadGraphics();
+    
     Graphic* graphic;
     Graphic* enterGraphic;
     Graphic* exitGraphic;
     
     StateComponent* stateComp;
+    std::string path;
     
 private:
     void changeState(PrimaryState* sc);
+    
     
     
 protected:

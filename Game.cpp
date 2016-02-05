@@ -12,14 +12,18 @@
  */
 
 #include "Game.h"
-#include "Player/Player.h"
-#include "InputComponent.h"
+#include "Window/Texture.h"
 
 #include <iostream>
 #include <stdio.h>
 #include <string>
 #include <SDL.h>
 #include <SDL_image.h>
+
+extern Window gameWindow;
+extern Canvas canvas;
+extern Player player;
+extern InputComponent inputComponent;
 
 Game::Game() {
     timeDelta = 0;
@@ -32,10 +36,13 @@ Game::Game(const Game& orig) {
 }
 
 Game::~Game() {
+    delete &canvas;
+    delete &player;
     close();
 }
 
 bool Game::init() {
+    
     bool success = true;
     
     //Initialize SDL
@@ -60,22 +67,17 @@ bool Game::init() {
         globalTimer.start();
     }
 
-    inputComponent->init();
+    inputComponent.init();
 
     return success;
 }
 
 void Game::initHeap() {
-    inputComponent = new InputComponent();
-    p = new Player(inputComponent);
-
+    player.init();
+    canvas.init();
 }
 
 void Game::run() {
-
-    tex2.setWindow(&gameWindow);
-    tex.setWindow(&gameWindow);
-    tex.loadFromFile("Sprites/Sprite5.png");
 
     quit = false;
     
@@ -100,7 +102,7 @@ void Game::run() {
         }
 
         render();
-        
+        display();
         
         
         frameCount++;
@@ -114,13 +116,12 @@ void Game::run() {
     close();
 }
 
-unsigned long Game::getGLobalTime() { return globalTimer.getMillis();
-}
+unsigned long Game::getGLobalTime() { return globalTimer.getMillis(); }
 
 void Game::inputUpdate() {
     SDL_Event e;
     
-    if (inputComponent->updateInputs()) quit = true;
+    if (inputComponent.updateInputs()) quit = true;
 }
 
 void Game::gameUpdate(double _d) {
@@ -128,30 +129,28 @@ void Game::gameUpdate(double _d) {
 }
 
 void Game::render() {
-
-    if (!gameWindow.isMinimized()) {
-            
-            for (int i = 0; i < 20; i++ ) {
-                tex.renderToTexture(&tex2,
-                        100*i,
-                        60*i, 
-                        NULL, 
-                        0.0, 
-                        NULL, 
-                        SDL_FLIP_NONE);
-            }
-            
-            // render all textures to gameWindow;
-            tex2.render(0,
-                        0, 
-                        NULL,
-                        0.0, 
-                        NULL, 
-                        SDL_FLIP_NONE);
-            //
-            gameWindow.render();
-        }
+    Texture tex;
+    Texture tex2;
+    Texture* blank = new Texture();
+    tex.loadFromFile("Sprites/Running/basic4.png");
+    tex2.loadFromFile("Sprites/Running/basic1.png");
+    blank->createBlank(1920,1080);
+    
+    tex2.render(0,0,NULL,0,NULL,SDL_FLIP_NONE);
+ 
+    delete blank;
+    
+    canvas.addTexture(&tex,100.0,100.0,0,1.0,0.0);
+    
+    //player.render(&canvas);
 }
+
+void Game::display() {
+    canvas.render();
+    gameWindow.render();
+    canvas.clearAll();
+}
+
 
 void Game::close()
 {

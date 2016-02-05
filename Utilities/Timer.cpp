@@ -14,6 +14,7 @@
 #include "Timer.h"
 
 Timer::Timer() {
+    startTime = 0;
 }
 
 Timer::Timer(const Timer& orig) {

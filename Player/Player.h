@@ -14,25 +14,24 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "../GameObject/Actor/Actor.h"
-
-
+#include "../GameObject/GameObject.h"
 
 #define FACING_L 0
 #define FACING_R 1
 
 class GraphicsComponent;
 class StateComponent;
-class InputComponent;
+class Canvas;
 
-class Player : public Actor {
+class Player : public GameObject {
 public:
-    Player(InputComponent* ic);
+    Player();
     Player(const Player& orig);
     ~Player();
     
     void init();
     
+    void render(Canvas* canvas);
     
     // ACTIONS 
     void run(int dir);
@@ -59,20 +58,11 @@ public:
     
     
 private:
-    static StateComponent* stateComp;
-    static GraphicsComponent* graphicsComp;
+    StateComponent* stateComp;
+    GraphicsComponent* graphicsComp;
     
     int facing;
-    
-    
-    
-    
-    // Game owns this.
-    InputComponent* inputComp;
-    
-    
-    
-    
+
     
     // Platform* platform;
     // ClimbBox* climbBox;

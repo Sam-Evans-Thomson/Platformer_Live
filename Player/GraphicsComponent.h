@@ -16,14 +16,13 @@
 
 
 class Graphic;
-class Player;
 class PrimaryState;
 class SecondaryState;
 class Canvas;
 
 class GraphicsComponent {
 public:
-    GraphicsComponent(Player* p);
+    GraphicsComponent();
     GraphicsComponent(const GraphicsComponent& orig);
     ~GraphicsComponent();
     
@@ -42,8 +41,6 @@ private:
     Graphic* enterGraphic;
     Graphic* graphic;
     Graphic* exitGraphic;
-    
-    Player* p;
 
 };
 
