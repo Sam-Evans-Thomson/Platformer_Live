@@ -39,10 +39,11 @@ public:
     void clearLayers();
     void clearAll();
     
-    void addTexture(Texture* tex, double x, double y, int z, double scale, double rot);
-    void addTexture(Texture* tex, double x, double y, int z, double scale, double rot, SDL_RendererFlip flip);
-    void addBackgroundTexture(Texture* tex, double x, double y, double scale, double rot);
-    void addForegroundTexture(Texture* tex, double x, double y, double scale, double rot);
+    void addTexture(Texture* tex, double x, double y, int z,SDL_Rect* clip, double scale, double rot);
+    void addTexture(Texture* tex, double x, double y, int z,SDL_Rect* clip, double scale, double rot, SDL_RendererFlip flip);
+    void addBackgroundTexture(Texture* tex, double x, double y, SDL_Rect* clip, double scale, double rot);
+    void addForegroundTexture(Texture* tex, double x, double y, SDL_Rect* clip, double scale, double rot);
+    
     
     Texture* foreground;
     Texture* background;

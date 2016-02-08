@@ -54,10 +54,9 @@ private:
     //////TESTING //////////
     Texture bgd;
     Texture fgd;
-    Texture grs;
-    Texture ground;
     
-    BasicPlatform* platform;
+    BasicPlatform* platform; 
+    BasicPlatform* platform2;
     /////////////////////////////
     
     Timer globalTimer;

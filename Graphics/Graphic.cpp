@@ -20,6 +20,7 @@ Graphic::Graphic(int frameCount, std::string path) : numFrames(frameCount), path
     doesReverse = true;
     paused = (numFrames == 1);
     direction = true;
+    clipBehaviour = GRAPHIC_NONE;
 }
 
 Graphic::Graphic(const Graphic& orig) {
@@ -42,6 +43,15 @@ void Graphic::loadTextures() {
 
 }
 
+void Graphic::setClip(int x, int y, int w, int h,int _behaviour) {
+    clip.x = 0;
+    clip.y = 0;
+    clip.w = w;
+    clip.h = h;
+    clipBehaviour = _behaviour;
+}
+
+
 bool Graphic::isReversing() { return doesReverse;}
 
 void Graphic::setReversing(bool rev) { doesReverse = rev; }
@@ -62,8 +72,12 @@ void Graphic::setFirst() {
 void Graphic::contAnimation() { paused = false;}
 
 void Graphic::flip() { 
-    std::cout << "flip" << std::endl;
-    direction = !direction; }
+    direction = !direction; 
+}
+
+void Graphic::setDirection(bool dir) {
+    direction = dir;
+}
 
 
 bool Graphic::hasFinished() {
@@ -77,11 +91,26 @@ void Graphic::render(double x, double y, int z, double scale, double rotation) {
             timer.refresh();
         }
     }
-    if (!direction) {
-        canvas.addTexture(&textures[currentFrame],x,y,z,scale,rotation,SDL_FLIP_HORIZONTAL);
-    }
-    else canvas.addTexture(&textures[currentFrame],x,y,z,scale,rotation);
+    renderToCanvas(&textures[currentFrame],x,y,z, scale,rotation);
+    
+}
 
+void Graphic::renderToCanvas(Texture* tex, double x, double y, int z, double scale, double rotation) {
+    
+    if (clipBehaviour == GRAPHIC_SCALE) {
+        if (!direction) {
+            canvas.addTexture(tex,x,y,z,&clip,scale,rotation,SDL_FLIP_HORIZONTAL);
+        }
+        else canvas.addTexture(tex,x,y,z,&clip,scale,rotation);
+       
+    } else if (clipBehaviour == GRAPHIC_NONE) {
+        
+        if (!direction) {
+            canvas.addTexture(tex,x,y,z,NULL,scale,rotation,SDL_FLIP_HORIZONTAL);
+        }
+        else canvas.addTexture(tex,x,y,z,NULL,scale,rotation);
+       
+    }
 }
 
 void Graphic::incFrame() {

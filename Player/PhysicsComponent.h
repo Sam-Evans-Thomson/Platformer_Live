@@ -16,10 +16,13 @@
 
 #include "../GameObject/Hitboxes/CircleHitbox.h"
 
-#define BASE_GRAVITY 25
+#define BASE_GRAVITY 46
 #define BASE_FRICTION 1
 #define MAX_X_FORCE 500
 #define MAX_Y_FORCE 1500
+
+#define PLAYR_W 100
+#define PLAYR_H 140
 
 class PhysicsComponent {
 public:
@@ -36,9 +39,11 @@ public:
     double getAngle();
 
     void setForce(Vec2 frc);
-    void setFriction(double fric);
+    void setFrictionX(double fric);
+    void setFrictionY(double fric);
     void setGravity(double grav);
     void setTimeDelta(double delta);
+
     
     void useFric(bool on);
     void useGrav(bool on);
@@ -48,6 +53,7 @@ public:
     void addImpulse(Vec2 _impulse);
     
     RectHitbox* bodyHB;
+    RectHitbox* underFeetHB;
     
 private:
     
@@ -63,7 +69,8 @@ private:
     Vec2 impulse;
     Vec2 force;
     
-    double friction;
+    double frictionX;
+    double frictionY;
     double gravity;
     
     bool useGravity;
@@ -75,12 +82,17 @@ private:
     const double maxForceY = 600;
     
     void applyMove(Vec2 mvmnt);
-    void resolveCollisions();
-    void resolveCollision(RectHitbox* hitbox);
+    void applyMoveTo(Vec2 _pos);
+    
+    void resolvePlatformCollisions();
+    void resolvePlatformCollision(RectHitbox* hitbox);
+    
+    void resolveEnemyCollisions();
     void applyGravity();
     void applyFriction();
     Vec2 checkForce(Vec2 frc);
     void addImpulse();
+
 };
 
 #endif /* PHYSICSCOMPONENT_H */

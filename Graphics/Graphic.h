@@ -22,6 +22,9 @@
 #include <string>
 #include <vector>
 
+#define GRAPHIC_SCALE 1
+#define GRAPHIC_NONE 2
+
 class Graphic {
 public:
     Graphic(int frameCount, std::string str);
@@ -29,6 +32,7 @@ public:
     virtual ~Graphic();
     
     void setFrameTime(double time);
+    void setClip(int x, int y, int w, int h, int _behaviour);
     
     void start();
     void pauseAnimation();
@@ -36,8 +40,11 @@ public:
     void setFirst();
     
     void flip();
+    void setDirection(bool dir);
     
     void render(double x,double y, int z, double scale, double rotation);
+    void renderToCanvas(Texture* tex, double x, double y, int z, double scale, double rotation);
+
     bool isReversing();
     void setReversing(bool rev);
     void loadTextures();
@@ -52,12 +59,16 @@ private:
     bool reversing;
     bool paused;
     
+    // facing right is true;
     bool direction;
     
     void incFrame();
     
     int numFrames;
     int currentFrame = 0;
+    
+    SDL_Rect clip;
+    int clipBehaviour;
     
     Texture textures[20];
     

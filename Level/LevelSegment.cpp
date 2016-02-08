@@ -23,14 +23,23 @@ LevelSegment::LevelSegment(int x, int y) {
 }
 
 LevelSegment::LevelSegment(const LevelSegment& orig) {
+    
 }
 
 LevelSegment::~LevelSegment() {
+    
 }
+
+void LevelSegment::render() {
+    for ( BasicPlatform* bp : platforms) bp->render();
+}
+
 
 void LevelSegment::loadSegment(int x, int y) {
  
 }
+
+
 
 void LevelSegment::addPlatform(BasicPlatform* platform) {
     platforms.push_back(platform);
@@ -39,8 +48,7 @@ void LevelSegment::addPlatform(BasicPlatform* platform) {
 int LevelSegment::getPlatformCount() { return platforms.size(); }
 
 RectHitbox* LevelSegment::getPlatformHitbox(int i) { 
-    BasicPlatform pf = *platforms.at(i); 
-    return pf.hb;
+    return platforms.at(i)->hb;
 }
 
 

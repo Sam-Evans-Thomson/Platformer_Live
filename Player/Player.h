@@ -16,11 +16,14 @@
 
 
 
-#define JUMP_FORCE 80
+#define JUMP_FORCE 28
+
+#define FALL_DELTA_STAGGER 100
 
 class GraphicsComponent;
 class StateComponent;
 class PhysicsComponent;
+class PrimaryState;
 
 class Player {
 public:
@@ -33,10 +36,13 @@ public:
     void render();
     void update(double time);
     
+        
+    void changeState(PrimaryState* state);
+    
     double getX();
     double getY();
     int getZ();
-    
+
     // ACTIONS 
     
     void run(int dir);
@@ -44,6 +50,10 @@ public:
     
     void jumpFirst();
     void jump(int i);
+    void falling();
+    
+    void land(double xDelta);
+    void landStagger(double xDelta);
     
     void dropThrough();
     void climb();

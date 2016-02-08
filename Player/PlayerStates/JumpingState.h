@@ -36,10 +36,10 @@ public:
     void exit() override;
     void handleInputs(InputComponent* ic) override;
     void update(double timeDelta) override;
+
     
 private:
 
-    int jumpCount;
     
 };
 

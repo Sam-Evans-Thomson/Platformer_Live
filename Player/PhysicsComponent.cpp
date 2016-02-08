@@ -17,8 +17,10 @@
 #include <stdio.h>
 
 #include "../Level/LevelManager.h"
+#include "Player.h"
 
 extern LevelManager levelManager;
+extern Player player;
 
 PhysicsComponent::PhysicsComponent() {
     init();
@@ -31,21 +33,27 @@ PhysicsComponent::~PhysicsComponent() {
     delete pos;
     delete prevPos;
     delete bodyHB;
+    delete underFeetHB;
 }
 
 void PhysicsComponent::init() {
     useGravity = false;
     useFriction = true;
-    friction = BASE_FRICTION;
+    frictionX = BASE_FRICTION;
+    frictionY = BASE_FRICTION;
     gravity = BASE_GRAVITY;
     angle = 0.0;
     z=1;
-    pos = new Vec2(200,860);
-    bodyHB = new RectHitbox(*pos, 100.0 ,140.0);
+    pos = new Vec2(250,400);
+    bodyHB = new RectHitbox(*pos, PLAYR_W ,PLAYR_H);
+    underFeetHB = new RectHitbox(
+            pos->getX(), pos->getY() + PLAYR_H, 
+            PLAYR_W ,2);
     impulse = Vec2(0,0);
 }
 
 void PhysicsComponent::update(double delta) {
+
     timeDelta = delta;
     if (useGravity) applyGravity();
     if (useFriction) applyFriction();
@@ -65,7 +73,10 @@ void PhysicsComponent::addForce(double x, double y) {
 }
 
 
-void PhysicsComponent::applyFriction() { force = force/(1.0+friction); }
+void PhysicsComponent::applyFriction() { 
+    force = Vec2( force.getX()/(1.0+frictionX),
+            force.getY()/(1.0+frictionY) ); 
+}
 
 void PhysicsComponent::applyGravity() {  
     Vec2 grav(0.0, gravity);
@@ -90,28 +101,58 @@ Vec2 PhysicsComponent::checkForce(Vec2 frc) {
 void PhysicsComponent::applyMove(Vec2 mvmnt) {
 
     *pos += mvmnt;
-    bodyHB->move(mvmnt);
     
-    resolveCollisions();
+    bodyHB->moveTo(*pos);
+    underFeetHB->move(mvmnt);
+    
+    resolvePlatformCollisions();
+    prevPos = pos;
 }
 
-void PhysicsComponent::resolveCollisions() { 
+void PhysicsComponent::applyMoveTo(Vec2 _pos) {
+
+    *pos = _pos;
     
+    bodyHB->moveTo(_pos);
+    underFeetHB->moveTo(pos->getX(), pos->getY() + PLAYR_H);
+    
+    resolveEnemyCollisions();
+    resolvePlatformCollisions();
+    prevPos = pos;
+    
+}
+
+void PhysicsComponent::resolvePlatformCollisions() { 
     for (int i = 0; i<levelManager.platformCount(); i++) {
-        resolveCollision(levelManager.getPlayerPlatformHitbox(i));
+        resolvePlatformCollision(levelManager.getPlayerPlatformHitbox(i));
     }
 }
 
-void PhysicsComponent::resolveCollision(RectHitbox* hitbox) {
-    std::cout << "Hit" << std::endl;
-    if(hitbox->collision(*bodyHB)) {
-        std::cout << "Hit" << std::endl;
+void PhysicsComponent::resolvePlatformCollision(RectHitbox* hitbox) {
+    
+    if(hitbox->collision(*underFeetHB) && hitbox->collision(*bodyHB)) {
+        player->insidePlatform(hitbox);
+        
+        player.land(pos->getX() - prevPos->getX());
+
+        force = Vec2(force.getX(),0.0);
+        applyMoveTo(Vec2(pos->getX(), hitbox->getY() - bodyHB->getH() - 1));
+        
+    } else if (!hitbox->collision(*underFeetHB)) {
+        player.falling();
     }
+
+}
+
+void PhysicsComponent::resolveEnemyCollisions() {
+
 }
 
 void PhysicsComponent::setForce(Vec2 frc) { force = checkForce(frc); }
 
-void PhysicsComponent::setFriction(double fric) { friction = fric; }
+void PhysicsComponent::setFrictionX(double fric) { frictionX = fric; }
+
+void PhysicsComponent::setFrictionY(double fric) { frictionY = fric; }
 
 void PhysicsComponent::setGravity(double grav) { gravity = grav; }
 

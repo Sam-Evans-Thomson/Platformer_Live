@@ -31,6 +31,9 @@ public:
     
     void move(double x, double y);
     void move(Vec2& vector);
+    void moveTo(Vec2& vector);
+    void moveTo(double x, double y);
+    
     double getX();
     double getY();
     

@@ -17,24 +17,28 @@
 RectHitbox::RectHitbox(Vec2 _pos, double w, double h) :  w(w), h(h) { 
     pos = _pos;
     angle = 0.0;
+    isAA = true;
     makeLines();
 }
 
 RectHitbox::RectHitbox(double x, double y, double w, double h) : w(w), h(h){
     pos = Vec2(x,y);
     angle = 0.0;
+    isAA = true;
     makeLines();
 }
 
 RectHitbox::RectHitbox(double x, double y, double w, double h, double angle) 
 : w(w), h(h), angle(angle) {
     pos = Vec2(x,y);
+    isAA = false;
     makeLines();
 }
 
 RectHitbox::RectHitbox(Vec2 _pos, double w, double h, double angle) 
 : w(w), h(h), angle(angle) {
     pos = _pos;
+    isAA = false;
     makeLines();
 }
 
@@ -49,14 +53,23 @@ RectHitbox::~RectHitbox() {
 }
 
 void RectHitbox::makeLines() {
-    Vec2 oc(getX(), getY());
-    oc.rotate(angle, pos);
-    
-    left  = new LineHitbox(getX()    , getY()       ,  PI/2.0 + angle);
-    up    = new LineHitbox(getX()    , getY()       ,  -PI + angle);
-    
-    right = new LineHitbox(oc.getX() , oc.getY()    , -PI/2.0 + angle);
-    down  = new LineHitbox(0.0       , getY() + h   ,  0 + angle);
+    if (isAA) {
+        left  = new LineHitbox(getX()    , getY()       ,  PI/2.0);
+        up    = new LineHitbox(getX()    , getY()       ,  -PI);
+
+        right = new LineHitbox(getX()+w  , getY() +h    , -PI/2.0);
+        down  = new LineHitbox(getX()+w  , getY() +h    ,  0);
+    }
+    else {
+        Vec2 oc(getX(), getY());
+        oc.rotate(angle, pos);
+
+        left  = new LineHitbox(getX()    , getY()       ,  PI/2.0 + angle);
+        up    = new LineHitbox(getX()    , getY()       ,  -PI + angle);
+
+        right = new LineHitbox(oc.getX() , oc.getY()    , -PI/2.0 + angle);
+        down  = new LineHitbox(0.0       , getY() + h   ,  0 + angle);
+    }
 }
 
 LineHitbox RectHitbox::getLine(int i) {

@@ -67,6 +67,13 @@ void Player::update(double time) {
     //graphicsComp->updateGraphics();
 }
 
+void Player::changeState(PrimaryState* state) {
+    stateComp->changePrimaryState(state);
+    graphicsComp->updatePrimaryState(state);
+    graphicsComp->updateGraphics();
+}
+
+
 double Player::getX() { return physicsComp->X(); }
 
 double Player::getY() { return physicsComp->Y(); }
@@ -91,16 +98,38 @@ void Player::stopRun() {
 
 
 void Player::jumpFirst() {
-    stateComp->changePrimaryState(stateComp->jumping);
-    graphicsComp->updatePrimaryState(stateComp->jumping);
-    graphicsComp->updateGraphics();
+    changeState(stateComp->jumping);
+    stateComp->setJumpCount(0);
     physicsComp->useFric(false);
     physicsComp->useGrav(true);
 }
 
-void Player::jump(int i) {
-    physicsComp->addForce(0.0,-JUMP_FORCE);
+void Player::falling() {
+    changeState(stateComp->jumping);
+    physicsComp->useFric(false);
+    physicsComp->useGrav(true);
 }
+
+
+void Player::jump(int i) {
+    physicsComp->addForce(0.0,-JUMP_FORCE*(10-i));
+}
+
+void Player::land(double xDelta) {
+    if (xDelta > FALL_DELTA_STAGGER) landStagger(xDelta);
+    else {
+        changeState(stateComp->running);
+        physicsComp->useGrav(false);
+    }
+    
+}
+
+void Player::landStagger(double xDelta) {
+    std::cout << "Player staggers: "<< xDelta << std::endl;
+}
+
+
+
 
 void Player::dropThrough() {
 //    if(platform->isDropThrough) {

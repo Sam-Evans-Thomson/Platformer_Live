@@ -17,7 +17,7 @@
 extern Player player;
 
 LevelManager::LevelManager() {
-
+    
 }
 
 LevelManager::LevelManager(const LevelManager& orig) {
@@ -27,6 +27,7 @@ LevelManager::~LevelManager() {
 }
 
 void LevelManager::init() {
+    loadedSegments.reserve(25);
     initialLoadSegments();
 }
 
@@ -34,7 +35,7 @@ void LevelManager::initialLoadSegments() {
     double x = player.getX() - SEGMENT_WIDTH;
     double y = player.getY() - SEGMENT_HEIGHT;
     for (int i = 0; i < 25 ; i++) {
-        loadedSegments[i] = LevelSegment(
+        loadedSegments[i] = new LevelSegment(
                 get_Seg_X_Count(x) + i,
                 get_Seg_X_Count(y) + i%5);
     }
@@ -43,26 +44,32 @@ void LevelManager::initialLoadSegments() {
 int LevelManager::platformCount() {
     int count = 0;
     for (int i = 0; i < 9; i++) {
-        count += loadedSegments[i].getPlatformCount();
+        count += loadedSegments[i]->getPlatformCount();
     }
+    return count;
 }
 
 RectHitbox* LevelManager::getPlatformHitbox(int i) {
     int count = 0;
-    while (i > 0 && count < 25) { i-=loadedSegments[count++].getPlatformCount(); }  
-    i+=loadedSegments[count--].getPlatformCount();
-    return loadedSegments[count].getPlatformHitbox(i);
+    while (i > 0 && count < 25) { i-=loadedSegments[count++]->getPlatformCount(); }  
+    i+=loadedSegments[count--]->getPlatformCount();
+    return loadedSegments[count]->getPlatformHitbox(i);
 }
 
 int LevelManager::playerPlatformCount() {
-    return loadedSegments[0].getPlatformCount();
+    return loadedSegments[0]->getPlatformCount();
 }
 
 RectHitbox* LevelManager::getPlayerPlatformHitbox(int i) {
-    if (i<loadedSegments[0].getPlatformCount()) {
-        return loadedSegments[0].getPlatformHitbox(i);
+    if (i<loadedSegments[0]->getPlatformCount()) {
+        return loadedSegments[0]->getPlatformHitbox(i);
     }    
 }
+
+void LevelManager::render() {
+    loadedSegments[0]->render();
+}
+
 
 int LevelManager::get_Seg_X_Count(double x) { return (int)x/SEGMENT_WIDTH; }
 
@@ -70,7 +77,9 @@ int LevelManager::get_Seg_Y_Count(double y) { return (int)y/SEGMENT_HEIGHT;
 }
 
 void LevelManager::addPlatform(BasicPlatform* hb) {
-    loadedSegments[0].addPlatform(hb);
+    loadedSegments[0]->addPlatform(hb);
+    std::cout << "levelManager addPlatform platform count: " 
+            << playerPlatformCount() << std::endl;
 }
 
 

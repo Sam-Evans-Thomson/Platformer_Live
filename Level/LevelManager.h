@@ -33,6 +33,8 @@ public:
     RectHitbox* getPlatformHitbox(int i);
     RectHitbox* getPlayerPlatformHitbox(int i);
     
+    void render();
+    
     void init();
     
     ////////////////////////////////////////
@@ -59,7 +61,8 @@ private:
      * Player hitboxes only check loadedSegments[0];
      * graphics render for onl the segments that are on screen.
      */
-    LevelSegment loadedSegments[25]; 
+    
+    std::vector <LevelSegment*> loadedSegments;
 };
 
 #endif /* LEVELMANAGER_H */

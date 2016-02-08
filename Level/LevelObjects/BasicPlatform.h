@@ -24,16 +24,21 @@
 
 class BasicPlatform {
 public:
-    BasicPlatform(Vec2 pos, double w, double h);
-    BasicPlatform(double x, double y, double w, double h);
+    BasicPlatform(Vec2 pos, int z, double w, double h);
+    BasicPlatform(double x, double y, int z, double w, double h);
     BasicPlatform(const BasicPlatform& orig);
     virtual ~BasicPlatform();
+    
+    void render();
     
     // init needs to be called until it returns -1;
     int init(int i);
 
     void setGraphicPath(std::string _path);
     void setGraphicPath(int frameCount, std::string _path);
+    
+    // These are in relation to the pos and w,h of the hitbox.
+    void setGraphicDimensions(double x, double y, double _w, double _h, int behaviour);
     
     Vec2 getPos();
     double getX();
@@ -58,6 +63,12 @@ private:
     Vec2 pos;
     double w;
     double h;
+    int z;
+    
+    double graphX;
+    double graphY;
+    double graphW;
+    double graphH;
 
 };
 

@@ -62,5 +62,10 @@ void StateComponent::handleInputs(InputComponent* ic) {
     primary->handleInputs(ic);
 }
 
+void StateComponent::setJumpCount(int i) {
+    jumpCount = i;
+}
+
+
 
 

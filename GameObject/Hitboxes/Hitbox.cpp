@@ -16,6 +16,8 @@
 #include "RectHitbox.h"
 #include "LineHitbox.h"
 
+#include <iostream>
+
 Hitbox::Hitbox() {
 }
 
@@ -26,11 +28,20 @@ Hitbox::~Hitbox() {
 }
 
 void Hitbox::move(double x, double y) {
-    
+    Vec2 mv(x,y);
+    pos+=mv;
 }
 
 void Hitbox::move(Vec2& vector) {
-    
+    pos+=vector;
+}
+
+void Hitbox::moveTo(Vec2& vector) {
+    pos = vector;
+}
+
+void Hitbox::moveTo(double x, double y) {
+    pos = Vec2(x,y);
 }
 
 double Hitbox::getX() { return pos.getX();
@@ -112,10 +123,20 @@ bool Hitbox::collision(CircleHitbox& circle, LineHitbox& line){
 }
 
 bool Hitbox::collision(RectHitbox& rect, RectHitbox& rect2){
-    if (rect.getAngle() == 0.0 && rect2.getAngle() == 0.0) {
-        double diffx = (rect.getW() + rect2.getW() - abs(rect.getX() - rect2.getX()) );
-        double diffy = (rect.getH() + rect2.getH() - abs(rect.getY() - rect2.getY()) );
-        return (diffx && diffy);
+    if (rect.isAA && rect2.isAA) {
+        
+        bool boolx, booly;
+        
+        if (rect.getX() < rect2.getX()) {
+                boolx = rect.getX() + rect.getW() > rect2.getX();
+        } else  boolx = rect2.getX() + rect2.getW() > rect.getX();
+        
+        if (rect.getY() < rect2.getY()) {
+                booly = rect.getY() + rect.getH() > rect2.getY();
+        } else  booly = rect2.getY() + rect2.getH() > rect.getY();
+
+        return booly&&boolx;
+        
     }
     else {
         Vec2 c1 = rect2.getCorner(0);

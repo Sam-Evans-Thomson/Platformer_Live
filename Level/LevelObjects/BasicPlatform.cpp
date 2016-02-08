@@ -13,12 +13,12 @@
 
 #include "BasicPlatform.h"
 
-BasicPlatform::BasicPlatform(Vec2 pos, double w, double h) 
-: pos(pos), w(w), h(h) {
+BasicPlatform::BasicPlatform(Vec2 pos, int z, double w, double h) 
+: pos(pos), w(w), h(h), z(z) {
 }
 
-BasicPlatform::BasicPlatform(double x, double y, double w, double h) 
-: w(w), h(h) {
+BasicPlatform::BasicPlatform(double x, double y, int z, double w, double h) 
+: w(w), h(h), z(z) {
     pos = Vec2(x,y);
 }
 
@@ -49,6 +49,11 @@ BasicPlatform::~BasicPlatform() {
     delete graphic;
 }
 
+void BasicPlatform::render() {
+    graphic->render(graphX, graphY, z, 1.0, 0.0);    
+}
+
+
 void BasicPlatform::setGraphicPath(std::string _path) { 
     path = _path; 
     numFrames = 1;
@@ -59,6 +64,15 @@ void BasicPlatform::setGraphicPath(int frameCount, std::string _path) {
     numFrames = frameCount;
 }
 
+void BasicPlatform::setGraphicDimensions(double x, double y, double _w, double _h, int behaviour) {
+    graphX = pos.getX() + x; 
+    graphY = pos.getY() + y;
+    graphW = w + _w; 
+    graphH = h + _h;
+    graphic->setClip(graphX, graphY, graphW, graphH, behaviour);
+}
+
+
 Vec2 BasicPlatform::getPos() { return pos; }
 double BasicPlatform::getX() { return pos.getX(); }
 double BasicPlatform::getH() { return h; }
@@ -67,11 +81,13 @@ double BasicPlatform::getY() { return pos.getY(); }
 
 void BasicPlatform::loadHitbox() {
     hb = new RectHitbox(pos,w,h);
+    
 }
 
 void BasicPlatform::loadGraphic() {
     if(numFrames > 0) {
         graphic = new Graphic(numFrames,path);
+        graphic->loadTextures();
     }
 }
 

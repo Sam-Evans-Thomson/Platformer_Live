@@ -43,7 +43,7 @@ void RunningState::loadGraphics() {
 
 
 void RunningState::enter() {
-
+    graphic->setDirection(stateComp->direction == FACING_R);
 }
 
 void RunningState::exit() {

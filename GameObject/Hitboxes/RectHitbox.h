@@ -50,7 +50,11 @@ public:
     LineHitbox* up;
     LineHitbox* down;
     
+    bool isAA;
+    
 protected:   
+    
+    
     
     void makeLines();
         

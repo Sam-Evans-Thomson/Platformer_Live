@@ -89,15 +89,25 @@ void Game::run() {
     
     ///////////////////Testing////////////////////////
     levelManager.init();
-    platform = new BasicPlatform(200.0, 1000.0, 1000.0, 50.0);
-    levelManager.addPlatform(platform);
     
-    ground.loadFromFile("Sprites/ground.png");
-    grs.loadFromFile("Sprites/grass.png");
+    platform = new BasicPlatform(200.0, 750.0, 1, 1200.0, 100.0);
+    platform->setGraphicPath("Sprites/ground");
+    platform->init(0);
+    platform->init(1);
+    platform->setGraphicDimensions(-30.0,-3.0,0.0,0.0,GRAPHIC_SCALE);
+    
+    platform2 = new BasicPlatform(1400, 600.0, 1, 600, 200.0);
+    platform2->setGraphicPath("Sprites/ground");
+    platform2->init(0);
+    platform2->init(1);
+    platform2->setGraphicDimensions(-30.0,-3.0,0.0,0.0,GRAPHIC_SCALE);
+    
+    levelManager.addPlatform(platform);
+    levelManager.addPlatform(platform2);
+
     bgd.loadFromFile("Sprites/background0.png");
     fgd.loadFromFile("Sprites/vine.png");
     //////////////////////////////////////////////
-    
     
     
     quit = false;
@@ -154,24 +164,15 @@ void Game::render() {
     
         
     
-    canvas.addBackgroundTexture(&bgd, 0.0, 0.0, 1.0, 0.0);
+    canvas.addBackgroundTexture(&bgd, 0.0, 0.0,NULL, 1.0, 0.0);
     
     
     
-    canvas.addForegroundTexture(&fgd, 400, 0, 2.0, 0.0);
-    canvas.addForegroundTexture(&fgd, 600, -100, 1.8, 0.0);
+    canvas.addForegroundTexture(&fgd, 400, 0, NULL, 2.0, 0.0);
+    canvas.addForegroundTexture(&fgd, 600, -100, NULL, 1.8, 0.0);
     
     
-    
-    for (int i = 0; i < 8; i++) {
-        canvas.addTexture(&grs,200.0 + i*150.0,950.0,2,1.0,0.0);
-    }
-    
-    
-    
-    canvas.addTexture(&ground,200.0,1000.0,0,1.0,0.0);
-    
-    
+    levelManager.render();
     player.render();
 }
 

@@ -235,7 +235,6 @@ void Texture::renderToTexture(Texture* _texture, int x, int y, SDL_Rect* clip, d
     _texture->resetRenderTarget();
 }
 
-
 void Texture::free() { freeTexture(); }
 
 void Texture::freeTexture() {

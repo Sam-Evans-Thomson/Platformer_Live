@@ -41,6 +41,8 @@ public:
     
     void handleInputs(InputComponent* ic);
     
+    void setJumpCount(int i);
+    
     PrimaryState* primary;
     SecondaryState* secondary;
 
@@ -65,9 +67,13 @@ public:
       
           
     int direction;
-//    
+    int jumpCount; 
+    
+    PhysicsComponent* physicsComp;
 
 private:
+    
+    
 protected:
     
 };

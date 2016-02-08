@@ -26,6 +26,8 @@ public:
     LevelSegment(const LevelSegment& orig);
     virtual ~LevelSegment();
     
+    void render();
+    
     void addPlatform(BasicPlatform* hb);
     
     int getPlatformCount();

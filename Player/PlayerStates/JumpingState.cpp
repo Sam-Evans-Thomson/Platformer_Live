@@ -32,7 +32,7 @@ JumpingState::~JumpingState() {
 void JumpingState::init() {
     path = JUMPING_PATH;
     loadGraphics();    
-    jumpCount = 0;
+    stateComp->jumpCount = 0;
 }
 
 void JumpingState::loadGraphics() {
@@ -45,12 +45,12 @@ void JumpingState::loadGraphics() {
 void JumpingState::handleInputs(InputComponent* ic) {
 
     if (ic->A > 1) {
-        if (jumpCount < JUMP_COUNT_MAX) {
-            jumpCount++;
-            player.jump(jumpCount);
+        if (stateComp->jumpCount < JUMP_COUNT_MAX) {
+            stateComp->jumpCount++;
+            player.jump(stateComp->jumpCount);
         }
     }
-    else if (ic->A == 0) jumpCount = JUMP_COUNT_MAX + 1;
+    else if (ic->A == 0) stateComp->jumpCount = JUMP_COUNT_MAX + 1;
     
     graphic->contAnimation();
     // Movement Running
@@ -92,8 +92,9 @@ void JumpingState::handleInputs(InputComponent* ic) {
     
 }
 
+
 void JumpingState::enter() {
-    jumpCount = 0;
+    graphic->setDirection(stateComp->direction == FACING_R);
 }
 
 void JumpingState::exit() {
