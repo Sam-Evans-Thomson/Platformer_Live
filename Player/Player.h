@@ -14,16 +14,15 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "../GameObject/GameObject.h"
 
-#define FACING_L 0
-#define FACING_R 1
+
+#define JUMP_FORCE 80
 
 class GraphicsComponent;
 class StateComponent;
-class Canvas;
+class PhysicsComponent;
 
-class Player : public GameObject {
+class Player {
 public:
     Player();
     Player(const Player& orig);
@@ -31,12 +30,21 @@ public:
     
     void init();
     
-    void render(Canvas* canvas);
+    void render();
+    void update(double time);
+    
+    double getX();
+    double getY();
+    int getZ();
     
     // ACTIONS 
-    void run(int dir);
     
-    void jump();
+    void run(int dir);
+    void stopRun();
+    
+    void jumpFirst();
+    void jump(int i);
+    
     void dropThrough();
     void climb();
     void dodge();
@@ -55,13 +63,13 @@ public:
     void changeMelee();
     void changeRange();
     void changeConsumable();
-    
+
     
 private:
     StateComponent* stateComp;
     GraphicsComponent* graphicsComp;
+    PhysicsComponent* physicsComp;
     
-    int facing;
 
     
     // Platform* platform;

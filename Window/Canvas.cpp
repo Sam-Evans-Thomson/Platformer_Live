@@ -41,9 +41,9 @@ void Canvas::init() {
 }
 
 void Canvas::render() {
-    background->render(0,0,NULL,0.0,NULL,SDL_FLIP_NONE);
-    for (Texture* tex: layers) tex->render(0,0,NULL,0.0,NULL,SDL_FLIP_NONE);
-    foreground->render(0,0,NULL,0.0,NULL,SDL_FLIP_NONE);
+    background->render(0,0,NULL,0.0,1.0, NULL,SDL_FLIP_NONE);
+    for (Texture* tex: layers) tex->render(0,0,NULL,0.0,1.0, NULL,SDL_FLIP_NONE);
+    foreground->render(0,0,NULL,0.0,1.0, NULL,SDL_FLIP_NONE);
 }
 
 void Canvas::clearBackground() {
@@ -76,15 +76,21 @@ void Canvas::clearAll() {
 
 void Canvas::addTexture(Texture* tex, double x, double y, int z, double scale, double rot) {
     if (z > -1 && z < NUM_LAYERS) {
-        tex->renderToTexture(layers[z],x,y,NULL,0.0,NULL,SDL_FLIP_NONE);
+        tex->renderToTexture(layers[z],x,y,NULL,rot,scale,NULL,SDL_FLIP_NONE);
+    }
+}
+
+void Canvas::addTexture(Texture* tex, double x, double y, int z, double scale, double rot, SDL_RendererFlip flip) {
+    if (z > -1 && z < NUM_LAYERS) {
+        tex->renderToTexture(layers[z],x,y,NULL,rot,scale,NULL,flip);
     }
 }
 
 void Canvas::addBackgroundTexture(Texture* tex, double x, double y, double scale, double rot) {
-    tex->renderToTexture(background,x,y,NULL,0.0,NULL,SDL_FLIP_NONE);
+    tex->renderToTexture(background,x,y,NULL,rot,scale,NULL,SDL_FLIP_NONE);
 }
 
 void Canvas::addForegroundTexture(Texture* tex, double x, double y, double scale, double rot) {
-    tex->renderToTexture(foreground,x,y,NULL,0.0,NULL,SDL_FLIP_NONE);
+    tex->renderToTexture(foreground,x,y,NULL,rot,scale,NULL,SDL_FLIP_NONE);
 }
 

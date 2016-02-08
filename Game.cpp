@@ -14,6 +14,8 @@
 #include "Game.h"
 #include "Window/Texture.h"
 
+
+
 #include <iostream>
 #include <stdio.h>
 #include <string>
@@ -24,6 +26,7 @@ extern Window gameWindow;
 extern Canvas canvas;
 extern Player player;
 extern InputComponent inputComponent;
+extern LevelManager levelManager;
 
 Game::Game() {
     timeDelta = 0;
@@ -38,6 +41,8 @@ Game::Game(const Game& orig) {
 Game::~Game() {
     delete &canvas;
     delete &player;
+    delete &levelManager;
+    delete platform;
     close();
 }
 
@@ -75,10 +80,26 @@ bool Game::init() {
 void Game::initHeap() {
     player.init();
     canvas.init();
+    
+
+        
 }
 
 void Game::run() {
-
+    
+    ///////////////////Testing////////////////////////
+    levelManager.init();
+    platform = new BasicPlatform(200.0, 1000.0, 1000.0, 50.0);
+    levelManager.addPlatform(platform);
+    
+    ground.loadFromFile("Sprites/ground.png");
+    grs.loadFromFile("Sprites/grass.png");
+    bgd.loadFromFile("Sprites/background0.png");
+    fgd.loadFromFile("Sprites/vine.png");
+    //////////////////////////////////////////////
+    
+    
+    
     quit = false;
     
     loopTimer.start();
@@ -89,17 +110,14 @@ void Game::run() {
     //While application is running
     while( !quit ) {
         
-        inputUpdate();
+        
         loopTimer.refresh();
         
-        // gameUpdate loop
-        while( loopTimer.getSeconds() < targetFrameTime ){
-            
-            timeDelta = deltaTimer.getSeconds();
-            deltaTimer.refresh();
+        inputUpdate();
+        timeDelta = deltaTimer.getSeconds();
+        deltaTimer.refresh();
 
-            gameUpdate(timeDelta);   
-        }
+        gameUpdate(timeDelta);   
 
         render();
         display();
@@ -109,8 +127,12 @@ void Game::run() {
         
         if (globalTimer.getSeconds() > 0) {
             frameRate = frameCount/globalTimer.getSeconds();
+            //std::cout << frameRate << std::endl;
         }
+        
+        while( loopTimer.getSeconds() < targetFrameTime ){}
     }
+
 
     //Free resources and close SDL
     close();
@@ -125,27 +147,36 @@ void Game::inputUpdate() {
 }
 
 void Game::gameUpdate(double _d) {
-
+    player.update(_d);
 }
 
 void Game::render() {
-    Texture tex;
-    Texture tex2;
-    Texture* blank = new Texture();
-    tex.loadFromFile("Sprites/Running/basic4.png");
-    tex2.loadFromFile("Sprites/Running/basic1.png");
-    blank->createBlank(1920,1080);
     
-    tex2.render(0,0,NULL,0,NULL,SDL_FLIP_NONE);
- 
-    delete blank;
+        
     
-    canvas.addTexture(&tex,100.0,100.0,0,1.0,0.0);
+    canvas.addBackgroundTexture(&bgd, 0.0, 0.0, 1.0, 0.0);
     
-    //player.render(&canvas);
+    
+    
+    canvas.addForegroundTexture(&fgd, 400, 0, 2.0, 0.0);
+    canvas.addForegroundTexture(&fgd, 600, -100, 1.8, 0.0);
+    
+    
+    
+    for (int i = 0; i < 8; i++) {
+        canvas.addTexture(&grs,200.0 + i*150.0,950.0,2,1.0,0.0);
+    }
+    
+    
+    
+    canvas.addTexture(&ground,200.0,1000.0,0,1.0,0.0);
+    
+    
+    player.render();
 }
 
 void Game::display() {
+    
     canvas.render();
     gameWindow.render();
     canvas.clearAll();

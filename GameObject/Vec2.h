@@ -14,6 +14,8 @@
 #ifndef VEC2_H
 #define VEC2_H
 
+#define PI 3.14159265358979
+
 class Vec2 {
 public:
     

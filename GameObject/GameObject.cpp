@@ -13,7 +13,9 @@
 
 #include "GameObject.h"
 
-GameObject::GameObject() { }
+GameObject::GameObject() { 
+    numChildren = 0;
+}
 
 GameObject::GameObject(const GameObject& orig) { }
 
@@ -47,6 +49,11 @@ void GameObject::setAngle_P(double _angle) {
     while (_angle<0) { _angle += 2*PI; }
     angle_P = _angle;
 }
+
+void GameObject::setTimeDelta(double td) {
+    timeDelta = td;
+}
+
 
 
 ////////

@@ -26,7 +26,7 @@ public:
     GraphicsComponent(const GraphicsComponent& orig);
     ~GraphicsComponent();
     
-    void render(Canvas* canvas, double x, double y, int z, double scale, double rot);
+    void render(double x, double y, int z, double scale, double rot);
     
     void updatePrimaryState(PrimaryState* ps);
     void updateSecondaryState(SecondaryState* ss);

@@ -18,8 +18,12 @@
 #include "Window/Canvas.h"
 #include "Player/Player.h"
 #include "InputComponent.h"
+#include "Level/LevelManager.h"
 
 #include "Utilities/Timer.h"
+#include "Graphics/Graphic.h"
+
+#include "Level/LevelObjects/BasicPlatform.h"
 
 class Game {
 public:
@@ -42,9 +46,20 @@ public:
     
     //Frees media and shuts down SDL
     void close();
+   
     
-
+    
 private:
+    
+    //////TESTING //////////
+    Texture bgd;
+    Texture fgd;
+    Texture grs;
+    Texture ground;
+    
+    BasicPlatform* platform;
+    /////////////////////////////
+    
     Timer globalTimer;
     Timer loopTimer;  
     Timer deltaTimer;

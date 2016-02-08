@@ -5,15 +5,23 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Actor/Actor.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/BasicPlatform.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Canvas.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/CircleHitbox.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Game.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/GameObject.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Graphics/Graphic.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/GraphicsComponent.h</itemPath>
-      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitbox.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/Hitbox.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/InputComponent.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/JumpingState.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelManager.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegment.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/LineHitbox.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PhysicsComponent.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/Player.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/PrimaryState.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/RectHitbox.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/RunningState.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.h</itemPath>
@@ -30,15 +38,23 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Actor/Actor.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/BasicPlatform.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Canvas.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/CircleHitbox.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Game.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/GameObject.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Graphics/Graphic.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/GraphicsComponent.cpp</itemPath>
-      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitbox.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/Hitbox.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/InputComponent.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/JumpingState.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelManager.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegment.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/LineHitbox.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PhysicsComponent.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/Player.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/PrimaryState.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/RectHitbox.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/RunningState.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.cpp</itemPath>
@@ -115,12 +131,42 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitbox.cpp"
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/CircleHitbox.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitbox.h"
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/CircleHitbox.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/Hitbox.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/Hitbox.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/LineHitbox.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/LineHitbox.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/RectHitbox.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/RectHitbox.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -155,6 +201,36 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelManager.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/BasicPlatform.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/BasicPlatform.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegment.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegment.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/GraphicsComponent.cpp"
             ex="false"
             tool="1"
@@ -165,12 +241,32 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PhysicsComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PhysicsComponent.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/Player.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/Player.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/JumpingState.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/JumpingState.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -323,12 +419,42 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitbox.cpp"
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/CircleHitbox.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitbox.h"
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/CircleHitbox.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/Hitbox.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/Hitbox.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/LineHitbox.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/LineHitbox.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/RectHitbox.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/RectHitbox.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -363,6 +489,36 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelManager.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/BasicPlatform.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/BasicPlatform.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegment.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegment.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/GraphicsComponent.cpp"
             ex="false"
             tool="1"
@@ -373,12 +529,32 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PhysicsComponent.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PhysicsComponent.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/Player.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/Player.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/JumpingState.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/JumpingState.h"
             ex="false"
             tool="3"
             flavor2="0">

@@ -17,8 +17,14 @@
 
 
 class RunningState;
+class JumpingState;
+
 class PrimaryState;
 class SecondaryState;
+class InputComponent;
+
+#define FACING_L 0
+#define FACING_R 1
 
 class StateComponent {
 public:
@@ -33,12 +39,14 @@ public:
     void changePrimaryState(PrimaryState* primeState);
     void changeSecondaryState(SecondaryState* secondState);
     
+    void handleInputs(InputComponent* ic);
+    
     PrimaryState* primary;
     SecondaryState* secondary;
 
     // Primary States;
-      RunningState*        running;
-//    JumpingState        jumping;
+      PrimaryState*        running;
+      PrimaryState*        jumping;
 //    DodgeState          dodge;
 //    DropAttackState     dropAttack;
 //    StunState           stun;
@@ -54,6 +62,9 @@ public:
 //    Melee2State         melee2;
 //    RangeState          range;
 //    BlockState          block;
+      
+          
+    int direction;
 //    
 
 private:

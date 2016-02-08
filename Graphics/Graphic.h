@@ -31,9 +31,15 @@ public:
     void setFrameTime(double time);
     
     void start();
+    void pauseAnimation();
+    void contAnimation();
+    void setFirst();
     
-    void render(Canvas* canvas, double x,double y, int z, double scale, double rotation);
+    void flip();
     
+    void render(double x,double y, int z, double scale, double rotation);
+    bool isReversing();
+    void setReversing(bool rev);
     void loadTextures();
     
     bool hasFinished();
@@ -42,14 +48,20 @@ private:
     Timer timer;
     double frameTime;
     
+    bool doesReverse;
+    bool reversing;
+    bool paused;
+    
+    bool direction;
+    
     void incFrame();
     
-    int const numFrames = 6;
+    int numFrames;
     int currentFrame = 0;
     
+    Texture textures[20];
+    
     std::string path;
-    std::vector<Texture*> textures;
-    Texture* currentTexture;
 
 };
 

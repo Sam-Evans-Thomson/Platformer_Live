@@ -110,7 +110,7 @@ bool Texture::loadFromFile(std::string path) {
                 // Using color to set pixels as transparent
                 for( int i = 0; i < pixelCount; i++) {
                     if( pixels[i] == colorKey) {
-                        pixels[i] = transparent;
+                        //pixels[i] = transparent;
                     }
                 }
                 
@@ -214,8 +214,8 @@ Uint32 Texture::getPixel32(unsigned int x, unsigned int y) {
     return pixels[ ( y * ( pitch / 4 ) ) + x ];
 }
 
-void Texture::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip) {
-    SDL_Rect renderQuad = { x, y, width, height };
+void Texture::render(int x, int y, SDL_Rect* clip, double angle, double scale, SDL_Point* center, SDL_RendererFlip flip) {
+    SDL_Rect renderQuad = { x, y, (int)(scale*width), (int)(scale*height) };
     
     if( clip != NULL ) {
         renderQuad.w = clip->w;
@@ -229,9 +229,9 @@ void Texture::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* cent
     else { printf( "Window does not have a valid renderer"); }
 }
 
-void Texture::renderToTexture(Texture* _texture, int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip) {
+void Texture::renderToTexture(Texture* _texture, int x, int y, SDL_Rect* clip, double angle, double scale, SDL_Point* center, SDL_RendererFlip flip) {
     _texture->setAsRenderTarget();
-    render(x,y,clip,angle,center,flip);
+    render(x,y,clip,angle,scale,center,flip);
     _texture->resetRenderTarget();
 }
 

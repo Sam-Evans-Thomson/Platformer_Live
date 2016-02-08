@@ -47,8 +47,8 @@ public:
     bool loadFromRendererText( std::string textureText, SDL_Color textColor );
     
     // This renders the texture to the window.
-    void render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip );
-    void renderToTexture(Texture* _texture, int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip );
+    void render(int x, int y, SDL_Rect* clip, double angle,double scale, SDL_Point* center, SDL_RendererFlip flip );
+    void renderToTexture(Texture* _texture, int x, int y, SDL_Rect* clip, double angle, double scale, SDL_Point* center, SDL_RendererFlip flip );
     
     bool lockTexture();
     bool unlockTexture();

@@ -16,6 +16,8 @@
 #include "StateComponent.h"
 
 #include "../InputComponent.h"
+#include "../Player/PhysicsComponent.h"
+
 extern InputComponent inputComponent;
 
 Player::Player() {
@@ -28,13 +30,20 @@ Player::Player(const Player& orig) {
 Player::~Player() {
     delete stateComp;
     delete graphicsComp;
+    delete physicsComp;
 }
 
 void Player::init() {
-    setPos(100,100);
-    setAngle(0.0);
-    stateComp = new StateComponent();
+    
+    physicsComp = new PhysicsComponent();
+
+    
+    // makes new running state which makes graphics succesfully.
+    stateComp = new StateComponent(); 
+    
     graphicsComp = new GraphicsComponent();
+    graphicsComp->updatePrimaryState(stateComp->primary);
+    graphicsComp->updateGraphics();
 
     
     //climbBox = nullptr;
@@ -43,14 +52,26 @@ void Player::init() {
     // platform = nullptr;
 }
 
-void Player::render(Canvas* canvas) {
-    graphicsComp->render(canvas, 
-            getPos().getX(), 
-            getPos().getY(),
-            getZ(),
+void Player::render() {
+    
+    graphicsComp->render(physicsComp->X(), 
+            physicsComp->Y(),
+            physicsComp->Z(),
             1.0,
-            getAngle());
+            physicsComp->getAngle());
 }
+
+void Player::update(double time) {
+    stateComp->handleInputs(&inputComponent);
+    physicsComp->update(time);
+    //graphicsComp->updateGraphics();
+}
+
+double Player::getX() { return physicsComp->X(); }
+
+double Player::getY() { return physicsComp->Y(); }
+
+int Player::getZ() { return physicsComp->Z(); }
 
 
 
@@ -60,11 +81,25 @@ void Player::render(Canvas* canvas) {
     // PRIMARY
 
 void Player::run(int dir) {
-
+    physicsComp->useFric(false);
+    physicsComp->addForce(Vec2(50.0*dir,0.0)); 
 }
 
-void Player::jump() {
+void Player::stopRun() {
+    physicsComp->useFric(true);
+}
 
+
+void Player::jumpFirst() {
+    stateComp->changePrimaryState(stateComp->jumping);
+    graphicsComp->updatePrimaryState(stateComp->jumping);
+    graphicsComp->updateGraphics();
+    physicsComp->useFric(false);
+    physicsComp->useGrav(true);
+}
+
+void Player::jump(int i) {
+    physicsComp->addForce(0.0,-JUMP_FORCE);
 }
 
 void Player::dropThrough() {

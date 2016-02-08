@@ -10,6 +10,7 @@ Window gameWindow;
 Canvas canvas;
 Player player;
 InputComponent inputComponent;
+LevelManager levelManager;
  
 
 int main( int argc, char* args[] ) {

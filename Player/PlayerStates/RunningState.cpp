@@ -38,6 +38,7 @@ void RunningState::loadGraphics() {
     graphic = new Graphic(6,path+"/basic");
     graphic->setFrameTime(0.1);
     graphic->loadTextures();
+    graphic->start();
 }
 
 
@@ -50,11 +51,29 @@ void RunningState::exit() {
 }
 
 void RunningState::handleInputs(InputComponent* ic) {
+    graphic->contAnimation();
     // Movement Running
-    if (ic->L > 0)                      player.run(-1);
-    else if (ic->R > 0)                 player.run(1);
+    if (ic->L > 0) {
+        player.run(-1);
+        if(stateComp->direction == FACING_R) {
+            graphic->flip();
+            stateComp->direction = FACING_L;
+        }
+    }
+    else if (ic->R > 0) {
+        player.run(1);
+        if(stateComp->direction == FACING_L) {
+            graphic->flip();
+            stateComp->direction = FACING_R;
+        }
+    }
+    else {
+        graphic->setFirst();
+        player.stopRun();
+    }
+        
 
-    if (ic->A == 1)                     player.jump();
+    if (ic->A == 1)                     player.jumpFirst();
     else if (ic->D > 0 && ic->A > 0)    player.dropThrough();    
     else if (ic->U == 1)                player.climb();
     else if (ic->B == 1)                player.dodge();    
@@ -72,6 +91,7 @@ void RunningState::handleInputs(InputComponent* ic) {
         else if (ic->LB  == 1)          player.block();
         if (ic->X   == 1)               player.useItem();
     }
+    
 }
 
 void RunningState::update(double timeDelta) {

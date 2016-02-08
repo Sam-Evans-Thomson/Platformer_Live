@@ -12,7 +12,10 @@
  */
 
 #include "StateComponent.h"
+
 #include "PlayerStates/RunningState.h"
+#include "PlayerStates/JumpingState.h"
+
 #include "PlayerStates/PrimaryState.h"
 #include "PlayerStates/SecondaryState.h"
 
@@ -25,6 +28,7 @@ StateComponent::StateComponent(const StateComponent& orig) { }
 
 StateComponent::~StateComponent() { 
     delete running;
+    delete jumping;
     secondary = nullptr;
     primary =   nullptr;
 }
@@ -35,11 +39,10 @@ void StateComponent::update(double timeDelta) {
 
 
 void StateComponent::init() {
-    primary = nullptr;
-    secondary = nullptr;
-    running = new RunningState(this);
+    direction = FACING_R;
 
-    // character starts in running state.
+    running = new RunningState(this);
+    jumping = new JumpingState(this);
     primary = running;
 }
 
@@ -53,6 +56,10 @@ void StateComponent::changeSecondaryState(SecondaryState* secondState) {
     if (secondary != nullptr) secondary->exit();
     secondary = secondState;
     if (secondary != nullptr) secondary->enter();
+}
+
+void StateComponent::handleInputs(InputComponent* ic) {
+    primary->handleInputs(ic);
 }
 
 

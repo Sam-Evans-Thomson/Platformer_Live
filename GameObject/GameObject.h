@@ -15,7 +15,8 @@
 #define GAMEOBJECT_H
 
 
-#include "Hitbox.h" // this includes Vec2.h
+#include "Hitboxes/Hitbox.h" // this includes Vec2.h
+#include <vector>
 
 
 class GameObject {
@@ -37,6 +38,7 @@ public:
     void setZ(int _z);
     void setAngle(double _angle);
     void setAngle_P(double _angle);
+    void setTimeDelta(double td);
     
     Vec2 getPos();
     double getX();

@@ -30,6 +30,7 @@ void GraphicsComponent::updatePrimaryState(PrimaryState* ps) {
     enterGraphic = ps->enterGraphic;
     graphic      = ps->graphic;
     exitGraphic  = ps->exitGraphic;
+    if (enterGraphic == nullptr) playerGraphic = graphic;
 }
 
 void GraphicsComponent::updateGraphics() {
@@ -39,7 +40,7 @@ void GraphicsComponent::updateGraphics() {
     else if (playerGraphic == exitGraphic && exitGraphic->hasFinished()) {
         if(enterGraphic != nullptr ) playerGraphic = enterGraphic;
     }
-    
+    else if(playerGraphic != graphic) playerGraphic = graphic;
 }
 
 void GraphicsComponent::exit() {
@@ -47,8 +48,8 @@ void GraphicsComponent::exit() {
     else playerGraphic = graphic;
 }
 
-void GraphicsComponent::render(Canvas* canvas, double x, double y, int z, double scale, double rot) {
-    playerGraphic->render(canvas,x,y,z,scale,rot);
+void GraphicsComponent::render(double x, double y, int z, double scale, double rot) {
+    playerGraphic->render(x,y,z,scale,rot);
 }
 
 

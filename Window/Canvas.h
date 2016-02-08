@@ -16,6 +16,7 @@
 
 #include <string>
 #include <vector>
+#include <SDL.h>
 
 class Texture;
 class Window;
@@ -39,6 +40,7 @@ public:
     void clearAll();
     
     void addTexture(Texture* tex, double x, double y, int z, double scale, double rot);
+    void addTexture(Texture* tex, double x, double y, int z, double scale, double rot, SDL_RendererFlip flip);
     void addBackgroundTexture(Texture* tex, double x, double y, double scale, double rot);
     void addForegroundTexture(Texture* tex, double x, double y, double scale, double rot);
     
