@@ -48,6 +48,8 @@ public:
     
     // This renders the texture to the window.
     void render(int x, int y, SDL_Rect* clip, double angle,double scale, SDL_Point* center, SDL_RendererFlip flip );
+    void render(SDL_Rect* clip, SDL_Rect* dest);
+    void render(SDL_Rect* clip);
     void renderToTexture(Texture* _texture, int x, int y, SDL_Rect* clip, double angle, double scale, SDL_Point* center, SDL_RendererFlip flip );
     
     bool lockTexture();

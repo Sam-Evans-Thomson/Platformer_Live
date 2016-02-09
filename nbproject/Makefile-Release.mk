@@ -47,6 +47,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/20e7374d/InputComponent.o \
 	${OBJECTDIR}/_ext/4c343a22/LevelManager.o \
 	${OBJECTDIR}/_ext/2499d7dd/BasicPlatform.o \
+	${OBJECTDIR}/_ext/2499d7dd/Decoration.o \
 	${OBJECTDIR}/_ext/4c343a22/LevelSegment.o \
 	${OBJECTDIR}/_ext/417fd003/GraphicsComponent.o \
 	${OBJECTDIR}/_ext/417fd003/PhysicsComponent.o \
@@ -155,6 +156,11 @@ ${OBJECTDIR}/_ext/2499d7dd/BasicPlatform.o: /home/sam/NetBeansProjects/Platforme
 	${MKDIR} -p ${OBJECTDIR}/_ext/2499d7dd
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/2499d7dd/BasicPlatform.o /home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/BasicPlatform.cpp
+
+${OBJECTDIR}/_ext/2499d7dd/Decoration.o: /home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/Decoration.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/2499d7dd
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/2499d7dd/Decoration.o /home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/Decoration.cpp
 
 ${OBJECTDIR}/_ext/4c343a22/LevelSegment.o: /home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegment.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/4c343a22
@@ -392,6 +398,19 @@ ${OBJECTDIR}/_ext/2499d7dd/BasicPlatform_nomain.o: ${OBJECTDIR}/_ext/2499d7dd/Ba
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/2499d7dd/BasicPlatform_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/BasicPlatform.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/2499d7dd/BasicPlatform.o ${OBJECTDIR}/_ext/2499d7dd/BasicPlatform_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/2499d7dd/Decoration_nomain.o: ${OBJECTDIR}/_ext/2499d7dd/Decoration.o /home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/Decoration.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/2499d7dd
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/2499d7dd/Decoration.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/2499d7dd/Decoration_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/Decoration.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/2499d7dd/Decoration.o ${OBJECTDIR}/_ext/2499d7dd/Decoration_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/4c343a22/LevelSegment_nomain.o: ${OBJECTDIR}/_ext/4c343a22/LevelSegment.o /home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegment.cpp 

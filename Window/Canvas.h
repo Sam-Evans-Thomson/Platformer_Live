@@ -34,7 +34,7 @@ public:
     virtual ~Canvas();
     
     void init();
-    
+    void update();
     void render();
     
     void clearBackground();
@@ -48,6 +48,7 @@ public:
     void addBackgroundTexture(Texture* tex, double x, double y, SDL_Rect* clip, double scale, double rot);
     void addForegroundTexture(Texture* tex, double x, double y, SDL_Rect* clip, double scale, double rot);
     
+    void texRender(Texture* tex);
     
     Texture* foreground;
     Texture* background;
@@ -58,6 +59,12 @@ private:
     
     int xOffset = 0;
     int yOffset = 0;
+    
+    SDL_Rect viewport;
+    SDL_Rect backgroundViewport;
+    SDL_Rect foregroundViewport;
+    
+    double zoom;
     
     Camera* camera;
     

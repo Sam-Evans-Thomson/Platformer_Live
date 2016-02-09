@@ -215,11 +215,11 @@ Uint32 Texture::getPixel32(unsigned int x, unsigned int y) {
 }
 
 void Texture::render(int x, int y, SDL_Rect* clip, double angle, double scale, SDL_Point* center, SDL_RendererFlip flip) {
-    SDL_Rect renderQuad = { x, y, (int)(scale*width), (int)(scale*height) };
+    SDL_Rect renderQuad = { x, y, (int)(width), (int)(height) };
     
     if( clip != NULL ) {
-        //renderQuad.w = clip->w;
-        //renderQuad.h = clip->h;
+        renderQuad.w = ((double)clip->w);
+        renderQuad.h = ((double)clip->h);
     }
     
     if ( gameWindow.getRenderer() != NULL ) {
@@ -227,6 +227,17 @@ void Texture::render(int x, int y, SDL_Rect* clip, double angle, double scale, S
         SDL_RenderCopyEx( gameWindow.getRenderer(), texture, clip, &renderQuad, angle, center, flip);
     }
     else { printf( "Window does not have a valid renderer"); }
+}
+
+void Texture::render(SDL_Rect* clip, SDL_Rect* dest) {
+    SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
+    SDL_RenderCopy( gameWindow.getRenderer(), texture, clip, dest);
+}
+
+void Texture::render(SDL_Rect* clip) {
+    SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
+    SDL_Rect temp = {0,0,1920,1080};
+    SDL_RenderCopy( gameWindow.getRenderer(), texture, clip, &temp);
 }
 
 void Texture::renderToTexture(Texture* _texture, int x, int y, SDL_Rect* clip, double angle, double scale, SDL_Point* center, SDL_RendererFlip flip) {

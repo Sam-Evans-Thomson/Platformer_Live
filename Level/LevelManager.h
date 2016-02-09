@@ -37,6 +37,8 @@ public:
     BasicPlatform* getPlayerPlatform(int i);
     
     void render();
+    void update();
+    void checkPlayerPos();
     
     void init();
     
@@ -53,8 +55,13 @@ public:
     
 private:
     
+    
+    
     int xOffset = 0;
     int yOffset = 0;
+    
+    int renderOffsetX = 0;
+    int renderOffsetY = 0;
     
     void initialLoadSegments();
     
@@ -63,6 +70,8 @@ private:
     int get_Seg_X_Count(double x);
     int get_Seg_Y_Count(double y);
     int get_Seg_Num(int x, int y);
+    
+    LevelSegment* renderSegs[4];
     
     LevelSegment* currentSegment;
     /*

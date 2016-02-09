@@ -69,7 +69,7 @@ void BasicPlatform::setGraphicDimensions(double x, double y, double _w, double _
     graphY = pos.getY() + y;
     graphW = w + _w; 
     graphH = h + _h;
-    graphic->setClip(graphX, graphY, graphW, graphH, behaviour);
+    graphic->setClip(0, 0, graphW, graphH, behaviour);
 }
 
 

@@ -46,21 +46,32 @@ void Canvas::init() {
     }
 }
 
-void Canvas::render() {
+void Canvas::update() {
     renewOffsets();
+}
+
+
+void Canvas::render() {
+    camera->updateViewport();
     
-    SDL_Rect viewport = camera->getViewport();
-    int zoom = camera->getZoom();
+    viewport = camera->getViewport();
+    backgroundViewport = camera->getParallaxViewport(BACKGROUND_DIST);
+    foregroundViewport = camera->getParallaxViewport(FOREGROUND_DIST);
     
-    background->render(
-                -viewport.x+xOffset,-viewport.y+yOffset,
-                NULL,0.0, zoom, NULL,SDL_FLIP_NONE);
-    for (Texture* tex: layers) tex->render(
-                -viewport.x+xOffset,-viewport.y+yOffset,
-                NULL,0.0, zoom, NULL,SDL_FLIP_NONE);
-    foreground->render(
-                -viewport.x+xOffset,-viewport.y+yOffset,
-                NULL,0.0,zoom, NULL,SDL_FLIP_NONE);
+    backgroundViewport.x -= BACKGROUND_DIST*xOffset;
+    backgroundViewport.y -= BACKGROUND_DIST*yOffset;
+    foregroundViewport.x -= FOREGROUND_DIST*xOffset;
+    foregroundViewport.y -= FOREGROUND_DIST*yOffset;
+    viewport.x -= xOffset;
+    viewport.y -= yOffset;
+    
+    background->render(&backgroundViewport);
+    for (Texture* tex: layers) texRender(tex);
+    foreground->render(&foregroundViewport);
+}
+
+void Canvas::texRender(Texture* tex) {
+    tex->render(&viewport);
 }
 
 void Canvas::clearBackground() {
@@ -104,11 +115,17 @@ void Canvas::addTexture(Texture* tex, double x, double y, int z, SDL_Rect* clip,
 }
 
 void Canvas::addBackgroundTexture(Texture* tex, double x, double y, SDL_Rect* clip, double scale, double rot) {
-    tex->renderToTexture(background,x-xOffset,y-yOffset,clip,rot,scale,NULL,SDL_FLIP_NONE);
+    tex->renderToTexture(background,
+                BACKGROUND_DIST*(x-xOffset),
+                BACKGROUND_DIST*(y-yOffset),
+                clip,rot,scale,NULL,SDL_FLIP_NONE);
 }
 
 void Canvas::addForegroundTexture(Texture* tex, double x, double y, SDL_Rect* clip, double scale, double rot) {
-    tex->renderToTexture(foreground,x-xOffset,y-yOffset,clip,rot,scale,NULL,SDL_FLIP_NONE);
+    tex->renderToTexture(foreground,
+                FOREGROUND_DIST*(x-xOffset),
+                FOREGROUND_DIST*(y-yOffset),
+                clip,rot,scale,NULL,SDL_FLIP_NONE);
 }
 
 void Canvas::renewOffsets() {

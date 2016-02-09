@@ -35,6 +35,10 @@ void LevelManager::initialLoadSegments() {
     for (int i = 0; i < 25 ; i++) {
         loadedSegments[i] = new LevelSegment(i%5,i/5);
     }
+    renderSegs[0] = loadedSegments[12];
+    renderSegs[1] = loadedSegments[12];
+    renderSegs[2] = loadedSegments[12];
+    renderSegs[3] = loadedSegments[12];
 }
 
 int LevelManager::platformCount() {
@@ -62,8 +66,47 @@ BasicPlatform* LevelManager::getPlayerPlatform(int i) {
     }    
 }
 
+void LevelManager::update() {
+    checkPlayerPos();
+}
+
+void LevelManager::checkPlayerPos() {
+    if (player.getX() > ((double)xOffset+2.5)*SEGMENT_WIDTH) {
+        if (player.getY() > ((double)yOffset+2.5)*SEGMENT_HEIGHT) {
+            renderSegs[1] = loadedSegments[13];
+            renderSegs[2] = loadedSegments[18];
+            renderSegs[3] = loadedSegments[17];
+            renderOffsetX = xOffset;
+            renderOffsetY = yOffset;
+        } else {
+            renderSegs[1] = loadedSegments[7];
+            renderSegs[2] = loadedSegments[8];
+            renderSegs[3] = loadedSegments[13];
+            renderOffsetX = xOffset;
+            renderOffsetY = yOffset-1;
+        }
+    } else {
+        if (player.getY() > ((double)yOffset+2.5)*SEGMENT_HEIGHT) {
+            renderSegs[1] = loadedSegments[11];
+            renderSegs[2] = loadedSegments[16];
+            renderSegs[3] = loadedSegments[17];
+            renderOffsetX = xOffset-1;
+            renderOffsetY = yOffset;
+        } else {
+            renderSegs[1] = loadedSegments[6];
+            renderSegs[2] = loadedSegments[7];
+            renderSegs[3] = loadedSegments[11];
+            renderOffsetX = xOffset-1;
+            renderOffsetY = yOffset-1;
+        }
+    }
+    
+    renderSegs[0] = loadedSegments[12];
+}
+
+
 void LevelManager::render() {
-    loadedSegments[12]->LevelSegment::render();
+    for (int i = 0; i < 4; i++) renderSegs[i]->render();
 }
 
 
@@ -93,11 +136,11 @@ void LevelManager::addPlatform(BasicPlatform* hb, int segX, int segY) {
 }
 
 int LevelManager::getCameraXOffset() {
-    return (xOffset+2)*SEGMENT_WIDTH;
+    return (renderOffsetX+2)*SEGMENT_WIDTH;
 }
 
 int LevelManager::getCameraYOffset() {
-    return (yOffset + 2)*SEGMENT_HEIGHT;
+    return (renderOffsetY + 2)*SEGMENT_HEIGHT;
 }
 
 

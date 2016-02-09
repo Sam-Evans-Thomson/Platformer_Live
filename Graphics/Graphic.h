@@ -70,7 +70,7 @@ private:
     int currentFrame = 0;
     
     SDL_Rect clip;
-    int clipBehaviour;
+    int clipBehaviour = GRAPHIC_NONE;
     
     Texture textures[20];
     

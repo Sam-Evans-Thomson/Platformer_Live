@@ -29,7 +29,6 @@ InputComponent::~InputComponent() {
 void InputComponent::init() {
     SDL_JoystickEventState(SDL_ENABLE);
     joystick = SDL_JoystickOpen(0);
-    std::cout << "init inputComponent" << std::endl;
     
     A=B=X=Y=U=D=L=R=Sel=Strt=LB=RB=LTh=RTh=lTr=rTr      = 0;
     lTh_X=lTh_Y=rTh_X=rTh_Y=lTrig=rTrig                 = 0.0;
@@ -66,13 +65,14 @@ void InputComponent::axisMotion(SDL_Event& _event) {
     double value = (double)_event.jaxis.value/(double)32768;
     
     if ( (value < -AXIS_BUFFER ) || ( value > AXIS_BUFFER ) ) {
+        
         testAxis(axis, value);
         
              if( axis == 0 ) lTh_X = value;
         else if( axis == 1 ) lTh_Y = value;
-        else if( axis == 2 ) rTh_X = value;
-        else if( axis == 3 ) rTh_Y = value;
-        else if( axis == 4 ) {
+        else if( axis == 3 ) rTh_X = value;
+        else if( axis == 4 ) rTh_Y = value;
+        else if( axis == 2 ) {
             if (lTr < TR_BFR && value > TR_BFR) lTr   = 1;
             else lTr = 0;
             lTrig = value;

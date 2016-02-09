@@ -90,17 +90,17 @@ void Game::run() {
     ///////////////////Testing////////////////////////
     levelManager.init();
     
-    platform = new BasicPlatform(3840, 2940, 1, 1700, 100.0);
+    platform = new BasicPlatform(3840.0, 2940.0, 1, 1700.0, 100.0);
     platform->setGraphicPath("Sprites/ground");
     platform->init(0);
     platform->init(1);
-    platform->setGraphicDimensions(0,-3.0,0.0,0.0,GRAPHIC_CLIP);
+    platform->setGraphicDimensions(0,-3.0,0.0,0.0,GRAPHIC_SCALE);
     
-    platform2 = new BasicPlatform(1600, 600.0, 1, 600, 200.0);
+    platform2 = new BasicPlatform(4400.0, 2860.0, 1, 600.0, 100.0);
     platform2->setGraphicPath("Sprites/ground");
     platform2->init(0);
     platform2->init(1);
-    platform2->setGraphicDimensions(0,-3.0,0.0,0.0,GRAPHIC_CLIP);
+    platform2->setGraphicDimensions(0,-3.0,0.0,0.0,GRAPHIC_SCALE);
     
     levelManager.addPlatform(platform);
     levelManager.addPlatform(platform2);
@@ -158,6 +158,8 @@ void Game::inputUpdate() {
 
 void Game::gameUpdate(double _d) {
     player.update(_d);
+    levelManager.update();
+    canvas.update();
 }
 
 void Game::render() {

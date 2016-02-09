@@ -20,7 +20,6 @@ Graphic::Graphic(int frameCount, std::string path) : numFrames(frameCount), path
     doesReverse = true;
     paused = (numFrames == 1);
     direction = true;
-    clipBehaviour = GRAPHIC_NONE;
 }
 
 Graphic::Graphic(const Graphic& orig) {
@@ -40,7 +39,10 @@ void Graphic::loadTextures() {
         textures[i].loadFromFile(_path);
         _path.clear();
     } 
-
+    clip.x = 0;
+    clip.y = 0;
+    clip.w = textures[0].getWidth();
+    clip.h = textures[0].getHeight();
 }
 
 void Graphic::setClip(int x, int y, int w, int h,int _behaviour) {
@@ -101,28 +103,19 @@ void Graphic::render(double x, double y, int z, double scale, double rotation) {
 }
 
 void Graphic::renderToCanvas(Texture* tex, double x, double y, int z, double scale, double rotation) {
+
+    SDL_Rect* clip_ = NULL;
     
-    if (clipBehaviour == GRAPHIC_SCALE) {
-        if (!direction) {
-            canvas.addTexture(tex,x,y,z,&clip,scale,rotation,SDL_FLIP_HORIZONTAL);
-        }
-        else canvas.addTexture(tex,x,y,z,&clip,scale,rotation);
-       
-    } else if (clipBehaviour == GRAPHIC_NONE) {
-        
-        if (!direction) {
-            canvas.addTexture(tex,x,y,z,NULL,scale,rotation,SDL_FLIP_HORIZONTAL);
-        }
-        else canvas.addTexture(tex,x,y,z,NULL,scale,rotation);
-    
-    } else if (clipBehaviour == GRAPHIC_CLIP) {
-        
-        if (!direction) {
-            canvas.addTexture(tex,x,y,z,&clip,1.0,rotation,SDL_FLIP_HORIZONTAL);
-        }
-        else canvas.addTexture(tex,x,y,z,&clip,1.0,rotation);
-       
+    if (clipBehaviour == GRAPHIC_SCALE) { 
+        clip_ = &clip; 
+        std::cout << clip_->h << std::endl;
     }
+    
+    
+    if (!direction) {
+        canvas.addTexture(tex, x, y, z, clip_ ,1.0, rotation,SDL_FLIP_HORIZONTAL);
+    }
+    else canvas.addTexture(tex,x , y, z, clip_ ,1.0, rotation);
 }
 
 void Graphic::incFrame() {
