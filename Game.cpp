@@ -90,17 +90,17 @@ void Game::run() {
     ///////////////////Testing////////////////////////
     levelManager.init();
     
-    platform = new BasicPlatform(200.0, 750.0, 1, 1200.0, 100.0);
+    platform = new BasicPlatform(3840, 2940, 1, 1700, 100.0);
     platform->setGraphicPath("Sprites/ground");
     platform->init(0);
     platform->init(1);
-    platform->setGraphicDimensions(-30.0,-3.0,0.0,0.0,GRAPHIC_SCALE);
+    platform->setGraphicDimensions(0,-3.0,0.0,0.0,GRAPHIC_CLIP);
     
-    platform2 = new BasicPlatform(1400, 600.0, 1, 600, 200.0);
+    platform2 = new BasicPlatform(1600, 600.0, 1, 600, 200.0);
     platform2->setGraphicPath("Sprites/ground");
     platform2->init(0);
     platform2->init(1);
-    platform2->setGraphicDimensions(-30.0,-3.0,0.0,0.0,GRAPHIC_SCALE);
+    platform2->setGraphicDimensions(0,-3.0,0.0,0.0,GRAPHIC_CLIP);
     
     levelManager.addPlatform(platform);
     levelManager.addPlatform(platform2);
@@ -164,12 +164,13 @@ void Game::render() {
     
         
     
-    canvas.addBackgroundTexture(&bgd, 0.0, 0.0,NULL, 1.0, 0.0);
+    canvas.addBackgroundTexture(&bgd, 3840, 2160,NULL, 1.0, 0.0);
+    canvas.addBackgroundTexture(&bgd, DEFAULT_W, 0.0,NULL, 1.0, 0.0);
     
     
     
-    canvas.addForegroundTexture(&fgd, 400, 0, NULL, 2.0, 0.0);
-    canvas.addForegroundTexture(&fgd, 600, -100, NULL, 1.8, 0.0);
+    canvas.addForegroundTexture(&fgd, 3840+400, 2160, NULL, 2.0, 0.0);
+    canvas.addForegroundTexture(&fgd, 4440, 2060, NULL, 1.8, 0.0);
     
     
     levelManager.render();

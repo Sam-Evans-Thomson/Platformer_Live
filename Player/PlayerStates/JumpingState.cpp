@@ -12,13 +12,12 @@
  */
 
 #include "JumpingState.h"
-#include "../Player.h"
-#include "../StateComponent.h"
 #include "../../InputComponent.h"
 
 extern Player player;
+extern LevelManager levelManager;
 
-JumpingState::JumpingState(StateComponent* sc) : PrimaryState(sc) {
+JumpingState::JumpingState() {
     init();
 }
 
@@ -26,13 +25,12 @@ JumpingState::~JumpingState() {
     if(graphic != nullptr) delete graphic;
     if(enterGraphic != nullptr) delete enterGraphic;
     if(exitGraphic != nullptr) delete exitGraphic;
-    stateComp = nullptr;
 }
 
 void JumpingState::init() {
     path = JUMPING_PATH;
     loadGraphics();    
-    stateComp->jumpCount = 0;
+    player.jumpCount = 0;
 }
 
 void JumpingState::loadGraphics() {
@@ -45,27 +43,32 @@ void JumpingState::loadGraphics() {
 void JumpingState::handleInputs(InputComponent* ic) {
 
     if (ic->A > 1) {
-        if (stateComp->jumpCount < JUMP_COUNT_MAX) {
-            stateComp->jumpCount++;
-            player.jump(stateComp->jumpCount);
+        if (player.jumpCount < JUMP_COUNT_MAX) {
+            player.jumpCount++;
+            player.jump();
         }
     }
-    else if (ic->A == 0) stateComp->jumpCount = JUMP_COUNT_MAX + 1;
+    else if (ic->A == 0) {
+        player.jumpCount = JUMP_COUNT_MAX + 1;
+        player.restrictedMovement = NO_RESTRICTION;
+    }
     
     graphic->contAnimation();
     // Movement Running
-    if (ic->L > 0) {
+    if (ic->L > 0&& player.restrictedMovement != FACING_L) {
         player.run(-1);
-        if(stateComp->direction == FACING_R) {
+        player.restrictedMovement = NO_RESTRICTION;
+        if(player.direction == FACING_R) {
             graphic->flip();
-            stateComp->direction = FACING_L;
+            player.direction = FACING_L;
         }
     }
-    else if (ic->R > 0) {
+    else if (ic->R > 0 && player.restrictedMovement != FACING_R) {
         player.run(1);
-        if(stateComp->direction == FACING_L) {
+        player.restrictedMovement = NO_RESTRICTION;
+        if(player.direction == FACING_L) {
             graphic->flip();
-            stateComp->direction = FACING_R;
+            player.direction = FACING_R;
         }
     }
         
@@ -92,9 +95,30 @@ void JumpingState::handleInputs(InputComponent* ic) {
     
 }
 
+void JumpingState::resolvePlatformCollisions() {
+    for (int i = 0; i<levelManager.playerPlatformCount(); i++) {
+        resolvePlatformCollision(levelManager.getPlayerPlatform(i));
+    }
+}
+
+void JumpingState::resolvePlatformCollision(BasicPlatform* platform) {
+    RectHitbox* feet = player.physicsComp->underFeetHB;
+    RectHitbox* platfrm = platform->hb;
+    RectHitbox* body = player.physicsComp->bodyHB;
+    
+    if ( platfrm->collision(*feet) && platfrm->collision(*body) ) {  
+        player.land(platform); 
+    }
+    if ( platfrm->collision(*body) )  { 
+        int side = platfrm->getCollisionFace(*body,*player.physicsComp->prevPos);
+        if (side == 0) player.hitWall(FACING_R); 
+        else if (side == 2) player.hitWall(FACING_L);
+        else if (side = 1) player.hitRoof();
+    }
+}
 
 void JumpingState::enter() {
-    graphic->setDirection(stateComp->direction == FACING_R);
+    graphic->setDirection(player.direction == FACING_R);
 }
 
 void JumpingState::exit() {

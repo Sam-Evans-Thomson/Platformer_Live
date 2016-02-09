@@ -13,7 +13,7 @@
 
 #include "SecondaryState.h"
 
-SecondaryState::SecondaryState(StateComponent* sc) : stateComp(sc) {
+SecondaryState::SecondaryState() {
 
 }
 
@@ -23,8 +23,7 @@ SecondaryState::~SecondaryState() {
 
 }
 
-void SecondaryState::setStateComponent(StateComponent* sc) { stateComp = sc;
-}
+void SecondaryState::setStateComponent() { }
 
 void SecondaryState::init() {
 

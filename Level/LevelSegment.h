@@ -31,12 +31,14 @@ public:
     void addPlatform(BasicPlatform* hb);
     
     int getPlatformCount();
-    RectHitbox* getPlatformHitbox(int i);
+    BasicPlatform* getPlatform(int i);
     
     void loadSegment(int x, int y);
     
 private:
+    int x; int y;
     
+    //std::vector <Decoration*> decorations;
     std::vector <BasicPlatform*> platforms;
 };
 

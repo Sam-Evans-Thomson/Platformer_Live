@@ -22,6 +22,7 @@
 #include <string>
 #include <vector>
 
+#define GRAPHIC_CLIP 0
 #define GRAPHIC_SCALE 1
 #define GRAPHIC_NONE 2
 
@@ -38,6 +39,7 @@ public:
     void pauseAnimation();
     void contAnimation();
     void setFirst();
+    void setFrame(int i);
     
     void flip();
     void setDirection(bool dir);

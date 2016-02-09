@@ -18,6 +18,7 @@
 
 #include "../Level/LevelManager.h"
 #include "Player.h"
+#include "PlayerStates/PrimaryState.h"
 
 extern LevelManager levelManager;
 extern Player player;
@@ -44,11 +45,15 @@ void PhysicsComponent::init() {
     gravity = BASE_GRAVITY;
     angle = 0.0;
     z=1;
-    pos = new Vec2(250,400);
+    pos = new Vec2(4000,2700);
+    prevPos = new Vec2(4000,2700);
     bodyHB = new RectHitbox(*pos, PLAYR_W ,PLAYR_H);
     underFeetHB = new RectHitbox(
-            pos->getX(), pos->getY() + PLAYR_H, 
-            PLAYR_W ,2);
+            pos->getX() + 15, 
+            pos->getY() + PLAYR_H, 
+            PLAYR_W - 30 ,
+            2);
+    
     impulse = Vec2(0,0);
 }
 
@@ -105,9 +110,18 @@ void PhysicsComponent::applyMove(Vec2 mvmnt) {
     bodyHB->moveTo(*pos);
     underFeetHB->move(mvmnt);
     
-    resolvePlatformCollisions();
-    prevPos = pos;
+    player.primary->resolvePlatformCollisions();
+    prevPos->setX(pos->getX());
+    prevPos->setY(pos->getY());
 }
+
+void PhysicsComponent::previousPos() {
+    pos->setX(prevPos->getX());
+    pos->setY(prevPos->getY());
+    bodyHB->moveTo(*pos);
+    underFeetHB->moveTo(pos->getX(), pos->getY() + PLAYR_H);
+}
+
 
 void PhysicsComponent::applyMoveTo(Vec2 _pos) {
 
@@ -116,37 +130,13 @@ void PhysicsComponent::applyMoveTo(Vec2 _pos) {
     bodyHB->moveTo(_pos);
     underFeetHB->moveTo(pos->getX(), pos->getY() + PLAYR_H);
     
-    resolveEnemyCollisions();
-    resolvePlatformCollisions();
-    prevPos = pos;
+    //resolveEnemyCollisions();
+    player.primary->resolvePlatformCollisions();
+    prevPos->setX(pos->getX());
+    prevPos->setY(pos->getY());
     
 }
 
-void PhysicsComponent::resolvePlatformCollisions() { 
-    for (int i = 0; i<levelManager.platformCount(); i++) {
-        resolvePlatformCollision(levelManager.getPlayerPlatformHitbox(i));
-    }
-}
-
-void PhysicsComponent::resolvePlatformCollision(RectHitbox* hitbox) {
-    
-    if(hitbox->collision(*underFeetHB) && hitbox->collision(*bodyHB)) {
-        player->insidePlatform(hitbox);
-        
-        player.land(pos->getX() - prevPos->getX());
-
-        force = Vec2(force.getX(),0.0);
-        applyMoveTo(Vec2(pos->getX(), hitbox->getY() - bodyHB->getH() - 1));
-        
-    } else if (!hitbox->collision(*underFeetHB)) {
-        player.falling();
-    }
-
-}
-
-void PhysicsComponent::resolveEnemyCollisions() {
-
-}
 
 void PhysicsComponent::setForce(Vec2 frc) { force = checkForce(frc); }
 

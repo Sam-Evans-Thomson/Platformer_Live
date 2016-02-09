@@ -31,6 +31,7 @@ void GraphicsComponent::updatePrimaryState(PrimaryState* ps) {
     graphic      = ps->graphic;
     exitGraphic  = ps->exitGraphic;
     if (enterGraphic == nullptr) playerGraphic = graphic;
+    updateGraphics();
 }
 
 void GraphicsComponent::updateGraphics() {

@@ -18,19 +18,20 @@
 
 #define JUMP_COUNT_MAX 10
 
-class StateComponent;
-
 #define JUMPING_PATH "Sprites/Running"
 
 class JumpingState : public PrimaryState {
 public:
-    JumpingState(StateComponent* sc);
+    JumpingState();
 
     ~JumpingState();
     
     void init() override;
     
     void loadGraphics() override;
+    
+    void resolvePlatformCollisions() override;
+    void resolvePlatformCollision(BasicPlatform* platform) override;
     
     void enter() override;
     void exit() override;

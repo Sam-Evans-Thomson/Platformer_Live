@@ -55,8 +55,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/314faef/PrimaryState.o \
 	${OBJECTDIR}/_ext/314faef/RunningState.o \
 	${OBJECTDIR}/_ext/314faef/SecondaryState.o \
-	${OBJECTDIR}/_ext/417fd003/StateComponent.o \
 	${OBJECTDIR}/_ext/ee4cd6a8/Timer.o \
+	${OBJECTDIR}/_ext/4d4d1112/Camera.o \
 	${OBJECTDIR}/_ext/4d4d1112/Canvas.o \
 	${OBJECTDIR}/_ext/4d4d1112/Texture.o \
 	${OBJECTDIR}/_ext/4d4d1112/Window.o \
@@ -196,15 +196,15 @@ ${OBJECTDIR}/_ext/314faef/SecondaryState.o: /home/sam/NetBeansProjects/Platforme
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/SDL2 -I/usr/include/c++/5.2.1 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/314faef/SecondaryState.o /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.cpp
 
-${OBJECTDIR}/_ext/417fd003/StateComponent.o: /home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/417fd003
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/usr/include/SDL2 -I/usr/include/c++/5.2.1 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/417fd003/StateComponent.o /home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.cpp
-
 ${OBJECTDIR}/_ext/ee4cd6a8/Timer.o: /home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/ee4cd6a8
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/SDL2 -I/usr/include/c++/5.2.1 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ee4cd6a8/Timer.o /home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp
+
+${OBJECTDIR}/_ext/4d4d1112/Camera.o: /home/sam/NetBeansProjects/Platformer_Live/Window/Camera.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/4d4d1112
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SDL2 -I/usr/include/c++/5.2.1 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4d4d1112/Camera.o /home/sam/NetBeansProjects/Platformer_Live/Window/Camera.cpp
 
 ${OBJECTDIR}/_ext/4d4d1112/Canvas.o: /home/sam/NetBeansProjects/Platformer_Live/Window/Canvas.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/4d4d1112
@@ -498,19 +498,6 @@ ${OBJECTDIR}/_ext/314faef/SecondaryState_nomain.o: ${OBJECTDIR}/_ext/314faef/Sec
 	    ${CP} ${OBJECTDIR}/_ext/314faef/SecondaryState.o ${OBJECTDIR}/_ext/314faef/SecondaryState_nomain.o;\
 	fi
 
-${OBJECTDIR}/_ext/417fd003/StateComponent_nomain.o: ${OBJECTDIR}/_ext/417fd003/StateComponent.o /home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/417fd003
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/417fd003/StateComponent.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -g -I/usr/include/SDL2 -I/usr/include/c++/5.2.1 -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/417fd003/StateComponent_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.cpp;\
-	else  \
-	    ${CP} ${OBJECTDIR}/_ext/417fd003/StateComponent.o ${OBJECTDIR}/_ext/417fd003/StateComponent_nomain.o;\
-	fi
-
 ${OBJECTDIR}/_ext/ee4cd6a8/Timer_nomain.o: ${OBJECTDIR}/_ext/ee4cd6a8/Timer.o /home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/ee4cd6a8
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/ee4cd6a8/Timer.o`; \
@@ -522,6 +509,19 @@ ${OBJECTDIR}/_ext/ee4cd6a8/Timer_nomain.o: ${OBJECTDIR}/_ext/ee4cd6a8/Timer.o /h
 	    $(COMPILE.cc) -g -I/usr/include/SDL2 -I/usr/include/c++/5.2.1 -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ee4cd6a8/Timer_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/ee4cd6a8/Timer.o ${OBJECTDIR}/_ext/ee4cd6a8/Timer_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/4d4d1112/Camera_nomain.o: ${OBJECTDIR}/_ext/4d4d1112/Camera.o /home/sam/NetBeansProjects/Platformer_Live/Window/Camera.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/4d4d1112
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/4d4d1112/Camera.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -I/usr/include/SDL2 -I/usr/include/c++/5.2.1 -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4d4d1112/Camera_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Window/Camera.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/4d4d1112/Camera.o ${OBJECTDIR}/_ext/4d4d1112/Camera_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/4d4d1112/Canvas_nomain.o: ${OBJECTDIR}/_ext/4d4d1112/Canvas.o /home/sam/NetBeansProjects/Platformer_Live/Window/Canvas.cpp 

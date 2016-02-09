@@ -22,6 +22,8 @@
 #define SEGMENT_WIDTH 1920
 #define SEGMENT_HEIGHT 1080
 
+class BasicPlatform;
+
 class LevelManager {
 public:
     LevelManager();
@@ -30,8 +32,9 @@ public:
     
     int platformCount();
     int playerPlatformCount();
-    RectHitbox* getPlatformHitbox(int i);
-    RectHitbox* getPlayerPlatformHitbox(int i);
+    
+    BasicPlatform* getPlatform(int i);
+    BasicPlatform* getPlayerPlatform(int i);
     
     void render();
     
@@ -41,8 +44,17 @@ public:
     //testing
     
     void addPlatform(BasicPlatform* hb);
+    void addPlatform(BasicPlatform* hb, int segX, int segY);
+    int getCameraXOffset();
+    int getCameraYOffset();
+    
+    
+    
     
 private:
+    
+    int xOffset = 0;
+    int yOffset = 0;
     
     void initialLoadSegments();
     
@@ -50,15 +62,17 @@ private:
     
     int get_Seg_X_Count(double x);
     int get_Seg_Y_Count(double y);
+    int get_Seg_Num(int x, int y);
     
     LevelSegment* currentSegment;
     /*
-     *  loadedSegment[0] is the central segment
-     *  loadedSegment[1] is to it's right.
-     *  loadedSegment[2] is to it's right and down.
-     *  loadedsegment[9] is two to the right of [0].
+     *  [00][01][02][03][04]
+     *  [05][06][07][08][09]
+     *  [10][11][12][13][14]
+     *  [15][16][17][18][19]
+     *  [20][21][22][23][24] 
      * 
-     * Player hitboxes only check loadedSegments[0];
+     * Player hitboxes only check loadedSegments[12];
      * graphics render for onl the segments that are on screen.
      */
     

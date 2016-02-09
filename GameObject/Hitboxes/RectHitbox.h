@@ -15,6 +15,7 @@
 #define RECTHITBOX_H
 
 #include "Hitbox.h"
+#include <iostream>
 class LineHitbox;
 
 class RectHitbox : public Hitbox {
@@ -29,6 +30,8 @@ public:
     bool collision(LineHitbox& line) override;
     bool collision(RectHitbox& rect) override;
     bool collision(CircleHitbox& circle) override;
+    
+    int getCollisionFace(RectHitbox& rect, Vec2& prevPos);
 
     double bounceAngle(Vec2& prevPos, double angle, CircleHitbox& circle) override;
     double bounceAngle(Vec2& prevPos, double angle, LineHitbox& line) override;

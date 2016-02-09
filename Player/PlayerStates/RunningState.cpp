@@ -12,13 +12,12 @@
  */
 
 #include "RunningState.h"
-#include "../Player.h"
-#include "../StateComponent.h"
 #include "../../InputComponent.h"
 
 extern Player player;
+extern LevelManager levelManager;
 
-RunningState::RunningState(StateComponent* sc) : PrimaryState(sc) {
+RunningState::RunningState() {
     init();
 }
 
@@ -26,7 +25,6 @@ RunningState::~RunningState() {
     if(graphic != nullptr) delete graphic;
     if(enterGraphic != nullptr) delete enterGraphic;
     if(exitGraphic != nullptr) delete exitGraphic;
-    stateComp = nullptr;
 }
 
 void RunningState::init() {   
@@ -43,7 +41,7 @@ void RunningState::loadGraphics() {
 
 
 void RunningState::enter() {
-    graphic->setDirection(stateComp->direction == FACING_R);
+    graphic->setDirection(player.direction == FACING_R);
 }
 
 void RunningState::exit() {
@@ -53,22 +51,25 @@ void RunningState::exit() {
 void RunningState::handleInputs(InputComponent* ic) {
     graphic->contAnimation();
     // Movement Running
-    if (ic->L > 0) {
+    if (ic->L > 0 && player.restrictedMovement != FACING_L) {
         player.run(-1);
-        if(stateComp->direction == FACING_R) {
+        player.restrictedMovement = NO_RESTRICTION;
+        if(player.direction == FACING_R) {
             graphic->flip();
-            stateComp->direction = FACING_L;
+            player.direction = FACING_L;
         }
     }
-    else if (ic->R > 0) {
+    else if (ic->R > 0 && player.restrictedMovement != FACING_R) {
         player.run(1);
-        if(stateComp->direction == FACING_L) {
+        player.restrictedMovement = NO_RESTRICTION;
+        if(player.direction == FACING_L) {
             graphic->flip();
-            stateComp->direction = FACING_R;
+            player.direction = FACING_R;
         }
     }
     else {
-        graphic->setFirst();
+        graphic->setFrame(2);
+        graphic->pauseAnimation();
         player.stopRun();
     }
         
@@ -93,6 +94,25 @@ void RunningState::handleInputs(InputComponent* ic) {
     }
     
 }
+
+void RunningState::resolvePlatformCollisions() {
+    clearFlags();
+    for (int i = 0; i<levelManager.playerPlatformCount(); i++) {
+        resolvePlatformCollision(levelManager.getPlayerPlatform(i));
+    }
+    
+    if (player.fallFlag == FLAG_FALLING) player.falling();
+}
+
+void RunningState::resolvePlatformCollision(BasicPlatform* platform) {
+    RectHitbox* feet = player.physicsComp->underFeetHB;
+    RectHitbox* plfm = platform->hb;
+    RectHitbox* body = player.physicsComp->bodyHB;
+    
+    if ( plfm->collision(*feet) ) {  player.fallFlag = FLAG_ONGROUND; }
+    if ( plfm->collision(*body) ) {  player.hitWall(-1); }
+}
+
 
 void RunningState::update(double timeDelta) {
 

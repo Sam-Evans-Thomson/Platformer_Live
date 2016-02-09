@@ -12,11 +12,15 @@
  */
 
 #include "Player.h"
-#include "GraphicsComponent.h"
-#include "StateComponent.h"
 
 #include "../InputComponent.h"
-#include "../Player/PhysicsComponent.h"
+#include "GraphicsComponent.h"
+#include "PhysicsComponent.h"
+#include "PlayerStates/JumpingState.h"
+#include "PlayerStates/RunningState.h"
+#include "PlayerStates/PrimaryState.h"
+#include "PlayerStates/SecondaryState.h"
+#include "../Level/LevelObjects/BasicPlatform.h"
 
 extern InputComponent inputComponent;
 
@@ -28,49 +32,39 @@ Player::Player(const Player& orig) {
 }
 
 Player::~Player() {
-    delete stateComp;
-    delete graphicsComp;
+    delete running;
+    delete jumping;
     delete physicsComp;
+    delete graphicsComp;
+    secondary = nullptr;
+    primary =   nullptr;
 }
 
 void Player::init() {
-    
     physicsComp = new PhysicsComponent();
-
     
-    // makes new running state which makes graphics succesfully.
-    stateComp = new StateComponent(); 
+    direction = FACING_R;
+
+    running = new RunningState();
+    jumping = new JumpingState();
+    primary = running;
     
     graphicsComp = new GraphicsComponent();
-    graphicsComp->updatePrimaryState(stateComp->primary);
-    graphicsComp->updateGraphics();
-
-    
-    //climbBox = nullptr;
-    //grabBox = nullptr;
-    //terrainBox = nullptr;
-    // platform = nullptr;
+    graphicsComp->updatePrimaryState(primary);
+    graphicsComp->updateGraphics(); 
 }
 
-void Player::render() {
-    
-    graphicsComp->render(physicsComp->X(), 
-            physicsComp->Y(),
-            physicsComp->Z(),
-            1.0,
-            physicsComp->getAngle());
+void Player::render() { 
+    graphicsComp->render(getX(), getY(), getZ(), 1.0,  0.0); 
 }
 
-void Player::update(double time) {
-    stateComp->handleInputs(&inputComponent);
-    physicsComp->update(time);
-    //graphicsComp->updateGraphics();
+void Player::update(double time) { 
+    handleInputs();
+    physicsComp->update(time); 
 }
 
-void Player::changeState(PrimaryState* state) {
-    stateComp->changePrimaryState(state);
-    graphicsComp->updatePrimaryState(state);
-    graphicsComp->updateGraphics();
+void Player::handleInputs() {
+    primary->handleInputs(&inputComponent);
 }
 
 
@@ -80,7 +74,20 @@ double Player::getY() { return physicsComp->Y(); }
 
 int Player::getZ() { return physicsComp->Z(); }
 
+void Player::changePrimaryState(PrimaryState* primeState) {
+    primary->exit();
+    
+    primary = primeState;
+    graphicsComp->updatePrimaryState(primary);
+    
+    primary->enter();
+}
 
+void Player::changeSecondaryState(SecondaryState* secondState) {
+    if (secondary != nullptr) secondary->exit();
+    secondary = secondState;
+    if (secondary != nullptr) secondary->enter();
+}
 
     //_________________________________________________________//
     //////////////////// ACTIONS AND STATE CHANGES ////////////// 
@@ -89,47 +96,63 @@ int Player::getZ() { return physicsComp->Z(); }
 
 void Player::run(int dir) {
     physicsComp->useFric(false);
-    physicsComp->addForce(Vec2(50.0*dir,0.0)); 
+    physicsComp->addForce(Vec2(50.0*dir,0.0));
 }
 
 void Player::stopRun() {
     physicsComp->useFric(true);
 }
 
+void Player::hitWall(int dir) {
+    physicsComp->pos->setX(physicsComp->prevPos->getX());
+    //physicsComp->force.setX(-2.0*physicsComp->force.getX());
+    physicsComp->force.setX(0);
+    restrictedMovement = direction;
+}
+
+void Player::hitRoof() {
+
+}
+
+
+void Player::setJumpCount(int i) { jumpCount = i; }
 
 void Player::jumpFirst() {
-    changeState(stateComp->jumping);
-    stateComp->setJumpCount(0);
+    changePrimaryState(jumping);
+    setJumpCount(0);
     physicsComp->useFric(false);
     physicsComp->useGrav(true);
 }
 
 void Player::falling() {
-    changeState(stateComp->jumping);
+    changePrimaryState(jumping);
     physicsComp->useFric(false);
     physicsComp->useGrav(true);
 }
 
 
-void Player::jump(int i) {
-    physicsComp->addForce(0.0,-JUMP_FORCE*(10-i));
+void Player::jump() {
+    if (jumpCount < 10) {
+        physicsComp->addForce(0.0,-JUMP_FORCE*(10-jumpCount));
+    }
 }
 
-void Player::land(double xDelta) {
+void Player::land(BasicPlatform* platform) {
+    double xDelta = physicsComp->pos->getY() - physicsComp->prevPos->getY();
     if (xDelta > FALL_DELTA_STAGGER) landStagger(xDelta);
     else {
-        changeState(stateComp->running);
+        physicsComp->force = Vec2(physicsComp->force.getX(),0.0);
+        physicsComp->applyMoveTo( Vec2(
+            physicsComp->pos->getX(), 
+            platform->hb->getY() - physicsComp->bodyHB->getH() - 1));
+        changePrimaryState(running);
         physicsComp->useGrav(false);
     }
-    
 }
 
 void Player::landStagger(double xDelta) {
     std::cout << "Player staggers: "<< xDelta << std::endl;
 }
-
-
-
 
 void Player::dropThrough() {
 //    if(platform->isDropThrough) {

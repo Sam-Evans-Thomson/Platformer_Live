@@ -14,20 +14,19 @@
 #ifndef SECONDARYSTATE_H
 #define SECONDARYSTATE_H
 
-#include "../StateComponent.h"
 #include "../../Graphics/Graphic.h"
 #include "../../InputComponent.h"
 
 class SecondaryState{
 public:
     
-    SecondaryState(StateComponent* sc);
+    SecondaryState();
     SecondaryState(const SecondaryState& orig);
     virtual ~SecondaryState();
     
     virtual void init();
     
-    void setStateComponent(StateComponent* sc);
+    void setStateComponent();
     
     virtual void enter();
     virtual void exit();
@@ -38,8 +37,7 @@ public:
     Graphic* graphic;
     Graphic* enterGraphic;
     Graphic* exitGraphic;
-    
-    StateComponent* stateComp;
+    ;
     
 private:
     void changeState(SecondaryState* sc);

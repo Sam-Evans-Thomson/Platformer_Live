@@ -69,6 +69,11 @@ void Graphic::setFirst() {
     currentFrame = 0;  
 }
 
+void Graphic::setFrame(int i) {
+    currentFrame = i;
+}
+
+
 void Graphic::contAnimation() { paused = false;}
 
 void Graphic::flip() { 
@@ -109,6 +114,13 @@ void Graphic::renderToCanvas(Texture* tex, double x, double y, int z, double sca
             canvas.addTexture(tex,x,y,z,NULL,scale,rotation,SDL_FLIP_HORIZONTAL);
         }
         else canvas.addTexture(tex,x,y,z,NULL,scale,rotation);
+    
+    } else if (clipBehaviour == GRAPHIC_CLIP) {
+        
+        if (!direction) {
+            canvas.addTexture(tex,x,y,z,&clip,1.0,rotation,SDL_FLIP_HORIZONTAL);
+        }
+        else canvas.addTexture(tex,x,y,z,&clip,1.0,rotation);
        
     }
 }

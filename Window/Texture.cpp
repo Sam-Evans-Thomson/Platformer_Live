@@ -218,8 +218,8 @@ void Texture::render(int x, int y, SDL_Rect* clip, double angle, double scale, S
     SDL_Rect renderQuad = { x, y, (int)(scale*width), (int)(scale*height) };
     
     if( clip != NULL ) {
-        renderQuad.w = clip->w;
-        renderQuad.h = clip->h;
+        //renderQuad.w = clip->w;
+        //renderQuad.h = clip->h;
     }
     
     if ( gameWindow.getRenderer() != NULL ) {

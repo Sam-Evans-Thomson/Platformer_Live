@@ -13,7 +13,10 @@
 
 #include "PrimaryState.h"
 
-PrimaryState::PrimaryState(StateComponent* sc) : stateComp(sc){ }
+extern Player player;
+extern LevelManager levelManager;
+
+PrimaryState::PrimaryState() { }
 
 PrimaryState::PrimaryState(const PrimaryState& orig) { }
 
@@ -21,7 +24,7 @@ PrimaryState::~PrimaryState() {
     
 }
 
-void PrimaryState::setStateComponent(StateComponent* sc) { stateComp = sc;}
+void PrimaryState::setStateComponent() { }
 
 void PrimaryState::changeState(PrimaryState* sc) {
 
@@ -50,3 +53,17 @@ void PrimaryState::init() {
 void PrimaryState::update(double timeDelta) {
 
 }
+
+void PrimaryState::resolvePlatformCollisions() {
+
+}
+
+void PrimaryState::resolvePlatformCollision(BasicPlatform* platform) {
+
+}
+
+
+void PrimaryState::clearFlags() {
+    player.fallFlag = 0;
+}
+

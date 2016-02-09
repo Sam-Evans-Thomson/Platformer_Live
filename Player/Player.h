@@ -13,17 +13,21 @@
 
 #ifndef PLAYER_H
 #define PLAYER_H
+#include "PlayerStates/PlayerConsts.h"
 
 
 
-#define JUMP_FORCE 28
-
-#define FALL_DELTA_STAGGER 100
-
+class InputComponent;
 class GraphicsComponent;
-class StateComponent;
 class PhysicsComponent;
+
 class PrimaryState;
+class SecondaryState;
+class RunningState;
+class JumpingState;
+
+class BasicPlatform;
+
 
 class Player {
 public:
@@ -33,26 +37,74 @@ public:
     
     void init();
     
-    void render();
+    void handleInputs();
     void update(double time);
-    
-        
-    void changeState(PrimaryState* state);
+    void render();
     
     double getX();
     double getY();
     int getZ();
 
-    // ACTIONS 
+    PhysicsComponent* physicsComp;
+    GraphicsComponent* graphicsComp;
+    
+    
+    /// STATES ///////////////////////////////
+    
+    
+    /// 1ST STATE
+    
+    void changePrimaryState(PrimaryState* primeState);
+    PrimaryState* primary;
+
+    PrimaryState*        running;
+    PrimaryState*        jumping;
+//    DodgeState          dodge;
+//    DropAttackState     dropAttack;
+//    StunState           stun;
+//    ClimbingState       climbing;
+//    GrabbingState       grabbing;
+//    ActivateState       activate;
+//    SwimmingState       swimming;
+    
+    
+    ///2ND STATE
+      
+    void changeSecondaryState(SecondaryState* secondState); 
+    SecondaryState* secondary;
+
+//    NullState           null;
+//    EatingState         eating;
+//    Melee1State         melee1;
+//    Melee2State         melee2;
+//    RangeState          range;
+//    BlockState          block;
+    
+    
+      
+    //// OTHERS ///////////////////////////      
+    int direction;
+    int jumpCount; 
+    
+    ///// FLAGS ///////
+    int fallFlag;
+    int restrictedMovement;
+    
+    ///// ACTIONS //////////////
     
     void run(int dir);
     void stopRun();
     
+    void hitWall(int dir);
+    void hitRoof();
+    
+    void setJumpCount(int i);
     void jumpFirst();
-    void jump(int i);
+    void jump();
+    
     void falling();
     
-    void land(double xDelta);
+    void land(BasicPlatform* platform);
     void landStagger(double xDelta);
     
     void dropThrough();
@@ -76,17 +128,8 @@ public:
 
     
 private:
-    StateComponent* stateComp;
-    GraphicsComponent* graphicsComp;
-    PhysicsComponent* physicsComp;
     
-
     
-    // Platform* platform;
-    // ClimbBox* climbBox;
-    // GrabBox* grabBox;
-    // TerrainBox* terrainBox;
-
 };
 
 #endif /* PLAYER_H */

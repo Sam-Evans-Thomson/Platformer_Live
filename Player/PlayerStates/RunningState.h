@@ -16,19 +16,21 @@
 
 #include "PrimaryState.h"
 
-class StateComponent;
 
 #define RUNNING_PATH "Sprites/Running"
 
 class RunningState : public PrimaryState {
 public:
-    RunningState(StateComponent* sc);
+    RunningState();
     
     ~RunningState();
     
     void init() override;
     
     void loadGraphics() override;
+    
+    void resolvePlatformCollisions();
+    void resolvePlatformCollision(BasicPlatform* platform);
     
     void enter() override;
     void exit() override;

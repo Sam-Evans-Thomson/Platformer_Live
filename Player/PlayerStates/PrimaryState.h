@@ -16,23 +16,29 @@
 
 #include "../../Graphics/Graphic.h"
 #include <string>
+#include "../PhysicsComponent.h"
+#include "../Player.h"
+#include "../../Level/LevelManager.h"
 
 class InputComponent;
-class StateComponent;
+class BasicPlatform;
 
 class PrimaryState {
 public:
-    PrimaryState(StateComponent* sc);
+    PrimaryState();
     PrimaryState(const PrimaryState& orig);
     virtual ~PrimaryState();
     
     virtual void init();
     
-    void setStateComponent(StateComponent* sc);
+    void setStateComponent();
     
     virtual void enter();
     virtual void exit();
     virtual void handleInputs(InputComponent* ic);
+    
+    virtual void resolvePlatformCollisions();
+    virtual void resolvePlatformCollision(BasicPlatform* platform);
     
     virtual void update(double timeDelta);
     
@@ -42,8 +48,10 @@ public:
     Graphic* enterGraphic;
     Graphic* exitGraphic;
     
-    StateComponent* stateComp;
     std::string path;
+    
+    
+    
     
 private:
     void changeState(PrimaryState* sc);
@@ -51,7 +59,7 @@ private:
     
     
 protected:
-    
+    void clearFlags();
 };
 
 #endif /* PRIMARYSTATE_H */

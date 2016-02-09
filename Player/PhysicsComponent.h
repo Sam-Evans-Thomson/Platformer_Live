@@ -24,6 +24,8 @@
 #define PLAYR_W 100
 #define PLAYR_H 140
 
+class BasicPlatform;
+
 class PhysicsComponent {
 public:
     PhysicsComponent();
@@ -44,7 +46,6 @@ public:
     void setGravity(double grav);
     void setTimeDelta(double delta);
 
-    
     void useFric(bool on);
     void useGrav(bool on);
     
@@ -55,7 +56,7 @@ public:
     RectHitbox* bodyHB;
     RectHitbox* underFeetHB;
     
-private:
+    void previousPos();
     
     double timeDelta;
  
@@ -73,6 +74,7 @@ private:
     double frictionY;
     double gravity;
     
+    
     bool useGravity;
     bool useFriction;
     
@@ -83,15 +85,15 @@ private:
     
     void applyMove(Vec2 mvmnt);
     void applyMoveTo(Vec2 _pos);
-    
-    void resolvePlatformCollisions();
-    void resolvePlatformCollision(RectHitbox* hitbox);
-    
-    void resolveEnemyCollisions();
+
     void applyGravity();
     void applyFriction();
     Vec2 checkForce(Vec2 frc);
     void addImpulse();
+    
+private:    
+    
+    
 
 };
 

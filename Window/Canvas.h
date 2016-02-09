@@ -18,10 +18,14 @@
 #include <vector>
 #include <SDL.h>
 
+#include "Camera.h"
+
 class Texture;
 class Window;
 
 #define NUM_LAYERS 10
+#define CANVAS_SIZE_W 3840
+#define CANVAS_SIZE_H 2160
 
 class Canvas {
 public:
@@ -49,7 +53,13 @@ public:
     Texture* background;
     
 private:
-
+    
+    void renewOffsets();
+    
+    int xOffset = 0;
+    int yOffset = 0;
+    
+    Camera* camera;
     
     
     Texture* layers[NUM_LAYERS];

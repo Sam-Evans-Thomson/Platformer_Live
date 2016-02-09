@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Actor/Actor.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/BasicPlatform.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Camera.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Canvas.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/CircleHitbox.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Game.h</itemPath>
@@ -20,11 +21,11 @@
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/LineHitbox.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PhysicsComponent.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/Player.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/PlayerConsts.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/PrimaryState.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/RectHitbox.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/RunningState.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.h</itemPath>
-      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Texture.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Vec2.h</itemPath>
@@ -39,6 +40,7 @@
                    projectFiles="true">
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Actor/Actor.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/BasicPlatform.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Camera.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Canvas.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/CircleHitbox.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Game.cpp</itemPath>
@@ -57,7 +59,6 @@
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/RectHitbox.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/RunningState.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.cpp</itemPath>
-      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Texture.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Vec2.cpp</itemPath>
@@ -271,6 +272,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/PlayerConsts.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/PrimaryState.cpp"
             ex="false"
             tool="1"
@@ -301,22 +307,22 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Window/Camera.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Window/Camera.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -559,6 +565,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/PlayerConsts.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/PrimaryState.cpp"
             ex="false"
             tool="1"
@@ -589,22 +600,22 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/StateComponent.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Window/Camera.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Window/Camera.h"
             ex="false"
             tool="3"
             flavor2="0">

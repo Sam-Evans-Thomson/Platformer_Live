@@ -97,7 +97,7 @@ void Window::applyScreenDim(ScreenDimensions scDim) {
     int renderW = windowW;
     int renderH = windowH;
 
-    SDL_SetWindowSize(window, windowW, windowH);
+    SDL_SetWindowSize(window, windowW, windowH); // windows size on monitor.
     
     double ratio = (double)windowW/(double)windowH;
         

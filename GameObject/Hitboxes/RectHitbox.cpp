@@ -135,6 +135,60 @@ bool RectHitbox::collision(RectHitbox& rect) {
     return Hitbox::collision(rect,*this);
 }
 
+/*
+ 
+ * 0 is the left face
+ * 1 is the top face
+ * 2 is the right face
+ * 3 is the bottom face
+ * -1 is error.
+ 
+ */
+int RectHitbox::getCollisionFace(RectHitbox& rect, Vec2& prevPos) {
+    if (isAA && rect.isAA) {
+        
+        std::cout << "rect getFace(): ";
+        
+        // previous pos hitbox.
+        RectHitbox rect2(prevPos.getX(), prevPos.getY(), rect.w, rect.h);
+    
+        bool boolx, booly;
+        
+        if (rect2.getX() < getX()) {
+                boolx = ( rect2.getX() + rect2.getW() ) > getX();
+        } else  boolx = getX() + getW() > rect2.getX();
+        
+        if (rect2.getY() < getY()) {
+                booly = rect2.getY() + rect2.getH() > getY();
+        } else  booly = getY() + getH() > rect2.getY();
+        
+        
+    
+        //it has hit on a side face.
+        if (!boolx && booly) {
+            // it has hit left.
+            if (rect2.getX() > getX()) return 0;
+            // it has hit right.
+            else if (rect2.getX() < getX()) return 2;            
+            
+        // it has hit on a horizontal face.    
+        } else if (!booly && boolx) {
+            // it has hit top.
+            if (rect2.getY() > getY()) return 1;
+            // it has hit bottom.
+            else if (rect2.getY() < getY()) return 3;
+        }
+        else return -1;
+    
+    
+    
+    } else {
+        printf("getCollisionFace has not been implemented for none AA rect: \n");
+        return -1;
+    } 
+}
+
+
 double RectHitbox::bounceAngle(Vec2& prevPos, double angle, CircleHitbox& circle) {
 
 }
