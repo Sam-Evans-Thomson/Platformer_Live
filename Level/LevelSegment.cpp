@@ -27,25 +27,36 @@ LevelSegment::LevelSegment(const LevelSegment& orig) {
 }
 
 LevelSegment::~LevelSegment() {
-    
+    delete background;
+    //delete &decorations;
+    delete &platforms;
 }
 
 void LevelSegment::render() {
     //for ( Decoration* d : decorations) d->render();
     for ( BasicPlatform* bp : platforms) bp->render();
+    background->render((double)x*SEGMENT_WIDTH,(double)y*SEGMENT_HEIGHT,Z_BACKGROUND,1.0,0.0);
 }
 
 
 void LevelSegment::loadSegment(int x, int y) {
- 
+
 }
 
 
 
 void LevelSegment::addPlatform(BasicPlatform* platform) {
-    
     platforms.push_back(platform);
 }
+
+void LevelSegment::addBackground(int frames, std::string path) {
+    background = new Graphic(frames, path);
+    background->setFrameTime(0.2);
+    background->loadTextures();
+    background->start();
+}
+
+
 
 int LevelSegment::getPlatformCount() { return platforms.size(); }
 

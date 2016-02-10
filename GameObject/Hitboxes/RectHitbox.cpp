@@ -147,8 +147,6 @@ bool RectHitbox::collision(RectHitbox& rect) {
 int RectHitbox::getCollisionFace(RectHitbox& rect, Vec2& prevPos) {
     if (isAA && rect.isAA) {
         
-        std::cout << "rect getFace(): ";
-        
         // previous pos hitbox.
         RectHitbox rect2(prevPos.getX(), prevPos.getY(), rect.w, rect.h);
     

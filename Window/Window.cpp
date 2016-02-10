@@ -39,7 +39,7 @@ bool Window::open() {
 
     window = SDL_CreateWindow( 
             "Game - Sam Evans-Thomson",
-            0,
+            1920,
             0,
             0,
             0,

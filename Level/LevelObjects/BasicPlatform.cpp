@@ -64,12 +64,12 @@ void BasicPlatform::setGraphicPath(int frameCount, std::string _path) {
     numFrames = frameCount;
 }
 
-void BasicPlatform::setGraphicDimensions(double x, double y, double _w, double _h, int behaviour) {
+void BasicPlatform::setGraphicDimensions(double x, double y, double _w, double _h) {
     graphX = pos.getX() + x; 
     graphY = pos.getY() + y;
     graphW = w + _w; 
     graphH = h + _h;
-    graphic->setClip(0, 0, graphW, graphH, behaviour);
+    graphic->setClip(0, 0, graphW, graphH);
 }
 
 

@@ -19,8 +19,7 @@
 #define SEG_X_COUNT 1
 #define SEG_Y_COUNT 1
 
-#define SEGMENT_WIDTH 1920
-#define SEGMENT_HEIGHT 1080
+
 
 class BasicPlatform;
 
@@ -39,6 +38,14 @@ public:
     void render();
     void update();
     void checkPlayerPos();
+    void checkLoadedSegments();
+    void checkRenderSegments();
+    void moveSegments(int x, int y);
+    
+    void loadRightSegments();
+    void loadBottomSegments();
+    void loadLeftSegments();
+    void loadTopSegments();
     
     void init();
     
@@ -50,13 +57,9 @@ public:
     int getCameraXOffset();
     int getCameraYOffset();
     
-    
-    
-    
+
 private:
-    
-    
-    
+
     int xOffset = 0;
     int yOffset = 0;
     
@@ -69,23 +72,21 @@ private:
     
     int get_Seg_X_Count(double x);
     int get_Seg_Y_Count(double y);
-    int get_Seg_Num(int x, int y);
     
     LevelSegment* renderSegs[4];
     
-    LevelSegment* currentSegment;
+    
+    
     /*
-     *  [00][01][02][03][04]
-     *  [05][06][07][08][09]
-     *  [10][11][12][13][14]
-     *  [15][16][17][18][19]
-     *  [20][21][22][23][24] 
-     * 
-     * Player hitboxes only check loadedSegments[12];
-     * graphics render for onl the segments that are on screen.
+     * Player hitboxes only check loadedSegments[2][2];
+     * graphics render for only the segments that are on screen.
      */
     
-    std::vector <LevelSegment*> loadedSegments;
+    //// ABSOLUTELY NEED TO USE SMART POINTERS FOR SEGMENTS///
+    /////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////
+    
+    LevelSegment* loadedSegments[5][5];
 };
 
 #endif /* LEVELMANAGER_H */

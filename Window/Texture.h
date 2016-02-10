@@ -46,11 +46,18 @@ public:
     bool loadFromFile( std::string path );
     bool loadFromRendererText( std::string textureText, SDL_Color textColor );
     
+    void setRenderSettings(SDL_Rect* _clip, double _angle, double _scaleX, 
+                                    double _scaleY, SDL_RendererFlip _flip);
+    void setClip(SDL_Rect* _clip);
+    void setAngle(double _angle);
+    void setScale(double _scaleX, double _scaleY);
+    void setFlip(SDL_RendererFlip _flip);
+    
     // This renders the texture to the window.
-    void render(int x, int y, SDL_Rect* clip, double angle,double scale, SDL_Point* center, SDL_RendererFlip flip );
-    void render(SDL_Rect* clip, SDL_Rect* dest);
-    void render(SDL_Rect* clip);
-    void renderToTexture(Texture* _texture, int x, int y, SDL_Rect* clip, double angle, double scale, SDL_Point* center, SDL_RendererFlip flip );
+    void render(int x, int y);
+    void render(int x, int y, int w, int h);
+    void renderToTexture(Texture* _texture, int x, int y);
+    void renderToTexture(Texture* _texture, int x, int y, int w, int h);
     
     bool lockTexture();
     bool unlockTexture();
@@ -69,6 +76,13 @@ private:
     
     int width;
     int height;
+    
+    
+    SDL_Rect* clip = NULL;
+    SDL_RendererFlip flip = SDL_FLIP_NONE;
+    double angle = 0.0;
+    double scaleX = 1.0;
+    double scaleY = 1.0;
     
     void freeTexture();
 };

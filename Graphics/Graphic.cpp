@@ -39,20 +39,19 @@ void Graphic::loadTextures() {
         textures[i].loadFromFile(_path);
         _path.clear();
     } 
+    
     clip.x = 0;
     clip.y = 0;
     clip.w = textures[0].getWidth();
     clip.h = textures[0].getHeight();
 }
 
-void Graphic::setClip(int x, int y, int w, int h,int _behaviour) {
-    clip.x = 0;
-    clip.y = 0;
+void Graphic::setClip(int x, int y, int w, int h) {
+    clip.x = x;
+    clip.y = y;
     clip.w = w;
     clip.h = h;
-    clipBehaviour = _behaviour;
 }
-
 
 bool Graphic::isReversing() { return doesReverse;}
 
@@ -61,7 +60,6 @@ void Graphic::setReversing(bool rev) { doesReverse = rev; }
 void Graphic::start() {
     timer.start();    
     currentFrame = 0;
-    paused = false;
 }
 
 void Graphic::pauseAnimation() { paused = true;}
@@ -75,7 +73,6 @@ void Graphic::setFrame(int i) {
     currentFrame = i;
 }
 
-
 void Graphic::contAnimation() { paused = false;}
 
 void Graphic::flip() { 
@@ -86,51 +83,45 @@ void Graphic::setDirection(bool dir) {
     direction = dir;
 }
 
-
 bool Graphic::hasFinished() {
     return (timer.getSeconds() > frameTime*(double)numFrames);
 }
 
 void Graphic::render(double x, double y, int z, double scale, double rotation) {
-    if (!paused) {
+    if (!paused && numFrames > 1) {
         if(timer.getSeconds() > frameTime) {
             incFrame();
             timer.refresh();
         }
     }
-    renderToCanvas(&textures[currentFrame],x,y,z, scale,rotation);
-    
+    renderToCanvas(&textures[currentFrame],x+clip.x,y+clip.y,z, scale,rotation);  
 }
 
 void Graphic::renderToCanvas(Texture* tex, double x, double y, int z, double scale, double rotation) {
-
-    SDL_Rect* clip_ = NULL;
-    
-    if (clipBehaviour == GRAPHIC_SCALE) { 
-        clip_ = &clip; 
-        std::cout << clip_->h << std::endl;
-    }
-    
+    SDL_RendererFlip flip = SDL_FLIP_NONE;
     
     if (!direction) {
-        canvas.addTexture(tex, x, y, z, clip_ ,1.0, rotation,SDL_FLIP_HORIZONTAL);
+        flip = SDL_FLIP_HORIZONTAL; 
     }
-    else canvas.addTexture(tex,x , y, z, clip_ ,1.0, rotation);
+    
+    SDL_Rect temp = {(int)x,(int)y,clip.w,clip.h};
+    canvas.addTexture(tex, &temp, &clip, z ,1.0, rotation, flip);
 }
 
 void Graphic::incFrame() {
+    
     if (numFrames > 1) {
         if (doesReverse) {
             if (reversing == false) {
                 currentFrame++;
                 if (currentFrame >= numFrames) {
                     currentFrame-=2;
-                    reversing =true;
+                    reversing = true;
                 }
             }
             else if (reversing == true) {
                 currentFrame--;
-                if (currentFrame <= 0) {
+                if (currentFrame < 0) {
                     currentFrame+=2;
                     reversing = false;
                 }

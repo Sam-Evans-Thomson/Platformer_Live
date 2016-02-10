@@ -14,10 +14,12 @@
 #ifndef LEVELSEGMENT_H
 #define LEVELSEGMENT_H
 
-#define SEGMENT_PATH
+#define SEGMENT_WIDTH 1920
+#define SEGMENT_HEIGHT 1080
 
 #include <vector>
 #include "LevelObjects/BasicPlatform.h"
+#include "../Graphics/Graphic.h"
 
 class LevelSegment {
 public:
@@ -29,6 +31,7 @@ public:
     void render();
     
     void addPlatform(BasicPlatform* hb);
+    void addBackground(int frames, std::string path );
     
     int getPlatformCount();
     BasicPlatform* getPlatform(int i);
@@ -36,7 +39,10 @@ public:
     void loadSegment(int x, int y);
     
 private:
+    
     int x; int y;
+    
+    Graphic* background;
     
     //std::vector <Decoration*> decorations;
     std::vector <BasicPlatform*> platforms;

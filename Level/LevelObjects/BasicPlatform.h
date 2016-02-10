@@ -38,7 +38,7 @@ public:
     void setGraphicPath(int frameCount, std::string _path);
     
     // These are in relation to the pos and w,h of the hitbox.
-    void setGraphicDimensions(double x, double y, double _w, double _h, int behaviour);
+    void setGraphicDimensions(double x, double y, double _w, double _h);
     
     Vec2 getPos();
     double getX();

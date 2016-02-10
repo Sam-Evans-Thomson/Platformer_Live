@@ -20,7 +20,7 @@
 #define DEFAULT_CAMERA_W 1920.0
 #define DEFAULT_CAMERA_H 1080.0
 
-#define BACKGROUND_DIST 0.7
+#define BACKGROUND_DIST 0.9
 #define FOREGROUND_DIST 1.1
 
 class Camera {
@@ -30,8 +30,8 @@ public:
     virtual ~Camera();
     
     void updateViewport();
-    SDL_Rect getViewport();
-    SDL_Rect getParallaxViewport(double dist);
+    SDL_Rect getViewport(int xOff, int yOff);
+    SDL_Rect getParallaxViewport(double dist, int xOff, int yOff);
     
     void setZoom(double _zoom);
     double getZoom();

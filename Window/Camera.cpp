@@ -28,22 +28,23 @@ Camera::~Camera() {
 
 
 
-SDL_Rect Camera::getViewport() { 
-    return viewport;
+SDL_Rect Camera::getViewport(int xOff, int yOff) { 
+    SDL_Rect temp;
+    temp.x = viewport.x - xOff;
+    temp.y = viewport.y - yOff;
+    temp.w = viewport.w;
+    temp.h = viewport.h;
+    return temp;
 }
 
-SDL_Rect Camera::getParallaxViewport(double dist) {
-    SDL_Rect rect;
-    rect.x = dist*viewport.x;
-    rect.y = dist*viewport.y;
-    rect.w = viewport.w;
-    rect.h = viewport.h;
-    return rect;
+SDL_Rect Camera::getParallaxViewport(double dist, int xOff, int yOff) {
+
+    return getViewport(xOff,yOff);
 }
 
 
 void Camera::updateViewport() {
-    zoom = 1.5 + 0.5*inputComponent.rTh_Y;
+    //zoom = 1.5 + 0.5*inputComponent.rTh_Y;
     viewport.w = (int)(DEFAULT_CAMERA_W/zoom);
     viewport.h = (int)(DEFAULT_CAMERA_H/zoom);
     viewport.x = player.getX() - viewport.w/2.0;

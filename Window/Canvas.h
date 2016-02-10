@@ -24,8 +24,12 @@ class Texture;
 class Window;
 
 #define NUM_LAYERS 10
+
 #define CANVAS_SIZE_W 3840
 #define CANVAS_SIZE_H 2160
+
+#define Z_BACKGROUND -1
+#define Z_FOREGROUND -2
 
 class Canvas {
 public:
@@ -43,13 +47,8 @@ public:
     void clearLayers();
     void clearAll();
     
-    void addTexture(Texture* tex, double x, double y, int z,SDL_Rect* clip, double scale, double rot);
-    void addTexture(Texture* tex, double x, double y, int z,SDL_Rect* clip, double scale, double rot, SDL_RendererFlip flip);
-    void addBackgroundTexture(Texture* tex, double x, double y, SDL_Rect* clip, double scale, double rot);
-    void addForegroundTexture(Texture* tex, double x, double y, SDL_Rect* clip, double scale, double rot);
-    
-    void texRender(Texture* tex);
-    
+    void addTexture(Texture* tex, double x, double y, int z, SDL_Rect* clip, double scale, double rot, SDL_RendererFlip flip);
+    void addTexture(Texture* tex, SDL_Rect* dest, SDL_Rect* clip, int z, double scale, double rot, SDL_RendererFlip flip);
     Texture* foreground;
     Texture* background;
     

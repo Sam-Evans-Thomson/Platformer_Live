@@ -106,11 +106,13 @@ void JumpingState::resolvePlatformCollision(BasicPlatform* platform) {
     RectHitbox* platfrm = platform->hb;
     RectHitbox* body = player.physicsComp->bodyHB;
     
-    if ( platfrm->collision(*feet) && platfrm->collision(*body) ) {  
+    if ( platfrm->collision(*feet) && platfrm->collision(*body) ) { 
+        std::cout << "landing " << std::endl;
         player.land(platform); 
     }
     if ( platfrm->collision(*body) )  { 
         int side = platfrm->getCollisionFace(*body,*player.physicsComp->prevPos);
+        std::cout << "jumping state  side: " << side << std::endl;   
         if (side == 0) player.hitWall(FACING_R); 
         else if (side == 2) player.hitWall(FACING_L);
         else if (side = 1) player.hitRoof();

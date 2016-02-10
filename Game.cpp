@@ -50,6 +50,7 @@ bool Game::init() {
     
     bool success = true;
     
+    
     //Initialize SDL
     if( SDL_Init( SDL_INIT_VIDEO | SDL_INIT_JOYSTICK ) < 0 ) {
         printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
@@ -60,7 +61,9 @@ bool Game::init() {
         if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) ) {
             printf( "Warning: Linear texture filtering not enabled!" );
         }
-
+        
+        
+        
         //Create window
         if( !gameWindow.open() ) {
             printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
@@ -68,11 +71,12 @@ bool Game::init() {
         }
         
         initHeap();
+        inputComponent.init();
         
         globalTimer.start();
     }
 
-    inputComponent.init();
+    
 
     return success;
 }
@@ -90,23 +94,28 @@ void Game::run() {
     ///////////////////Testing////////////////////////
     levelManager.init();
     
-    platform = new BasicPlatform(3840.0, 2940.0, 1, 1700.0, 100.0);
+    platform = new BasicPlatform(3840.0, 2940.0, 1, 1800.0, 100.0);
     platform->setGraphicPath("Sprites/ground");
     platform->init(0);
     platform->init(1);
-    platform->setGraphicDimensions(0,-3.0,0.0,0.0,GRAPHIC_SCALE);
+    platform->setGraphicDimensions(0,-3.0,0.0,0.0);
     
-    platform2 = new BasicPlatform(4400.0, 2860.0, 1, 600.0, 100.0);
+    platform2 = new BasicPlatform(5770.0, 2820.0, 1, 1600.0, 100.0);
     platform2->setGraphicPath("Sprites/ground");
     platform2->init(0);
     platform2->init(1);
-    platform2->setGraphicDimensions(0,-3.0,0.0,0.0,GRAPHIC_SCALE);
+    platform2->setGraphicDimensions(0,-3.0,0.0,0.0);
+
+    platform3 = new BasicPlatform(2100.0, 2820.0, 1, 1600.0, 100.0);
+    platform3->setGraphicPath("Sprites/ground");
+    platform3->init(0);
+    platform3->init(1);
+    platform3->setGraphicDimensions(0,-3.0,0.0,0.0);
     
     levelManager.addPlatform(platform);
     levelManager.addPlatform(platform2);
+    levelManager.addPlatform(platform3);
 
-    bgd.loadFromFile("Sprites/background0.png");
-    fgd.loadFromFile("Sprites/vine.png");
     //////////////////////////////////////////////
     
     
@@ -163,16 +172,6 @@ void Game::gameUpdate(double _d) {
 }
 
 void Game::render() {
-    
-        
-    
-    canvas.addBackgroundTexture(&bgd, 3840, 2160,NULL, 1.0, 0.0);
-    canvas.addBackgroundTexture(&bgd, DEFAULT_W, 0.0,NULL, 1.0, 0.0);
-    
-    
-    
-    canvas.addForegroundTexture(&fgd, 3840+400, 2160, NULL, 2.0, 0.0);
-    canvas.addForegroundTexture(&fgd, 4440, 2060, NULL, 1.8, 0.0);
     
     
     levelManager.render();

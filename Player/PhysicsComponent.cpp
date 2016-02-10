@@ -44,14 +44,14 @@ void PhysicsComponent::init() {
     frictionY = BASE_FRICTION;
     gravity = BASE_GRAVITY;
     angle = 0.0;
-    z=1;
+    z = 5;
     pos = new Vec2(4000,2700);
     prevPos = new Vec2(4000,2700);
     bodyHB = new RectHitbox(*pos, PLAYR_W ,PLAYR_H);
     underFeetHB = new RectHitbox(
-            pos->getX() + 15, 
+            pos->getX() + 4.0*PLAYR_W/10.0, 
             pos->getY() + PLAYR_H, 
-            PLAYR_W - 30 ,
+            PLAYR_W/10.0 ,
             2);
     
     impulse = Vec2(0,0);
@@ -128,7 +128,7 @@ void PhysicsComponent::applyMoveTo(Vec2 _pos) {
     *pos = _pos;
     
     bodyHB->moveTo(_pos);
-    underFeetHB->moveTo(pos->getX(), pos->getY() + PLAYR_H);
+    underFeetHB->moveTo(pos->getX() + 15, pos->getY() + PLAYR_H);
     
     //resolveEnemyCollisions();
     player.primary->resolvePlatformCollisions();

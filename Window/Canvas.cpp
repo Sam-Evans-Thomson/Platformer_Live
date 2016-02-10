@@ -52,26 +52,23 @@ void Canvas::update() {
 
 
 void Canvas::render() {
+    
     camera->updateViewport();
     
-    viewport = camera->getViewport();
-    backgroundViewport = camera->getParallaxViewport(BACKGROUND_DIST);
-    foregroundViewport = camera->getParallaxViewport(FOREGROUND_DIST);
+    viewport = camera->getViewport(xOffset, yOffset);
+    backgroundViewport = camera->getParallaxViewport(BACKGROUND_DIST, xOffset, yOffset);
+    foregroundViewport = camera->getParallaxViewport(FOREGROUND_DIST, xOffset, yOffset);
     
-    backgroundViewport.x -= BACKGROUND_DIST*xOffset;
-    backgroundViewport.y -= BACKGROUND_DIST*yOffset;
-    foregroundViewport.x -= FOREGROUND_DIST*xOffset;
-    foregroundViewport.y -= FOREGROUND_DIST*yOffset;
-    viewport.x -= xOffset;
-    viewport.y -= yOffset;
+    background->setClip(&backgroundViewport);
+    background->render(0.0,0.0, 1920, 1080);
     
-    background->render(&backgroundViewport);
-    for (Texture* tex: layers) texRender(tex);
-    foreground->render(&foregroundViewport);
-}
-
-void Canvas::texRender(Texture* tex) {
-    tex->render(&viewport);
+    for (Texture* tex: layers) {
+        tex->setClip(&viewport);
+        tex->render(0.0,0.0, 1920, 1080);
+    }
+    
+    foreground->setClip(&foregroundViewport);
+    foreground->render(0.0, 0.0, 1920, 1080);
 }
 
 void Canvas::clearBackground() {
@@ -102,30 +99,38 @@ void Canvas::clearAll() {
     }
 }
 
-void Canvas::addTexture(Texture* tex, double x, double y, int z, SDL_Rect* clip, double scale, double rot) {
-    if (z > -1 && z < NUM_LAYERS) {
-        tex->renderToTexture(layers[z],x-xOffset,y-yOffset,clip,rot,scale,NULL,SDL_FLIP_NONE);
-    }
-}
-
 void Canvas::addTexture(Texture* tex, double x, double y, int z, SDL_Rect* clip, double scale, double rot, SDL_RendererFlip flip) {
     if (z > -1 && z < NUM_LAYERS) {
-        tex->renderToTexture(layers[z],x-xOffset,y-yOffset,clip,rot,scale,NULL,flip);
+        tex->setRenderSettings(clip, rot, scale, scale,flip);
+        tex->renderToTexture(layers[z], x-xOffset, y-yOffset);
+    } else if (z == Z_BACKGROUND) {
+        tex->setRenderSettings(clip, rot, scale, scale,flip);
+        tex->renderToTexture(background,
+                (x-xOffset),
+                (y-yOffset));
+    } else if (z == Z_FOREGROUND) {
+        tex->setRenderSettings(clip, rot, scale, scale,flip);
+        tex->renderToTexture(foreground,
+                (x-xOffset),
+                (y-yOffset));
     }
 }
 
-void Canvas::addBackgroundTexture(Texture* tex, double x, double y, SDL_Rect* clip, double scale, double rot) {
-    tex->renderToTexture(background,
-                BACKGROUND_DIST*(x-xOffset),
-                BACKGROUND_DIST*(y-yOffset),
-                clip,rot,scale,NULL,SDL_FLIP_NONE);
-}
-
-void Canvas::addForegroundTexture(Texture* tex, double x, double y, SDL_Rect* clip, double scale, double rot) {
-    tex->renderToTexture(foreground,
-                FOREGROUND_DIST*(x-xOffset),
-                FOREGROUND_DIST*(y-yOffset),
-                clip,rot,scale,NULL,SDL_FLIP_NONE);
+void Canvas::addTexture(Texture* tex, SDL_Rect* dest, SDL_Rect* clip, int z, double scale, double rot, SDL_RendererFlip flip) {
+    int x = dest->x;
+    int y = dest->y;
+    int w = dest->w;
+    int h = dest->h;
+    if (z > -1 && z < NUM_LAYERS) {
+        tex->setRenderSettings(clip, rot, scale, scale,flip);
+        tex->renderToTexture(layers[z], x-xOffset, y-yOffset, w, h);
+    } else if (z == Z_BACKGROUND) {
+        tex->setRenderSettings(clip, rot, scale, scale,flip);
+        tex->renderToTexture(background, x-xOffset, y-yOffset,w ,h);
+    } else if (z == Z_FOREGROUND) {
+        tex->setRenderSettings(clip, rot, scale, scale,flip);
+        tex->renderToTexture(foreground, x-xOffset, y-yOffset, w ,h);
+    }
 }
 
 void Canvas::renewOffsets() {
