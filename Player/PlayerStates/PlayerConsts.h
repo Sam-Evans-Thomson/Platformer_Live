@@ -14,7 +14,7 @@
 #ifndef PLAYERCONSTS_H
 #define PLAYERCONSTS_H
 
-#define JUMP_FORCE 28
+#define JUMP_FORCE 15
 #define FALL_DELTA_STAGGER 100
 
 #define NO_RESTRICTION -1

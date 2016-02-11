@@ -51,12 +51,9 @@ public:
     
 private:
     
-    //////TESTING //////////
-    
-    BasicPlatform* platform; 
+    BasicPlatform* platform;
     BasicPlatform* platform2;
     BasicPlatform* platform3;
-    /////////////////////////////
     
     Timer globalTimer;
     Timer loopTimer;  

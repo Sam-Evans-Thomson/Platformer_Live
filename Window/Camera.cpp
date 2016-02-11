@@ -18,6 +18,10 @@ extern Player player;
 extern InputComponent inputComponent;
 
 Camera::Camera() {
+    camPos.setX(player.getX());
+    camPos.setY(player.getY());
+    camSpeedX = 0;
+    camSpeedY = 0;
 }
 
 Camera::Camera(const Camera& orig) {
@@ -44,11 +48,23 @@ SDL_Rect Camera::getParallaxViewport(double dist, int xOff, int yOff) {
 
 
 void Camera::updateViewport() {
-    //zoom = 1.5 + 0.5*inputComponent.rTh_Y;
+    zoom = 1.5 - 0.5*inputComponent.rTh_Y;
+    
+    double xSpeed = player.getX() - player.getPrevX();
+    double ySpeed = player.getY() - player.getPrevY();
+
+    if( xSpeed > camSpeedX) { camSpeedX += (xSpeed-camSpeedX)*CAMERA_X_LAG; }
+    else if( xSpeed < camSpeedX) { camSpeedX -= (camSpeedX-xSpeed)*CAMERA_X_LAG; }
+    
+    if( ySpeed > camSpeedY) { camSpeedY += (ySpeed-camSpeedY)*CAMERA_Y_LAG; }
+    else if( ySpeed < camSpeedY) { camSpeedY -= (camSpeedY-ySpeed)*CAMERA_Y_LAG; }
+    
+    camPos += Vec2(camSpeedX,camSpeedY);
+    
     viewport.w = (int)(DEFAULT_CAMERA_W/zoom);
     viewport.h = (int)(DEFAULT_CAMERA_H/zoom);
-    viewport.x = player.getX() - viewport.w/2.0;
-    viewport.y = player.getY() - viewport.h/2.0;
+    viewport.x = camPos.getX() - viewport.w/2.0;
+    viewport.y = camPos.getY() - viewport.h/2.0;
 }
 
 

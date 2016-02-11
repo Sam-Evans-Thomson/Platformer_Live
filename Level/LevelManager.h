@@ -19,8 +19,6 @@
 #define SEG_X_COUNT 1
 #define SEG_Y_COUNT 1
 
-
-
 class BasicPlatform;
 
 class LevelManager {
@@ -29,17 +27,31 @@ public:
     LevelManager(const LevelManager& orig);
     virtual ~LevelManager();
     
-    int platformCount();
-    int playerPlatformCount();
+    void init();
     
+    int getCameraXOffset();
+    int getCameraYOffset();
+    int getSegCountX(double x);
+    int getSegCountY(double y);
+    
+    int platformCount();
     BasicPlatform* getPlatform(int i);
+    
+    int playerPlatformCount();
     BasicPlatform* getPlayerPlatform(int i);
     
-    void render();
     void update();
-    void checkPlayerPos();
+    void render();
+  
+private:
+    
+    void initialLoadSegments();
+    
+    LevelSegment* getSegment(double x, double y);
+    
     void checkLoadedSegments();
     void checkRenderSegments();
+    
     void moveSegments(int x, int y);
     
     void loadRightSegments();
@@ -47,46 +59,23 @@ public:
     void loadLeftSegments();
     void loadTopSegments();
     
-    void init();
+    /// HEAP
+   
     
-    ////////////////////////////////////////
-    //testing
     
-    void addPlatform(BasicPlatform* hb);
-    void addPlatform(BasicPlatform* hb, int segX, int segY);
-    int getCameraXOffset();
-    int getCameraYOffset();
+    /// STACK
     
-
-private:
-
     int xOffset = 0;
     int yOffset = 0;
     
     int renderOffsetX = 0;
     int renderOffsetY = 0;
     
-    void initialLoadSegments();
+    LevelSegment* loadedSegments[5][5];
     
-    LevelSegment* getSegment(double x, double y);
-    
-    int get_Seg_X_Count(double x);
-    int get_Seg_Y_Count(double y);
     
     LevelSegment* renderSegs[4];
-    
-    
-    
-    /*
-     * Player hitboxes only check loadedSegments[2][2];
-     * graphics render for only the segments that are on screen.
-     */
-    
-    //// ABSOLUTELY NEED TO USE SMART POINTERS FOR SEGMENTS///
-    /////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////
-    
-    LevelSegment* loadedSegments[5][5];
+
 };
 
 #endif /* LEVELMANAGER_H */

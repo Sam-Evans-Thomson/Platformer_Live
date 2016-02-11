@@ -44,14 +44,13 @@ public:
     
     virtual void loadGraphics();
     
+    // HEAP
     Graphic* graphic;
     Graphic* enterGraphic;
     Graphic* exitGraphic;
     
+    // STACK
     std::string path;
-    
-    
-    
     
 private:
     void changeState(PrimaryState* sc);

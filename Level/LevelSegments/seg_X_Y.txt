@@ -1,0 +1,11 @@
+BGD                 //Background
+X Y
+BP                  //BasicPlatforms
+X Y Z W H IMG#
+200 200 1 100 300 25
+SP                  //SlopePlatform
+X Y Z W H ANGLE IMG#
+200 200 1 100 300 10.0 25
+DEC                 //Decorations
+X Y Z IMG# frameCount
+200 200 5 102 5

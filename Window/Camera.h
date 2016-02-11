@@ -16,6 +16,11 @@
 
 #include "../Player/Player.h"
 #include <SDL.h>
+#include "../GameObject/Vec2.h"
+
+// lower number is more lag
+#define CAMERA_X_LAG 0.1
+#define CAMERA_Y_LAG 0.3
 
 #define DEFAULT_CAMERA_W 1920.0
 #define DEFAULT_CAMERA_H 1080.0
@@ -39,7 +44,12 @@ public:
 private:
     SDL_Rect viewport;
     
-    double zoom = 1.0;
+    double zoom = 1.5;
+    
+    double camSpeedX;
+    double camSpeedY;
+    
+    Vec2 camPos; // this is the centre of the screen.
 
 };
 

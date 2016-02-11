@@ -72,6 +72,11 @@ double Player::getX() { return physicsComp->X(); }
 
 double Player::getY() { return physicsComp->Y(); }
 
+double Player::getPrevX() { return physicsComp->prevX(); }
+
+double Player::getPrevY() { return physicsComp->prevY(); }
+
+
 int Player::getZ() { return physicsComp->Z(); }
 
 void Player::changePrimaryState(PrimaryState* primeState) {
@@ -132,8 +137,8 @@ void Player::falling() {
 
 
 void Player::jump() {
-    if (jumpCount < 10) {
-        physicsComp->addForce(0.0,-JUMP_FORCE*(10-jumpCount));
+    if (jumpCount < 15) {
+        physicsComp->addForce(0.0,-JUMP_FORCE*(15-jumpCount));
     }
 }
 

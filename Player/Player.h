@@ -43,8 +43,11 @@ public:
     
     double getX();
     double getY();
+    double getPrevX();
+    double getPrevY();
     int getZ();
 
+    /// HEAP
     PhysicsComponent* physicsComp;
     GraphicsComponent* graphicsComp;
     
@@ -57,6 +60,7 @@ public:
     void changePrimaryState(PrimaryState* primeState);
     PrimaryState* primary;
 
+    // HEAP
     PrimaryState*        running;
     PrimaryState*        jumping;
 //    DodgeState          dodge;
@@ -73,6 +77,7 @@ public:
     void changeSecondaryState(SecondaryState* secondState); 
     SecondaryState* secondary;
 
+    // HEAP
 //    NullState           null;
 //    EatingState         eating;
 //    Melee1State         melee1;

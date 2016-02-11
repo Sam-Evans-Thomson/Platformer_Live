@@ -29,16 +29,12 @@ public:
     BasicPlatform(const BasicPlatform& orig);
     virtual ~BasicPlatform();
     
-    void render();
-    
-    // init needs to be called until it returns -1;
-    int init(int i);
-
     void setGraphicPath(std::string _path);
     void setGraphicPath(int frameCount, std::string _path);
-    
-    // These are in relation to the pos and w,h of the hitbox.
     void setGraphicDimensions(double x, double y, double _w, double _h);
+    
+    int init(int i);
+    void render();
     
     Vec2 getPos();
     double getX();
@@ -46,12 +42,11 @@ public:
     double getY();
     double getH();
     
+    // HEAP
     RectHitbox* hb;
     Graphic* graphic;
     
 private:
-    
-    int numFrames = 0;
     
     void loadHitbox();
     void loadGraphic();
@@ -59,6 +54,8 @@ private:
     int initFirst();
     int initLast();
     
+    int numFrames = 0;
+
     std::string path;
     Vec2 pos;
     double w;

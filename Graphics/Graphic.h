@@ -28,52 +28,49 @@ public:
     Graphic(const Graphic& orig);
     virtual ~Graphic();
     
-    void setFrameTime(double time);
-    void setClip(int x, int y, int w, int h);
-    
-    void start();
-    void pauseAnimation();
-    void contAnimation();
-    void setFirst();
-    void setFrame(int i);
-    
-    void flip();
-    void setDirection(bool dir);
-    
-    void render(double x,double y, int z, double scale, double rotation);
-
-    
-    bool isReversing();
-    void setReversing(bool rev);
     void loadTextures();
     
+    void setFirst();
+    void setFrame(int i);
+    void setFrameTime(double time);
+    void setClip(int x, int y, int w, int h);
+    void setReversing(bool rev);
+    void setDirection(bool dir);
+    void flip();
+    
+    void start();
+    void pause();
+    void resume();
+
+    void render(double x,double y, int z, double scale, double rotation);
+
+    bool isReversing();
     bool hasFinished();
     
 private:
-    Timer timer;
+    
+    void renderToCanvas(Texture* tex, double x, double y, int z, double scale, double rotation);
+    void incFrame();
+    
+    
+    // HEAP
+    Texture* textures[20];
+    Timer* timer;
+    
+    // STACK
+    std::string path;
+ 
     double frameTime;
+    int numFrames;
+    int currentFrame = 0;
     
     bool doesReverse;
     bool reversing;
     bool paused;
-    
-    // facing right is true;
-    bool direction;
-    
-    void incFrame();
-    
-    int numFrames;
-    int currentFrame = 0;
-    
+    bool direction;     // facing right is true;
+
     SDL_Rect clip;
-    
-    Texture textures[20];
-    
-    std::string path;
-    
-    void renderToCanvas(Texture* tex, double x, double y, int z, double scale, double rotation);
-    void renderToCanvasForeground(Texture* tex, double x, double y, double scale, double rotation);
-    void renderToCanvasBackground(Texture* tex, double x, double y, double scale, double rotation);
+
 };
 
 #endif /* GRAPHIC_H */

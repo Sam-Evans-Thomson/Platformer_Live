@@ -13,6 +13,7 @@
 
 #include "JumpingState.h"
 #include "../../InputComponent.h"
+#include "../../Level/LevelObjects/BasicPlatform.h"
 
 extern Player player;
 extern LevelManager levelManager;
@@ -34,7 +35,7 @@ void JumpingState::init() {
 }
 
 void JumpingState::loadGraphics() {
-    graphic = new Graphic(1,path+"/basic");
+    graphic = new Graphic(1,path+"/jump");
     graphic->setFrameTime(0.2);
     graphic->loadTextures();
     graphic->start();
@@ -53,7 +54,7 @@ void JumpingState::handleInputs(InputComponent* ic) {
         player.restrictedMovement = NO_RESTRICTION;
     }
     
-    graphic->contAnimation();
+    graphic->resume();
     // Movement Running
     if (ic->L > 0&& player.restrictedMovement != FACING_L) {
         player.run(-1);

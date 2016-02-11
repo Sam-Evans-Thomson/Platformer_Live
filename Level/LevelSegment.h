@@ -14,12 +14,18 @@
 #ifndef LEVELSEGMENT_H
 #define LEVELSEGMENT_H
 
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <iostream>
+#include <vector>
+#include "../Graphics/Graphic.h"
+
 #define SEGMENT_WIDTH 1920
 #define SEGMENT_HEIGHT 1080
 
-#include <vector>
-#include "LevelObjects/BasicPlatform.h"
-#include "../Graphics/Graphic.h"
+class SegmentLoader;
 
 class LevelSegment {
 public:
@@ -28,24 +34,35 @@ public:
     LevelSegment(const LevelSegment& orig);
     virtual ~LevelSegment();
     
-    void render();
-    
-    void addPlatform(BasicPlatform* hb);
-    void addBackground(int frames, std::string path );
-    
+    void setXY(int _x, int _y);
+
     int getPlatformCount();
     BasicPlatform* getPlatform(int i);
     
-    void loadSegment(int x, int y);
+    void render();
     
+    ////// SEGMENT CREATION
+    
+    void loadSegment();
+    void addPlatform(int X, int Y, int z, int w, int h, int img);
+    void addBackground(int frames, std::string path );
+    // void addDecoration();)
+    
+    
+
 private:
     
-    int x; int y;
-    
+    // HEAP
     Graphic* background;
-    
-    //std::vector <Decoration*> decorations;
     std::vector <BasicPlatform*> platforms;
+    //std::vector <Decoration*> decorations;
+    
+    // STACK
+    
+    // segment number || NOT world coordinates
+    int x; 
+    int y;
+    
 };
 
 #endif /* LEVELSEGMENT_H */

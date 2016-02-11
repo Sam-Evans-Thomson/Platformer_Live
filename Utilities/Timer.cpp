@@ -21,6 +21,7 @@ Timer::Timer(const Timer& orig) {
 }
 
 Timer::~Timer() {
+    startTime = 0;
 }
 
 void Timer::start()   { startTime = clock(); }

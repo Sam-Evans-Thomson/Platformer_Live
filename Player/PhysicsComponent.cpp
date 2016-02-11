@@ -12,13 +12,12 @@
  */
 
 #include "PhysicsComponent.h"
-#include <string>
-#include <iostream>
-#include <stdio.h>
 
 #include "../Level/LevelManager.h"
 #include "Player.h"
 #include "PlayerStates/PrimaryState.h"
+#include "../GameObject/Hitboxes/RectHitbox.h"
+#include "../Level/LevelObjects/BasicPlatform.h"
 
 extern LevelManager levelManager;
 extern Player player;
@@ -58,7 +57,9 @@ void PhysicsComponent::init() {
 }
 
 void PhysicsComponent::update(double delta) {
-
+    prevPos->setX(pos->getX());
+    prevPos->setY(pos->getY());
+    
     timeDelta = delta;
     if (useGravity) applyGravity();
     if (useFriction) applyFriction();
@@ -68,6 +69,7 @@ void PhysicsComponent::update(double delta) {
     movement = (impulse+force)*timeDelta;
 
     applyMove(movement);
+    
     impulse = Vec2(0,0);
 }
 
@@ -111,8 +113,7 @@ void PhysicsComponent::applyMove(Vec2 mvmnt) {
     underFeetHB->move(mvmnt);
     
     player.primary->resolvePlatformCollisions();
-    prevPos->setX(pos->getX());
-    prevPos->setY(pos->getY());
+    
 }
 
 void PhysicsComponent::previousPos() {
@@ -132,8 +133,6 @@ void PhysicsComponent::applyMoveTo(Vec2 _pos) {
     
     //resolveEnemyCollisions();
     player.primary->resolvePlatformCollisions();
-    prevPos->setX(pos->getX());
-    prevPos->setY(pos->getY());
     
 }
 
@@ -150,7 +149,11 @@ void PhysicsComponent::setTimeDelta(double delta) { timeDelta = delta; }
 
 double PhysicsComponent::X() { return pos->getX(); }
 
-double PhysicsComponent::Y() { return pos->getY();}
+double PhysicsComponent::Y() { return pos->getY(); }
+
+double PhysicsComponent::prevX() { return prevPos->getX(); }
+
+double PhysicsComponent::prevY() { return prevPos->getY(); }
 
 int PhysicsComponent::Z() { return z; }
 

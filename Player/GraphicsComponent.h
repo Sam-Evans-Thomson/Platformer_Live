@@ -34,8 +34,10 @@ public:
     void exit();
     
 private:
-    // this gets renderred.
-    Graphic* playerGraphic; 
+    
+    ////// STACK 
+    
+    Graphic* playerGraphic; // this gets renderred.
     
     // these hold graphics
     Graphic* enterGraphic;

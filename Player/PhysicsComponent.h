@@ -14,7 +14,7 @@
 #ifndef PHYSICSCOMPONENT_H
 #define PHYSICSCOMPONENT_H
 
-#include "../GameObject/Hitboxes/CircleHitbox.h"
+#include "../GameObject/Vec2.h"
 
 #define BASE_GRAVITY 46
 #define BASE_FRICTION 1
@@ -24,6 +24,7 @@
 #define PLAYR_W 100
 #define PLAYR_H 140
 
+class RectHitbox;
 class BasicPlatform;
 
 class PhysicsComponent {
@@ -37,9 +38,12 @@ public:
     
     double X();
     double Y();
+    double prevX();
+    double prevY();
     int    Z();
     double getAngle();
-
+    void previousPos();
+    
     void setForce(Vec2 frc);
     void setFrictionX(double fric);
     void setFrictionY(double fric);
@@ -52,16 +56,25 @@ public:
     void addForce(Vec2 frc);
     void addForce(double x, double y);
     void addImpulse(Vec2 _impulse);
+    void applyMove(Vec2 mvmnt);
+    void applyMoveTo(Vec2 _pos);
+
+    void applyGravity();
+    void applyFriction();
+    Vec2 checkForce(Vec2 frc);
+    void addImpulse();
     
+    
+    // HEAP
     RectHitbox* bodyHB;
     RectHitbox* underFeetHB;
-    
-    void previousPos();
-    
-    double timeDelta;
- 
     Vec2* pos;
     Vec2* prevPos;
+    
+    
+    // STACK
+    double timeDelta;
+ 
     int z;
     
     double angle;
@@ -74,7 +87,6 @@ public:
     double frictionY;
     double gravity;
     
-    
     bool useGravity;
     bool useFriction;
     
@@ -82,15 +94,7 @@ public:
     
     const double maxForceX = 20000;
     const double maxForceY = 600;
-    
-    void applyMove(Vec2 mvmnt);
-    void applyMoveTo(Vec2 _pos);
 
-    void applyGravity();
-    void applyFriction();
-    Vec2 checkForce(Vec2 frc);
-    void addImpulse();
-    
 private:    
     
     

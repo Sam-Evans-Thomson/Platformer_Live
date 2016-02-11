@@ -16,7 +16,7 @@
 extern Canvas canvas;
 
 Graphic::Graphic(int frameCount, std::string path) : numFrames(frameCount), path(path) {
-    timer = Timer(); 
+    timer = new Timer(); 
     doesReverse = true;
     paused = (numFrames == 1);
     direction = true;
@@ -26,76 +26,73 @@ Graphic::Graphic(const Graphic& orig) {
 }
 
 Graphic::~Graphic() {
-    delete &timer;
-    delete &textures;
+    delete timer;
+    delete [] textures;
 }
-
-void Graphic::setFrameTime(double time) { frameTime = time; }
 
 void Graphic::loadTextures() {
     for (int i = 0; i<numFrames; i++ ) {
         std::string _path;
         _path = path + std::to_string(i) + ".png";
-        textures[i].loadFromFile(_path);
+        textures[i] = new Texture();
+        textures[i]->loadFromFile(_path);
         _path.clear();
     } 
     
     clip.x = 0;
     clip.y = 0;
-    clip.w = textures[0].getWidth();
-    clip.h = textures[0].getHeight();
+    clip.w = textures[0]->getWidth();
+    clip.h = textures[0]->getHeight();
 }
 
-void Graphic::setClip(int x, int y, int w, int h) {
-    clip.x = x;
-    clip.y = y;
-    clip.w = w;
-    clip.h = h;
-}
-
-bool Graphic::isReversing() { return doesReverse;}
+void Graphic::setFrameTime(double time) { frameTime = time; }
 
 void Graphic::setReversing(bool rev) { doesReverse = rev; }
 
-void Graphic::start() {
-    timer.start();    
-    currentFrame = 0;
-}
+void Graphic::setDirection(bool dir) { direction = dir; }
 
-void Graphic::pauseAnimation() { paused = true;}
+void Graphic::setClip(int x, int y, int w, int h) { clip = {x,y,w,h}; }
+
+void Graphic::setFrame(int i) { currentFrame = i; }
 
 void Graphic::setFirst() { 
     paused = true;
     currentFrame = 0;  
 }
 
-void Graphic::setFrame(int i) {
-    currentFrame = i;
-}
+void Graphic::flip() { direction = !direction; }
 
-void Graphic::contAnimation() { paused = false;}
 
-void Graphic::flip() { 
-    direction = !direction; 
-}
 
-void Graphic::setDirection(bool dir) {
-    direction = dir;
-}
+void Graphic::start() { timer->start(); currentFrame = 0; }
+
+void Graphic::pause() { paused = true;}
+
+void Graphic::resume() { paused = false;}
+
+
+bool Graphic::isReversing() { return doesReverse;}
 
 bool Graphic::hasFinished() {
-    return (timer.getSeconds() > frameTime*(double)numFrames);
+    return (timer->getSeconds() > frameTime*(double)numFrames);
 }
+
 
 void Graphic::render(double x, double y, int z, double scale, double rotation) {
     if (!paused && numFrames > 1) {
-        if(timer.getSeconds() > frameTime) {
+        if(timer->getSeconds() > frameTime) {
             incFrame();
-            timer.refresh();
+            std::cout << currentFrame << std::endl;
+            timer->refresh();
         }
     }
-    renderToCanvas(&textures[currentFrame],x+clip.x,y+clip.y,z, scale,rotation);  
+    
+    renderToCanvas(textures[currentFrame],x+clip.x,y+clip.y,z, scale,rotation);  
 }
+
+
+//////////// PRIVATE /////////////////////////////
+
 
 void Graphic::renderToCanvas(Texture* tex, double x, double y, int z, double scale, double rotation) {
     SDL_RendererFlip flip = SDL_FLIP_NONE;

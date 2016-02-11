@@ -42,7 +42,6 @@ Game::~Game() {
     delete &canvas;
     delete &player;
     delete &levelManager;
-    delete platform;
     close();
 }
 
@@ -93,28 +92,6 @@ void Game::run() {
     
     ///////////////////Testing////////////////////////
     levelManager.init();
-    
-    platform = new BasicPlatform(3840.0, 2940.0, 1, 1800.0, 100.0);
-    platform->setGraphicPath("Sprites/ground");
-    platform->init(0);
-    platform->init(1);
-    platform->setGraphicDimensions(0,-3.0,0.0,0.0);
-    
-    platform2 = new BasicPlatform(5770.0, 2820.0, 1, 1600.0, 100.0);
-    platform2->setGraphicPath("Sprites/ground");
-    platform2->init(0);
-    platform2->init(1);
-    platform2->setGraphicDimensions(0,-3.0,0.0,0.0);
-
-    platform3 = new BasicPlatform(2100.0, 2820.0, 1, 1600.0, 100.0);
-    platform3->setGraphicPath("Sprites/ground");
-    platform3->init(0);
-    platform3->init(1);
-    platform3->setGraphicDimensions(0,-3.0,0.0,0.0);
-    
-    levelManager.addPlatform(platform);
-    levelManager.addPlatform(platform2);
-    levelManager.addPlatform(platform3);
 
     //////////////////////////////////////////////
     

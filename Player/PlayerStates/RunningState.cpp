@@ -13,6 +13,7 @@
 
 #include "RunningState.h"
 #include "../../InputComponent.h"
+#include "../../Level/LevelObjects/BasicPlatform.h"
 
 extern Player player;
 extern LevelManager levelManager;
@@ -49,7 +50,7 @@ void RunningState::exit() {
 }
 
 void RunningState::handleInputs(InputComponent* ic) {
-    graphic->contAnimation();
+    graphic->resume();
     // Movement Running
     if (ic->L > 0 && player.restrictedMovement != FACING_L) {
         player.run(-1);
@@ -69,7 +70,7 @@ void RunningState::handleInputs(InputComponent* ic) {
     }
     else {
         graphic->setFrame(2);
-        graphic->pauseAnimation();
+        graphic->pause();
         player.stopRun();
     }
         
