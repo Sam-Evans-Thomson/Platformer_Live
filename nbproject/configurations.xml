@@ -28,7 +28,6 @@
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/ResourceManager.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/RunningState.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.h</itemPath>
-      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegments/SegmentLoader.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Texture.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Vec2.h</itemPath>
@@ -64,7 +63,6 @@
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/ResourceManager.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/RunningState.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.cpp</itemPath>
-      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegments/SegmentLoader.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Texture.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Vec2.cpp</itemPath>
@@ -245,16 +243,6 @@
             flavor2="0">
       </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegment.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegments/SegmentLoader.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegments/SegmentLoader.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -573,16 +561,6 @@
             flavor2="0">
       </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegment.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegments/SegmentLoader.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegments/SegmentLoader.h"
             ex="false"
             tool="3"
             flavor2="0">

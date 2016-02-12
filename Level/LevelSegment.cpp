@@ -26,8 +26,7 @@ LevelSegment::LevelSegment(int x, int y) : x(x), y(y) { loadSegment(); }
 LevelSegment::LevelSegment(const LevelSegment& orig) { }
 
 LevelSegment::~LevelSegment() {
-    //delete background;
-    delete &platforms;
+    for (BasicPlatform* bp : platforms) delete bp;
     //delete &decorations;
 }
 
@@ -47,6 +46,8 @@ void LevelSegment::render() {
 //////////// SEGMENT LOADING //////////////////////
 
 void LevelSegment::loadSegment() {
+    std::cout << "LevelSegment - loadSegment " << x << " " << y << std::endl;
+    
     std::string path = std::string("Level/LevelSegments/seg_" + 
             std::to_string(x) + "_" + std::to_string(y) +".txt");
     
@@ -64,7 +65,7 @@ void LevelSegment::loadSegment() {
                 std::istringstream iss(line);
                 int X; int Y;
                 iss >> X; iss >> Y;
-                Graphic* gr = resourceManager.background[X][Y];
+                Graphic* gr = resourceManager.background;
                 addBackground(gr);
                 std::getline(segFile, line);
             }
@@ -77,8 +78,9 @@ void LevelSegment::loadSegment() {
                 }
             }
         }
+        segFile.close();
     }
-    segFile.close();
+    
 }
 
 
@@ -86,10 +88,9 @@ void LevelSegment::addPlatform(int X, int Y, int z, int w, int h, int img) {
     BasicPlatform* pfrm = 
             new BasicPlatform((double)X,(double)Y, z, (double)w, (double)h);
     
-    pfrm->setGraphicPath("Sprites/ground");
-    pfrm->init(1);
-    pfrm->init(0);
+    pfrm->setGraphic(resourceManager.platforms.at(0)); // resource manager.
     pfrm->setGraphicDimensions(0,0,0,0);
+    pfrm->init();
     platforms.push_back(pfrm);
     
 }
@@ -99,13 +100,6 @@ void LevelSegment::addBackground(Graphic* gr) {
     background->start();
 }
 
-
-void LevelSegment::addBackground(int frames, std::string path) {
-    background = new Graphic(frames, path);
-    background->setFrameTime(0.2);
-    background->loadTextures();
-    background->start();
-}
 
 
 

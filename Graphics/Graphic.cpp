@@ -27,22 +27,25 @@ Graphic::Graphic(const Graphic& orig) {
 
 Graphic::~Graphic() {
     delete timer;
-    delete [] textures;
+    for (Texture* texptr : textures) delete texptr;
 }
 
 void Graphic::loadTextures() {
+    
     for (int i = 0; i<numFrames; i++ ) {
         std::string _path;
         _path = path + std::to_string(i) + ".png";
-        textures[i] = new Texture();
-        textures[i]->loadFromFile(_path);
+        
+        textures.push_back(new Texture());
+        textures.at(i)->loadFromFile(_path);
+        
         _path.clear();
     } 
     
     clip.x = 0;
     clip.y = 0;
-    clip.w = textures[0]->getWidth();
-    clip.h = textures[0]->getHeight();
+    clip.w = textures.at(0)->getWidth();
+    clip.h = textures.at(0)->getHeight();
 }
 
 void Graphic::setFrameTime(double time) { frameTime = time; }
@@ -82,12 +85,10 @@ void Graphic::render(double x, double y, int z, double scale, double rotation) {
     if (!paused && numFrames > 1) {
         if(timer->getSeconds() > frameTime) {
             incFrame();
-            std::cout << currentFrame << std::endl;
             timer->refresh();
         }
     }
-    
-    renderToCanvas(textures[currentFrame],x+clip.x,y+clip.y,z, scale,rotation);  
+    renderToCanvas(textures.at(currentFrame),x+clip.x,y+clip.y,z, scale,rotation);  
 }
 
 

@@ -49,7 +49,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/2499d7dd/BasicPlatform.o \
 	${OBJECTDIR}/_ext/2499d7dd/Decoration.o \
 	${OBJECTDIR}/_ext/4c343a22/LevelSegment.o \
-	${OBJECTDIR}/_ext/a82b8df7/SegmentLoader.o \
 	${OBJECTDIR}/_ext/417fd003/GraphicsComponent.o \
 	${OBJECTDIR}/_ext/417fd003/PhysicsComponent.o \
 	${OBJECTDIR}/_ext/417fd003/Player.o \
@@ -168,11 +167,6 @@ ${OBJECTDIR}/_ext/4c343a22/LevelSegment.o: /home/sam/NetBeansProjects/Platformer
 	${MKDIR} -p ${OBJECTDIR}/_ext/4c343a22
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/SDL2 -I/usr/include/c++/5.2.1 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4c343a22/LevelSegment.o /home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegment.cpp
-
-${OBJECTDIR}/_ext/a82b8df7/SegmentLoader.o: /home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegments/SegmentLoader.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/a82b8df7
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/usr/include/SDL2 -I/usr/include/c++/5.2.1 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/a82b8df7/SegmentLoader.o /home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegments/SegmentLoader.cpp
 
 ${OBJECTDIR}/_ext/417fd003/GraphicsComponent.o: /home/sam/NetBeansProjects/Platformer_Live/Player/GraphicsComponent.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/417fd003
@@ -436,19 +430,6 @@ ${OBJECTDIR}/_ext/4c343a22/LevelSegment_nomain.o: ${OBJECTDIR}/_ext/4c343a22/Lev
 	    $(COMPILE.cc) -g -I/usr/include/SDL2 -I/usr/include/c++/5.2.1 -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4c343a22/LevelSegment_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegment.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/4c343a22/LevelSegment.o ${OBJECTDIR}/_ext/4c343a22/LevelSegment_nomain.o;\
-	fi
-
-${OBJECTDIR}/_ext/a82b8df7/SegmentLoader_nomain.o: ${OBJECTDIR}/_ext/a82b8df7/SegmentLoader.o /home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegments/SegmentLoader.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/a82b8df7
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/a82b8df7/SegmentLoader.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -g -I/usr/include/SDL2 -I/usr/include/c++/5.2.1 -std=c++14 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/a82b8df7/SegmentLoader_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegments/SegmentLoader.cpp;\
-	else  \
-	    ${CP} ${OBJECTDIR}/_ext/a82b8df7/SegmentLoader.o ${OBJECTDIR}/_ext/a82b8df7/SegmentLoader_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/417fd003/GraphicsComponent_nomain.o: ${OBJECTDIR}/_ext/417fd003/GraphicsComponent.o /home/sam/NetBeansProjects/Platformer_Live/Player/GraphicsComponent.cpp 

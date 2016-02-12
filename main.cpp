@@ -8,10 +8,11 @@ and may not be redistributed without written permission.*/
 Game game; 
 Window gameWindow;
 Canvas canvas;
+ResourceManager resourceManager;
 Player player;
 InputComponent inputComponent;
 LevelManager levelManager;
-ResourceManager resourceManager;
+
  
 
 int main( int argc, char* args[] ) {

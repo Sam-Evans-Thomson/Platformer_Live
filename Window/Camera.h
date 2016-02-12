@@ -44,7 +44,7 @@ public:
 private:
     SDL_Rect viewport;
     
-    double zoom = 1.5;
+    double zoom;
     
     double camSpeedX;
     double camSpeedY;

@@ -30,11 +30,9 @@ public:
     virtual ~BasicPlatform();
     
     void setGraphic(Graphic* gr);
-    void setGraphicPath(std::string _path);
-    void setGraphicPath(int frameCount, std::string _path);
     void setGraphicDimensions(double x, double y, double _w, double _h);
     
-    int init(int i);
+    void init();
     void render();
     
     Vec2 getPos();
@@ -44,16 +42,10 @@ public:
     double getH();
     
     // HEAP
-    RectHitbox* hb;
-    Graphic* graphic;
+    RectHitbox* hb = nullptr; // RectHitbox owned by this class.
+    Graphic* graphic; // ptr to Graphic owned by ResourceManager.
     
 private:
-    
-    void loadHitbox();
-    void loadGraphic();
-    
-    int initFirst();
-    int initLast();
     
     int numFrames = 0;
 
@@ -67,8 +59,6 @@ private:
     double graphY;
     double graphW;
     double graphH;
-    
-    bool ownsGraphic;
 
 };
 

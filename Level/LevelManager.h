@@ -21,6 +21,21 @@
 
 class BasicPlatform;
 
+class SegArray {
+public:
+    SegArray();
+    SegArray(const SegArray& orig);
+    virtual ~SegArray();
+    
+    LevelSegment* at(int x, int y);
+    void set(int x, int y, LevelSegment* ls);
+    
+    LevelSegment* vec2D[25];
+    int sizeX = 5;
+    int sizeY = 5;
+private:
+};
+
 class LevelManager {
 public:
     LevelManager();
@@ -59,20 +74,19 @@ private:
     void loadLeftSegments();
     void loadTopSegments();
     
+    void printSegment();
+    
     /// HEAP
-   
+    SegArray loadedSegments; // Owned by this object
     
     
     /// STACK
     
-    int xOffset = 0;
-    int yOffset = 0;
+    int xOffset = 0;  // number of segments left of loaded.
+    int yOffset = 0;  // number of segments above loaded
     
     int renderOffsetX = 0;
     int renderOffsetY = 0;
-    
-    LevelSegment* loadedSegments[5][5];
-    
     
     LevelSegment* renderSegs[4];
 

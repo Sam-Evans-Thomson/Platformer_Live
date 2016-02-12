@@ -19,6 +19,9 @@
 #include "../PhysicsComponent.h"
 #include "../Player.h"
 #include "../../Level/LevelManager.h"
+#include "../../ResourceManager.h"
+
+extern ResourceManager resourceManager;
 
 class InputComponent;
 class BasicPlatform;

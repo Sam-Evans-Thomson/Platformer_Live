@@ -47,7 +47,6 @@ public:
     void addPlatform(int X, int Y, int z, int w, int h, int img);
     
     void addBackground(Graphic* gr);
-    void addBackground(int frames, std::string path );
     // void addDecoration();)
     
     

@@ -14,13 +14,15 @@
 #ifndef GRAPHIC_H
 #define GRAPHIC_H
 
-#include "../Window/Texture.h"
+
 #include "../Utilities/Timer.h"
 #include "../Window/Canvas.h"
+#include "../Window/Texture.h"
 
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 
 class Graphic {
 public:
@@ -54,7 +56,7 @@ private:
     
     
     // HEAP
-    Texture* textures[20];
+    std::vector<Texture*> textures;
     Timer* timer;
     
     // STACK

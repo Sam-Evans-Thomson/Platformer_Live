@@ -15,24 +15,35 @@
 #include "Graphics/Graphic.h"
 
 ResourceManager::ResourceManager() {
-    init();
 }
 
 ResourceManager::ResourceManager(const ResourceManager& orig) {
 }
 
 ResourceManager::~ResourceManager() {
-    delete [] background;
+    delete background;
+    for (Graphic* grptr : platforms) delete grptr;
+    delete running;
 }
 
 void ResourceManager::init() {
-    Graphic* gr = new Graphic(1,"bgd_0_0_");
-    gr->loadTextures();
-    for (int i = 0; i < NUM_BACKGROUND_X; i++) {
-        for (int j = 0; j < NUM_BACKGROUND_X; j++) {
-            background[i][j] = gr;
-        }
-    }
+    
+    Graphic* pfm = new Graphic(1,"/home/sam/NetBeansProjects/Platformer_Live/ground");
+    pfm->setFrameTime(0.1);
+    pfm->loadTextures();
+    pfm->start();
+    platforms.push_back(pfm);
+    
+    Graphic* bgd = new Graphic(1,"/home/sam/NetBeansProjects/Platformer_Live/bgd_0_0_");
+    bgd->loadTextures();
+    background = bgd;
+
+    
+    running = new Graphic(6,"/home/sam/NetBeansProjects/Platformer_Live/Sprites/Running/basic");
+    running->setFrameTime(0.1);
+    running->loadTextures();
+    running->start();
+    
 }
 
 

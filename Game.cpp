@@ -83,9 +83,10 @@ bool Game::init() {
 }
 
 void Game::initHeap() {
+    resourceManager.init();
     player.init();
     canvas.init();
-    resourceManager.init();
+    
     
 }
 

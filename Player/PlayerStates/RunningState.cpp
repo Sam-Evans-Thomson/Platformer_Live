@@ -34,10 +34,7 @@ void RunningState::init() {
 }
 
 void RunningState::loadGraphics() {
-    graphic = new Graphic(6,path+"/basic");
-    graphic->setFrameTime(0.1);
-    graphic->loadTextures();
-    graphic->start();
+    graphic = resourceManager.running;
 }
 
 

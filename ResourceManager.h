@@ -33,7 +33,10 @@ public:
     
     void init();
     
-    Graphic* background[NUM_BACKGROUND_X][NUM_BACKGROUND_Y];
+    Graphic* background;
+    std::vector<Graphic*> platforms;
+    Graphic* running;
+    
     
 private:
 
