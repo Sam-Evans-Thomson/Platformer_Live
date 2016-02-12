@@ -179,7 +179,7 @@ void LevelManager::moveSegments(int x, int y) {
         
     } else if (y<0) {
         for(int i = 0; i<5; i++) {
-            for(int j = 5; j>1; j--) {
+            for(int j = 5; j>0; j--) {
                 loadedSegments[i][j] = loadedSegments[i][j-1];
             }
         }
@@ -199,7 +199,9 @@ void LevelManager::loadBottomSegments() {
 }
 
 void LevelManager::loadLeftSegments() {
-
+    for (int i = yOffset; i<yOffset + 5; i++) {
+        loadedSegments[xOffset][i] = new LevelSegment(xOffset,i);
+    }
 }
 
 void LevelManager::loadRightSegments() {

@@ -14,13 +14,13 @@
 #ifndef LEVELSEGMENT_H
 #define LEVELSEGMENT_H
 
+
+#include "../Graphics/Graphic.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <sstream>
-#include <iostream>
 #include <vector>
-#include "../Graphics/Graphic.h"
 
 #define SEGMENT_WIDTH 1920
 #define SEGMENT_HEIGHT 1080
@@ -45,6 +45,8 @@ public:
     
     void loadSegment();
     void addPlatform(int X, int Y, int z, int w, int h, int img);
+    
+    void addBackground(Graphic* gr);
     void addBackground(int frames, std::string path );
     // void addDecoration();)
     

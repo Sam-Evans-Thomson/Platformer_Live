@@ -13,9 +13,10 @@
 
 #include "LevelSegment.h"
 #include "LevelManager.h"
+#include "../ResourceManager.h"
 #include "LevelObjects/BasicPlatform.h"
 
-
+extern ResourceManager resourceManager;
 extern LevelManager levelManager;
 
 LevelSegment::LevelSegment() { }
@@ -25,7 +26,7 @@ LevelSegment::LevelSegment(int x, int y) : x(x), y(y) { loadSegment(); }
 LevelSegment::LevelSegment(const LevelSegment& orig) { }
 
 LevelSegment::~LevelSegment() {
-    delete background;
+    //delete background;
     delete &platforms;
     //delete &decorations;
 }
@@ -63,12 +64,8 @@ void LevelSegment::loadSegment() {
                 std::istringstream iss(line);
                 int X; int Y;
                 iss >> X; iss >> Y;
-                std::string path = "bgd_"; 
-                path+=std::to_string(X);
-                path+="_";
-                path+=std::to_string(Y);
-                path+="_";
-                addBackground(1,path);
+                Graphic* gr = resourceManager.background[X][Y];
+                addBackground(gr);
                 std::getline(segFile, line);
             }
             if (line == "BP") {
@@ -96,6 +93,12 @@ void LevelSegment::addPlatform(int X, int Y, int z, int w, int h, int img) {
     platforms.push_back(pfrm);
     
 }
+
+void LevelSegment::addBackground(Graphic* gr) {
+    background = gr;
+    background->start();
+}
+
 
 void LevelSegment::addBackground(int frames, std::string path) {
     background = new Graphic(frames, path);

@@ -29,6 +29,7 @@ public:
     BasicPlatform(const BasicPlatform& orig);
     virtual ~BasicPlatform();
     
+    void setGraphic(Graphic* gr);
     void setGraphicPath(std::string _path);
     void setGraphicPath(int frameCount, std::string _path);
     void setGraphicDimensions(double x, double y, double _w, double _h);
@@ -66,6 +67,8 @@ private:
     double graphY;
     double graphW;
     double graphH;
+    
+    bool ownsGraphic;
 
 };
 

@@ -27,6 +27,7 @@ extern Canvas canvas;
 extern Player player;
 extern InputComponent inputComponent;
 extern LevelManager levelManager;
+extern ResourceManager resourceManager;
 
 Game::Game() {
     timeDelta = 0;
@@ -42,6 +43,7 @@ Game::~Game() {
     delete &canvas;
     delete &player;
     delete &levelManager;
+    delete &resourceManager;
     close();
 }
 
@@ -83,9 +85,8 @@ bool Game::init() {
 void Game::initHeap() {
     player.init();
     canvas.init();
+    resourceManager.init();
     
-
-        
 }
 
 void Game::run() {

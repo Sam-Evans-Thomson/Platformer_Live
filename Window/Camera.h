@@ -19,7 +19,7 @@
 #include "../GameObject/Vec2.h"
 
 // lower number is more lag
-#define CAMERA_X_LAG 0.1
+#define CAMERA_X_LAG 0.05
 #define CAMERA_Y_LAG 0.3
 
 #define DEFAULT_CAMERA_W 1920.0

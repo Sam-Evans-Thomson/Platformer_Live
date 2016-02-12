@@ -25,6 +25,7 @@
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/PlayerConsts.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/PrimaryState.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/RectHitbox.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/ResourceManager.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/RunningState.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegments/SegmentLoader.h</itemPath>
@@ -60,6 +61,7 @@
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/Player.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/PrimaryState.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/RectHitbox.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/ResourceManager.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/RunningState.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegments/SegmentLoader.cpp</itemPath>
@@ -333,6 +335,16 @@
             flavor2="0">
       </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/ResourceManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/ResourceManager.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -651,6 +663,16 @@
             flavor2="0">
       </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/ResourceManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/ResourceManager.h"
             ex="false"
             tool="3"
             flavor2="0">

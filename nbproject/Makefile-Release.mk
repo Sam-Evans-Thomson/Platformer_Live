@@ -57,6 +57,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/314faef/PrimaryState.o \
 	${OBJECTDIR}/_ext/314faef/RunningState.o \
 	${OBJECTDIR}/_ext/314faef/SecondaryState.o \
+	${OBJECTDIR}/_ext/20e7374d/ResourceManager.o \
 	${OBJECTDIR}/_ext/ee4cd6a8/Timer.o \
 	${OBJECTDIR}/_ext/4d4d1112/Camera.o \
 	${OBJECTDIR}/_ext/4d4d1112/Canvas.o \
@@ -207,6 +208,11 @@ ${OBJECTDIR}/_ext/314faef/SecondaryState.o: /home/sam/NetBeansProjects/Platforme
 	${MKDIR} -p ${OBJECTDIR}/_ext/314faef
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/314faef/SecondaryState.o /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.cpp
+
+${OBJECTDIR}/_ext/20e7374d/ResourceManager.o: /home/sam/NetBeansProjects/Platformer_Live/ResourceManager.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/20e7374d
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/20e7374d/ResourceManager.o /home/sam/NetBeansProjects/Platformer_Live/ResourceManager.cpp
 
 ${OBJECTDIR}/_ext/ee4cd6a8/Timer.o: /home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/ee4cd6a8
@@ -534,6 +540,19 @@ ${OBJECTDIR}/_ext/314faef/SecondaryState_nomain.o: ${OBJECTDIR}/_ext/314faef/Sec
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/314faef/SecondaryState_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/314faef/SecondaryState.o ${OBJECTDIR}/_ext/314faef/SecondaryState_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/20e7374d/ResourceManager_nomain.o: ${OBJECTDIR}/_ext/20e7374d/ResourceManager.o /home/sam/NetBeansProjects/Platformer_Live/ResourceManager.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/20e7374d
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/20e7374d/ResourceManager.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/20e7374d/ResourceManager_nomain.o /home/sam/NetBeansProjects/Platformer_Live/ResourceManager.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/20e7374d/ResourceManager.o ${OBJECTDIR}/_ext/20e7374d/ResourceManager_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/ee4cd6a8/Timer_nomain.o: ${OBJECTDIR}/_ext/ee4cd6a8/Timer.o /home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp 

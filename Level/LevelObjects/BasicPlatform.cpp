@@ -27,14 +27,21 @@ BasicPlatform::BasicPlatform(const BasicPlatform& orig) {
 
 BasicPlatform::~BasicPlatform() {
     if(hb != nullptr) delete hb;
-    if (graphic != nullptr) delete graphic;
+    if (graphic != nullptr && ownsGraphic) delete graphic;
 }
 
 Vec2 BasicPlatform::getPos() { return pos; }
 double BasicPlatform::getX() { return pos.getX(); }
 double BasicPlatform::getH() { return h; }
 double BasicPlatform::getW() { return w; }
-double BasicPlatform::getY() { return pos.getY(); }
+double BasicPlatform::getY() { return pos.getY();
+}
+
+void BasicPlatform::setGraphic(Graphic* gr) {
+    ownsGraphic = false;
+    graphic = gr;
+}
+
 
 void BasicPlatform::setGraphicPath(std::string _path) { 
     path = _path; 
@@ -84,6 +91,7 @@ void BasicPlatform::loadGraphic() {
     if(numFrames > 0) {
         graphic = new Graphic(numFrames,path);
         graphic->loadTextures();
+        ownsGraphic = true;
     }
 }
 

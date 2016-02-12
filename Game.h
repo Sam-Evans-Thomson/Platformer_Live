@@ -19,6 +19,7 @@
 #include "Player/Player.h"
 #include "InputComponent.h"
 #include "Level/LevelManager.h"
+#include "ResourceManager.h"
 
 #include "Utilities/Timer.h"
 #include "Graphics/Graphic.h"

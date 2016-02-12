@@ -11,6 +11,7 @@ Canvas canvas;
 Player player;
 InputComponent inputComponent;
 LevelManager levelManager;
+ResourceManager resourceManager;
  
 
 int main( int argc, char* args[] ) {
