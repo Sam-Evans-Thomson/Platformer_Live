@@ -45,6 +45,7 @@ public:
     
     void loadSegment();
     void addPlatform(int X, int Y, int z, int w, int h, int img);
+    void addSlopePlatform(int X, int Y, int z, int w, int h, int img, double angle);
     
     void addBackground(Graphic* gr);
     // void addDecoration();)

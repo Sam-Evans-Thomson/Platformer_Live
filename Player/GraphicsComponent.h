@@ -27,6 +27,7 @@ public:
     ~GraphicsComponent();
     
     void render(double x, double y, int z, double scale, double rot);
+    void renderBars();
     
     void updatePrimaryState(PrimaryState* ps);
     void updateSecondaryState(SecondaryState* ss);

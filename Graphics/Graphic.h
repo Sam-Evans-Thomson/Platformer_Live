@@ -45,6 +45,7 @@ public:
     void resume();
 
     void render(double x,double y, int z, double scale, double rotation);
+    void renderAsOverlay(double x, double y, double scale, double rot);
 
     bool isReversing();
     bool hasFinished();

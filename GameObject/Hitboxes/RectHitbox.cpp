@@ -61,14 +61,11 @@ void RectHitbox::makeLines() {
         down  = new LineHitbox(getX()+w  , getY() +h    ,  0);
     }
     else {
-        Vec2 oc(getX(), getY());
-        oc.rotate(angle, pos);
-
-        left  = new LineHitbox(getX()    , getY()       ,  PI/2.0 + angle);
+        left  = new LineHitbox(getX()    , getY()       ,  PI/2.0);
         up    = new LineHitbox(getX()    , getY()       ,  -PI + angle);
-
-        right = new LineHitbox(oc.getX() , oc.getY()    , -PI/2.0 + angle);
-        down  = new LineHitbox(0.0       , getY() + h   ,  0 + angle);
+        
+        right = new LineHitbox(getX()+w  , getY() +h    , -PI/2.0);
+        down  = new LineHitbox(getX()    , getY() +h    ,  0 + angle);
     }
 }
 
@@ -111,8 +108,13 @@ double RectHitbox::getAngle() { return angle; }
 
 double RectHitbox::getH() { return h; }
 
-double RectHitbox::getW() { return w;
+double RectHitbox::getW() { return w; }
+
+double RectHitbox::getYatX(double _x) {
+    if (isAA) return getY();
+    return getY() + _x*tan(angle);
 }
+
 
 bool RectHitbox::collision(Vec2& point) {
     return (    

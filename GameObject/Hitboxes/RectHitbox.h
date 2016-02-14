@@ -16,6 +16,8 @@
 
 #include "Hitbox.h"
 #include <iostream>
+#include <math.h>
+
 class LineHitbox;
 
 class RectHitbox : public Hitbox {
@@ -46,6 +48,7 @@ public:
     
     double getW();
     double getH();
+    double getYatX(double _x);
     double getAngle();
     
     LineHitbox* left;

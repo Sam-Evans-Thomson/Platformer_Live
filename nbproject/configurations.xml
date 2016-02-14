@@ -28,6 +28,8 @@
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/ResourceManager.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/RunningState.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/SlopePlatform.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/StatsComp.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Texture.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Vec2.h</itemPath>
@@ -63,6 +65,8 @@
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/ResourceManager.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/RunningState.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/SlopePlatform.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/StatsComp.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Texture.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Vec2.cpp</itemPath>
@@ -237,6 +241,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/SlopePlatform.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/SlopePlatform.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegment.cpp"
             ex="false"
             tool="1"
@@ -323,6 +337,16 @@
             flavor2="0">
       </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/StatsComp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/StatsComp.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -555,6 +579,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/SlopePlatform.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/SlopePlatform.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegment.cpp"
             ex="false"
             tool="1"
@@ -641,6 +675,16 @@
             flavor2="0">
       </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/StatsComp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/StatsComp.h"
             ex="false"
             tool="3"
             flavor2="0">

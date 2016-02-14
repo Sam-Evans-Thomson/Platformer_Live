@@ -29,6 +29,7 @@ Canvas::~Canvas() {
     delete camera;
     delete foreground;
     delete background;
+    delete overlay;
     for (Texture* tex: layers) delete tex;
 }
 
@@ -39,6 +40,8 @@ void Canvas::init() {
     foreground->createBlank(CANVAS_SIZE_W, CANVAS_SIZE_H);
     background = new Texture();
     background->createBlank(CANVAS_SIZE_W, CANVAS_SIZE_H);
+    overlay = new Texture();
+    overlay->createBlank(CANVAS_SIZE_W, CANVAS_SIZE_H);
     
     for (int i = 0; i < NUM_LAYERS; i++) {
         layers[i] = new Texture();
@@ -69,31 +72,37 @@ void Canvas::render() {
     
     foreground->setClip(&foregroundViewport);
     foreground->render(0.0, 0.0, 1920, 1080);
+    
+    double zoom = camera->getZoom();
+    if (zoom > 1.4) zoom = 1.4;
+    SDL_Rect temp = {
+        (int)((1.4 - zoom) * 500.0),
+        0,
+        (int)(1920 - (1.4-zoom) * 1000.0),
+        1080};
+    
+    overlay->setClip(&temp);
+    overlay->render(0.0,0.0,1920,1080);
 }
 
-void Canvas::clearBackground() {
-    background->wipe();
-}
+void Canvas::clearBackground() { background->wipe(); }
 
-void Canvas::clearForeground() {
-    foreground->wipe();
-}
+void Canvas::clearForeground() { foreground->wipe(); }
 
-void Canvas::clearLayer(int i) {
-    if (i > -1 && i < NUM_LAYERS) {
-        layers[i]->wipe();
-    }
+void Canvas::clearOverlay() { overlay->wipe(); }
+
+void Canvas::clearLayer(int i) { 
+    if (i > -1 && i < NUM_LAYERS) layers[i]->wipe();
 }
 
 void Canvas::clearLayers() {
-    for (int i = 0; i < NUM_LAYERS; i++) {
-        layers[i]->wipe();
-    }
+    for (int i = 0; i < NUM_LAYERS; i++) layers[i]->wipe();
 }
 
 void Canvas::clearAll() {
     background->wipe();
     foreground->wipe();
+    overlay->wipe();
     for (int i = 0; i < NUM_LAYERS; i++) {
         layers[i]->wipe();
     }
@@ -132,6 +141,12 @@ void Canvas::addTexture(Texture* tex, SDL_Rect* dest, SDL_Rect* clip, int z, dou
         tex->renderToTexture(foreground, x-xOffset, y-yOffset, w ,h);
     }
 }
+
+void Canvas::addOverlay(Texture* tex, SDL_Rect* dest, SDL_Rect* clip, double scale, double rot, SDL_RendererFlip flip) {
+    tex->setRenderSettings(clip, rot, scale, scale, flip);
+    tex->renderToTexture(overlay, dest->x, dest->y, dest->w, dest->h);
+}
+
 
 void Canvas::renewOffsets() {
     xOffset = levelManager.getCameraXOffset();

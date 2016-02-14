@@ -37,6 +37,10 @@ public:
     std::vector<Graphic*> platforms;
     Graphic* running;
     
+    Graphic* column;
+    Graphic* stamina;
+    Graphic* health;
+    
     
 private:
 

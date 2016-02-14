@@ -138,18 +138,23 @@ bool Hitbox::collision(RectHitbox& rect, RectHitbox& rect2){
         return booly&&boolx;
         
     }
-    else {
-        Vec2 c1 = rect2.getCorner(0);
-        Vec2 c2 = rect2.getCorner(1);
-        Vec2 c3 = rect2.getCorner(2);
-        Vec2 c4 = rect2.getCorner(3);
+    else if (rect.isAA){
+        bool boolx, booly;
         
-        if      (rect.collision(c1) ) return true;
-        else if (rect.collision(c2) ) return true;
-        else if (rect.collision(c3) ) return true;
-        else if (rect.collision(c4) ) return true;
-        else return false;
+        if (rect.getX() < rect2.getX()) {
+                boolx = rect.getX() + rect.getW() > rect2.getX();
+        } else  boolx = rect2.getX() + rect2.getW() > rect.getX();
+        
+        if (rect.getY() < rect2.getYatX(rect.getX())) {
+                booly = ( rect.getY() + rect.getH() > rect2.getYatX(rect.getX()) ) 
+                        || ( rect.getY() + rect.getH() > rect2.getYatX(rect.getX()+rect.getW()));
+        } else  booly = ( rect.getY() > rect2.getYatX(rect.getX()) + rect2.getH())
+                        || ( rect.getY() > rect2.getYatX(rect.getX() + rect.getW()) + rect2.getH());
+        
+        return booly&&boolx;
     }
+    
+    else if (rect2.isAA) return Hitbox::collision(rect2, rect);
 }
 
 bool Hitbox::collision(RectHitbox& rect, LineHitbox& line){

@@ -24,6 +24,7 @@
 
 class BasicPlatform {
 public:
+    BasicPlatform();
     BasicPlatform(Vec2 pos, int z, double w, double h);
     BasicPlatform(double x, double y, int z, double w, double h);
     BasicPlatform(const BasicPlatform& orig);
@@ -32,7 +33,7 @@ public:
     void setGraphic(Graphic* gr);
     void setGraphicDimensions(double x, double y, double _w, double _h);
     
-    void init();
+    virtual void init();
     void render();
     
     Vec2 getPos();
@@ -41,15 +42,15 @@ public:
     double getY();
     double getH();
     
+    virtual double getYatX(double x);
+    virtual double getAngle();
+    
     // HEAP
     RectHitbox* hb = nullptr; // RectHitbox owned by this class.
     Graphic* graphic; // ptr to Graphic owned by ResourceManager.
     
-private:
-    
-    int numFrames = 0;
+protected: 
 
-    std::string path;
     Vec2 pos;
     double w;
     double h;
@@ -59,6 +60,8 @@ private:
     double graphY;
     double graphW;
     double graphH;
+    
+private:
 
 };
 

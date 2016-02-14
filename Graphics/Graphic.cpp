@@ -91,6 +91,22 @@ void Graphic::render(double x, double y, int z, double scale, double rotation) {
     renderToCanvas(textures.at(currentFrame),x+clip.x,y+clip.y,z, scale,rotation);  
 }
 
+void Graphic::renderAsOverlay(double x, double y, double scale, double rot) {
+    if (!paused && numFrames > 1) {
+        if(timer->getSeconds() > frameTime) {
+            incFrame();
+            timer->refresh();
+        }
+    }
+    
+    SDL_RendererFlip flip = SDL_FLIP_NONE;
+    if (!direction) { flip = SDL_FLIP_HORIZONTAL; }
+    
+    SDL_Rect temp = {(int)x+clip.x,(int)y+clip.y,clip.w,clip.h};
+    canvas.addOverlay(textures.at(currentFrame), &temp, &clip,scale, rot, flip);
+}
+
+
 
 //////////// PRIVATE /////////////////////////////
 

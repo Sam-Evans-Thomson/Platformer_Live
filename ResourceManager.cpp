@@ -24,6 +24,9 @@ ResourceManager::~ResourceManager() {
     delete background;
     for (Graphic* grptr : platforms) delete grptr;
     delete running;
+    delete column;
+    delete stamina;
+    delete health;
 }
 
 void ResourceManager::init() {
@@ -44,6 +47,18 @@ void ResourceManager::init() {
     running->loadTextures();
     running->start();
     
+    column = new Graphic(1,"/home/sam/NetBeansProjects/Platformer_Live/Sprites/Bars/column");
+    column->loadTextures();
+    
+    stamina = new Graphic(10,"/home/sam/NetBeansProjects/Platformer_Live/Sprites/Bars/stam");
+    stamina->setFrameTime(0.1);
+    stamina->loadTextures();
+    stamina->start();
+    
+    health = new Graphic(10,"/home/sam/NetBeansProjects/Platformer_Live/Sprites/Bars/health");
+    health->setFrameTime(0.1);
+    health->loadTextures();
+    health->start();
 }
 
 

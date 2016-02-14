@@ -21,6 +21,7 @@
 #include "PlayerStates/PrimaryState.h"
 #include "PlayerStates/SecondaryState.h"
 #include "../Level/LevelObjects/BasicPlatform.h"
+#include "../Level/LevelObjects/SlopePlatform.h"
 
 extern InputComponent inputComponent;
 
@@ -32,6 +33,7 @@ Player::Player(const Player& orig) {
 }
 
 Player::~Player() {
+    delete statsComp;
     delete running;
     delete jumping;
     delete physicsComp;
@@ -41,6 +43,10 @@ Player::~Player() {
 }
 
 void Player::init() {
+    statsComp = new StatsComp();
+    statsComp->init();
+    statsComp->refresh();
+    
     physicsComp = new PhysicsComponent();
     
     direction = FACING_R;
@@ -59,8 +65,10 @@ void Player::render() {
 }
 
 void Player::update(double time) { 
+    std::cout << "player update: " << statsComp->stamina << std::endl;
     handleInputs();
     physicsComp->update(time); 
+    statsComp->update();
 }
 
 void Player::handleInputs() {
@@ -101,7 +109,7 @@ void Player::changeSecondaryState(SecondaryState* secondState) {
 
 void Player::run(int dir) {
     physicsComp->useFric(false);
-    physicsComp->addForce(Vec2(50.0*dir,0.0));
+    physicsComp->addForce(Vec2(50.0*dir,50.0*dir*tan(runAngle)));
 }
 
 void Player::stopRun() {
@@ -119,8 +127,8 @@ void Player::hitRoof() {
 
 }
 
-
 void Player::setJumpCount(int i) { jumpCount = i; }
+void Player::setFlapCount(int i) { flapCount = i; }
 
 void Player::jumpFirst() {
     changePrimaryState(jumping);
@@ -137,26 +145,56 @@ void Player::falling() {
 
 
 void Player::jump() {
-    if (jumpCount < 15) {
-        physicsComp->addForce(0.0,-JUMP_FORCE*(15-jumpCount));
+    physicsComp->addForce(0.0,-JUMP_FORCE*(15-jumpCount));
+}
+
+
+void Player::flap() {
+    std::cout<< "flap" <<std::endl;
+    if (statsComp->stamina > 0) {
+        physicsComp->addForce(0.0,-statsComp->flapPower);
+        statsComp->useStamina(statsComp->flapPower);
     }
+    
 }
 
 void Player::land(BasicPlatform* platform) {
-    double xDelta = physicsComp->pos->getY() - physicsComp->prevPos->getY();
-    if (xDelta > FALL_DELTA_STAGGER) landStagger(xDelta);
-    else {
+    double xDelta = physicsComp->force.getY();
+    if (xDelta > FALL_FORCE_STAGGER) landStagger(xDelta - FALL_FORCE_STAGGER);
+    {
         physicsComp->force = Vec2(physicsComp->force.getX(),0.0);
-        physicsComp->applyMoveTo( Vec2(
-            physicsComp->pos->getX(), 
-            platform->hb->getY() - physicsComp->bodyHB->getH() - 1));
+        
+        if (platform->hb->isAA) { 
+            runAngle = 0.0;
+            physicsComp->applyMoveTo( 
+            Vec2(
+                physicsComp->pos->getX(), 
+                platform->hb->getY() - physicsComp->bodyHB->getH() - 1));
+        } 
+        
+        else if(!platform->hb->isAA) {
+            runAngle = platform->getAngle();
+            double moveX = getX();
+            double moveY;
+            double checkX;
+            
+            if (platform->getAngle() > 0) checkX = moveX;
+            else checkX = moveX + physicsComp->bodyHB->getW();
+                
+            moveY = platform->getYatX(checkX) - physicsComp->bodyHB->getH() - 1;
+            physicsComp->applyMoveTo( Vec2(moveX, moveY) );
+        }
+        
         changePrimaryState(running);
         physicsComp->useGrav(false);
     }
 }
 
 void Player::landStagger(double xDelta) {
-    std::cout << "Player staggers: "<< xDelta << std::endl;
+    statsComp->takeDamage(0.5*xDelta);
+    if (statsComp->takeStaggerDamage(xDelta/10.0)) {
+        //change state to staggered.
+    }
 }
 
 void Player::dropThrough() {
@@ -197,10 +235,6 @@ void Player::useItem() {
 
 }
 
-void Player::flap() {
-
-}
-
 void Player::changeMelee() {
 
 }
@@ -212,3 +246,8 @@ void Player::changeConsumable() {
 void Player::changeRange() {
 
 }
+
+void Player::dies() {
+
+}
+

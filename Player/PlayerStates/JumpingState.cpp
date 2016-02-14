@@ -43,14 +43,23 @@ void JumpingState::loadGraphics() {
 
 void JumpingState::handleInputs(InputComponent* ic) {
 
+    if (ic->A == 1) {
+        player.flapCount = 0;
+        player.flap();
+    }
     if (ic->A > 1) {
         if (player.jumpCount < JUMP_COUNT_MAX) {
             player.jumpCount++;
             player.jump();
+            player.flapCount = FLAP_COUNT_MAX + 1;
+        } else {
+            player.flapCount++;
+            player.flap();
         }
     }
     else if (ic->A == 0) {
         player.jumpCount = JUMP_COUNT_MAX + 1;
+        player.flapCount = 0;
         player.restrictedMovement = NO_RESTRICTION;
     }
     
@@ -74,7 +83,7 @@ void JumpingState::handleInputs(InputComponent* ic) {
     }
         
     
-    if (ic->A == 1)                     player.flap();
+    //if (ic->A == 1)                     player.flap();
     
 //    else if (ic->D > 0 && ic->A > 0)    player.dropThrough();    
 //    else if (ic->U == 1)                player.climb();

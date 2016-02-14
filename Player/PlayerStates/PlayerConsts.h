@@ -14,8 +14,23 @@
 #ifndef PLAYERCONSTS_H
 #define PLAYERCONSTS_H
 
-#define JUMP_FORCE 15
-#define FALL_DELTA_STAGGER 100
+#define BASE_GRAVITY 46
+#define BASE_FRICTION 1
+
+#define MAX_X_FORCE 500
+#define MAX_Y_FORCE 1800
+#define MAX_Y_FORCE_UP -600
+
+#define PLAYR_W 100
+#define PLAYR_H 140
+
+#define JUMP_COUNT_MAX 10
+#define JUMP_FORCE 18
+
+#define FLAP_COUNT_MAX 60
+#define FLAP_FORCE 3
+
+#define FALL_FORCE_STAGGER 1500
 
 #define NO_RESTRICTION -1
 #define FACING_L 0

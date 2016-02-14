@@ -14,7 +14,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "PlayerStates/PlayerConsts.h"
-
+#include "StatsComp.h"
 
 
 class InputComponent;
@@ -50,6 +50,7 @@ public:
     /// HEAP
     PhysicsComponent* physicsComp;
     GraphicsComponent* graphicsComp;
+    StatsComp* statsComp;
     
     
     /// STATES ///////////////////////////////
@@ -90,6 +91,8 @@ public:
     //// OTHERS ///////////////////////////      
     int direction;
     int jumpCount; 
+    int flapCount;
+    double runAngle;
     
     ///// FLAGS ///////
     int fallFlag;
@@ -104,6 +107,8 @@ public:
     void hitRoof();
     
     void setJumpCount(int i);
+    void setFlapCount(int i);
+    
     void jumpFirst();
     void jump();
     
@@ -125,6 +130,8 @@ public:
     void useItem();
     
     void flap();
+    
+    void dies();
     
     //Change Items
     void changeMelee();

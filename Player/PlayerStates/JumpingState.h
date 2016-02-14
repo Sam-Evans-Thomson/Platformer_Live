@@ -16,7 +16,6 @@
 
 #include "PrimaryState.h"
 
-#define JUMP_COUNT_MAX 10
 
 #define JUMPING_PATH "Sprites/Running"
 

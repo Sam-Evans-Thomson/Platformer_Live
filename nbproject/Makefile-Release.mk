@@ -48,6 +48,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/4c343a22/LevelManager.o \
 	${OBJECTDIR}/_ext/2499d7dd/BasicPlatform.o \
 	${OBJECTDIR}/_ext/2499d7dd/Decoration.o \
+	${OBJECTDIR}/_ext/2499d7dd/SlopePlatform.o \
 	${OBJECTDIR}/_ext/4c343a22/LevelSegment.o \
 	${OBJECTDIR}/_ext/417fd003/GraphicsComponent.o \
 	${OBJECTDIR}/_ext/417fd003/PhysicsComponent.o \
@@ -56,6 +57,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/314faef/PrimaryState.o \
 	${OBJECTDIR}/_ext/314faef/RunningState.o \
 	${OBJECTDIR}/_ext/314faef/SecondaryState.o \
+	${OBJECTDIR}/_ext/417fd003/StatsComp.o \
 	${OBJECTDIR}/_ext/20e7374d/ResourceManager.o \
 	${OBJECTDIR}/_ext/ee4cd6a8/Timer.o \
 	${OBJECTDIR}/_ext/4d4d1112/Camera.o \
@@ -163,6 +165,11 @@ ${OBJECTDIR}/_ext/2499d7dd/Decoration.o: /home/sam/NetBeansProjects/Platformer_L
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/2499d7dd/Decoration.o /home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/Decoration.cpp
 
+${OBJECTDIR}/_ext/2499d7dd/SlopePlatform.o: /home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/SlopePlatform.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/2499d7dd
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/2499d7dd/SlopePlatform.o /home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/SlopePlatform.cpp
+
 ${OBJECTDIR}/_ext/4c343a22/LevelSegment.o: /home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegment.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/4c343a22
 	${RM} "$@.d"
@@ -202,6 +209,11 @@ ${OBJECTDIR}/_ext/314faef/SecondaryState.o: /home/sam/NetBeansProjects/Platforme
 	${MKDIR} -p ${OBJECTDIR}/_ext/314faef
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/314faef/SecondaryState.o /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.cpp
+
+${OBJECTDIR}/_ext/417fd003/StatsComp.o: /home/sam/NetBeansProjects/Platformer_Live/Player/StatsComp.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/417fd003
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/417fd003/StatsComp.o /home/sam/NetBeansProjects/Platformer_Live/Player/StatsComp.cpp
 
 ${OBJECTDIR}/_ext/20e7374d/ResourceManager.o: /home/sam/NetBeansProjects/Platformer_Live/ResourceManager.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/20e7374d
@@ -419,6 +431,19 @@ ${OBJECTDIR}/_ext/2499d7dd/Decoration_nomain.o: ${OBJECTDIR}/_ext/2499d7dd/Decor
 	    ${CP} ${OBJECTDIR}/_ext/2499d7dd/Decoration.o ${OBJECTDIR}/_ext/2499d7dd/Decoration_nomain.o;\
 	fi
 
+${OBJECTDIR}/_ext/2499d7dd/SlopePlatform_nomain.o: ${OBJECTDIR}/_ext/2499d7dd/SlopePlatform.o /home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/SlopePlatform.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/2499d7dd
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/2499d7dd/SlopePlatform.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/2499d7dd/SlopePlatform_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/SlopePlatform.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/2499d7dd/SlopePlatform.o ${OBJECTDIR}/_ext/2499d7dd/SlopePlatform_nomain.o;\
+	fi
+
 ${OBJECTDIR}/_ext/4c343a22/LevelSegment_nomain.o: ${OBJECTDIR}/_ext/4c343a22/LevelSegment.o /home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegment.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/4c343a22
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/4c343a22/LevelSegment.o`; \
@@ -521,6 +546,19 @@ ${OBJECTDIR}/_ext/314faef/SecondaryState_nomain.o: ${OBJECTDIR}/_ext/314faef/Sec
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/314faef/SecondaryState_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/SecondaryState.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/314faef/SecondaryState.o ${OBJECTDIR}/_ext/314faef/SecondaryState_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/417fd003/StatsComp_nomain.o: ${OBJECTDIR}/_ext/417fd003/StatsComp.o /home/sam/NetBeansProjects/Platformer_Live/Player/StatsComp.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/417fd003
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/417fd003/StatsComp.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/417fd003/StatsComp_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Player/StatsComp.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/417fd003/StatsComp.o ${OBJECTDIR}/_ext/417fd003/StatsComp_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/20e7374d/ResourceManager_nomain.o: ${OBJECTDIR}/_ext/20e7374d/ResourceManager.o /home/sam/NetBeansProjects/Platformer_Live/ResourceManager.cpp 

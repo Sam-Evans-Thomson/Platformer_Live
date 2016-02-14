@@ -13,6 +13,11 @@
 
 #include "BasicPlatform.h"
 
+BasicPlatform::BasicPlatform() {
+
+}
+
+
 BasicPlatform::BasicPlatform(Vec2 pos, int z, double w, double h) 
 : pos(pos), w(w), h(h), z(z) {
 }
@@ -54,6 +59,16 @@ void BasicPlatform::init() {
 void BasicPlatform::render() {
     graphic->render(graphX, graphY, z, 1.0, 0.0);    
 }
+
+double BasicPlatform::getAngle() {
+
+}
+
+double BasicPlatform::getYatX(double x) {
+
+}
+
+
 
 
 

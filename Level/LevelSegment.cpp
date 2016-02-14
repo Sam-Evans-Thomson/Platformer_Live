@@ -15,6 +15,7 @@
 #include "LevelManager.h"
 #include "../ResourceManager.h"
 #include "LevelObjects/BasicPlatform.h"
+#include "LevelObjects/SlopePlatform.h"
 
 extern ResourceManager resourceManager;
 extern LevelManager levelManager;
@@ -70,11 +71,20 @@ void LevelSegment::loadSegment() {
                 std::getline(segFile, line);
             }
             if (line == "BP") {
-                while (std::getline(segFile, line)) {
+                while (line != "SP" && std::getline(segFile, line)) {
                     std::istringstream iss(line);
                     int X; int Y; int z; int w; int h; int img;
                     iss >> X; iss >> Y; iss >> z; iss >> w; iss >> h; iss >> img;
                     addPlatform(X,Y,z,w,h,img);
+                }
+            }
+            if (line == "SP") {
+                while (std::getline(segFile, line)) {
+                    std::istringstream iss(line);
+                    int X; int Y; int z; int w; int h; int img; double angle;
+                    iss >> X; iss >> Y; iss >> z; iss >> w; iss >> h; iss >> img;
+                    iss >> angle;
+                    addSlopePlatform(X,Y,z,w,h,img, angle);
                 }
             }
         }
@@ -87,6 +97,17 @@ void LevelSegment::loadSegment() {
 void LevelSegment::addPlatform(int X, int Y, int z, int w, int h, int img) {
     BasicPlatform* pfrm = 
             new BasicPlatform((double)X,(double)Y, z, (double)w, (double)h);
+    
+    pfrm->setGraphic(resourceManager.platforms.at(0)); // resource manager.
+    pfrm->setGraphicDimensions(0,0,0,0);
+    pfrm->init();
+    platforms.push_back(pfrm);
+    
+}
+
+void LevelSegment::addSlopePlatform(int X, int Y, int z, int w, int h, int img, double angle) {
+    SlopePlatform* pfrm = 
+            new SlopePlatform((double)X,(double)Y, z, (double)w, (double)h, angle);
     
     pfrm->setGraphic(resourceManager.platforms.at(0)); // resource manager.
     pfrm->setGraphicDimensions(0,0,0,0);

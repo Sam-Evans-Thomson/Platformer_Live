@@ -16,13 +16,6 @@
 
 #include "../GameObject/Vec2.h"
 
-#define BASE_GRAVITY 46
-#define BASE_FRICTION 1
-#define MAX_X_FORCE 500
-#define MAX_Y_FORCE 1500
-
-#define PLAYR_W 100
-#define PLAYR_H 140
 
 class RectHitbox;
 class BasicPlatform;
@@ -93,7 +86,8 @@ public:
     const double maxRunSpeed = 20;
     
     const double maxForceX = 20000;
-    const double maxForceY = 600;
+    const double maxForceYDown = 600;
+    const double maxForceYUp = -400;
 
 private:    
     

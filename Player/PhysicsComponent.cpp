@@ -48,9 +48,9 @@ void PhysicsComponent::init() {
     prevPos = new Vec2(4000,2700);
     bodyHB = new RectHitbox(*pos, PLAYR_W ,PLAYR_H);
     underFeetHB = new RectHitbox(
-            pos->getX() + 4.0*PLAYR_W/10.0, 
+            pos->getX(), 
             pos->getY() + PLAYR_H, 
-            PLAYR_W/10.0 ,
+            PLAYR_W,
             2);
     
     impulse = Vec2(0,0);
@@ -99,7 +99,7 @@ Vec2 PhysicsComponent::checkForce(Vec2 frc) {
     
     //check Y force;
          if (frc.getY() >  MAX_Y_FORCE)       frc.setY( MAX_Y_FORCE);
-    else if (frc.getY() < -MAX_Y_FORCE)       frc.setY(-MAX_Y_FORCE);
+    else if (frc.getY() <  MAX_Y_FORCE_UP)    frc.setY( MAX_Y_FORCE_UP);
          
     return frc;
 }

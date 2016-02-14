@@ -43,14 +43,18 @@ public:
     
     void clearBackground();
     void clearForeground();
+    void clearOverlay();
     void clearLayer(int i);
     void clearLayers();
     void clearAll();
     
     void addTexture(Texture* tex, double x, double y, int z, SDL_Rect* clip, double scale, double rot, SDL_RendererFlip flip);
     void addTexture(Texture* tex, SDL_Rect* dest, SDL_Rect* clip, int z, double scale, double rot, SDL_RendererFlip flip);
+    
+    void addOverlay(Texture* tex, SDL_Rect* dest, SDL_Rect* clip, double scale, double rot, SDL_RendererFlip flip);
     Texture* foreground;
     Texture* background;
+    Texture* overlay;
     
 private:
     
