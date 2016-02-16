@@ -55,7 +55,13 @@ int LevelManager::getSegCountY(double y) { return (int)y/SEGMENT_HEIGHT;}
 
 int LevelManager::getCameraXOffset() { return (renderOffsetX+2)*SEGMENT_WIDTH; }
 
-int LevelManager::getCameraYOffset() { return (renderOffsetY+2)*SEGMENT_HEIGHT;}
+int LevelManager::getCameraYOffset() { return (renderOffsetY+2)*SEGMENT_HEIGHT; }
+
+int LevelManager::getBackgroundXOffset() { return (xOffset+1)*SEGMENT_WIDTH; }
+
+int LevelManager::getBackgroundYOffset() { return (yOffset+1)*SEGMENT_HEIGHT; }
+
+
 
 int LevelManager::platformCount() {
     int count = 0;
@@ -115,6 +121,12 @@ void LevelManager::update() {
 
 void LevelManager::render() {
     for (int i = 0; i < 4; i++) renderSegs[i]->render();
+    
+    for (int i = 1; i < 4 ; i++) {
+        for (int j = 1; j < 4 ; j++) {
+            loadedSegments.at(i,j)->renderBackground();
+        }
+    }
 }
 
 ///////// PRIVATE ///////////////////////////

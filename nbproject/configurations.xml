@@ -10,6 +10,7 @@
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Canvas.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/CircleHitbox.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/Decoration.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/DodgeState.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Game.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/GameObject.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Graphics/Graphic.h</itemPath>
@@ -48,6 +49,7 @@
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Canvas.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/CircleHitbox.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/Decoration.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/DodgeState.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Game.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/GameObject.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Graphics/Graphic.cpp</itemPath>
@@ -292,6 +294,16 @@
             flavor2="0">
       </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/Player.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/DodgeState.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/DodgeState.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -630,6 +642,16 @@
             flavor2="0">
       </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/Player.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/DodgeState.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/DodgeState.h"
             ex="false"
             tool="3"
             flavor2="0">

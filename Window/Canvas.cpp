@@ -39,7 +39,7 @@ void Canvas::init() {
     foreground = new Texture();
     foreground->createBlank(CANVAS_SIZE_W, CANVAS_SIZE_H);
     background = new Texture();
-    background->createBlank(CANVAS_SIZE_W, CANVAS_SIZE_H);
+    background->createBlank(BACKGROUND_SIZE_W, BACKGROUND_SIZE_H);
     overlay = new Texture();
     overlay->createBlank(CANVAS_SIZE_W, CANVAS_SIZE_H);
     
@@ -51,15 +51,14 @@ void Canvas::init() {
 
 void Canvas::update() {
     renewOffsets();
+    camera->update();
 }
 
 
 void Canvas::render() {
-    
-    camera->updateViewport();
-    
+
     viewport = camera->getViewport(xOffset, yOffset);
-    backgroundViewport = camera->getParallaxViewport(BACKGROUND_DIST, xOffset, yOffset);
+    backgroundViewport = camera->getParallaxViewport(BACKGROUND_DIST, backgroundXOffset, backgroundYOffset);
     foregroundViewport = camera->getParallaxViewport(FOREGROUND_DIST, xOffset, yOffset);
     
     background->setClip(&backgroundViewport);
@@ -135,7 +134,7 @@ void Canvas::addTexture(Texture* tex, SDL_Rect* dest, SDL_Rect* clip, int z, dou
         tex->renderToTexture(layers[z], x-xOffset, y-yOffset, w, h);
     } else if (z == Z_BACKGROUND) {
         tex->setRenderSettings(clip, rot, scale, scale,flip);
-        tex->renderToTexture(background, x-xOffset, y-yOffset,w ,h);
+        tex->renderToTexture(background, x-backgroundXOffset, y-backgroundYOffset,w ,h);
     } else if (z == Z_FOREGROUND) {
         tex->setRenderSettings(clip, rot, scale, scale,flip);
         tex->renderToTexture(foreground, x-xOffset, y-yOffset, w ,h);
@@ -151,6 +150,8 @@ void Canvas::addOverlay(Texture* tex, SDL_Rect* dest, SDL_Rect* clip, double sca
 void Canvas::renewOffsets() {
     xOffset = levelManager.getCameraXOffset();
     yOffset = levelManager.getCameraYOffset();  
+    backgroundXOffset = levelManager.getBackgroundXOffset();
+    backgroundYOffset = levelManager.getBackgroundYOffset();  
 }
 
 

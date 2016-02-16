@@ -108,11 +108,7 @@ bool Hitbox::collision(CircleHitbox& circle, CircleHitbox& circle2) {
 }
 
 bool Hitbox::collision(CircleHitbox& circle, RectHitbox& rect){
-    return (    rect.left->collision(circle)  &&
-                rect.right->collision(circle) &&
-                rect.up->collision(circle)    &&
-                rect.down->collision(circle)
-                );
+    return false;
 }
 
 bool Hitbox::collision(CircleHitbox& circle, LineHitbox& line){

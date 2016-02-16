@@ -20,19 +20,21 @@
 
 // lower number is more lag
 #define CAMERA_X_LAG 0.05
-#define CAMERA_Y_LAG 0.3
+#define CAMERA_Y_LAG 0.5
 
 #define DEFAULT_CAMERA_W 1920.0
 #define DEFAULT_CAMERA_H 1080.0
 
-#define BACKGROUND_DIST 0.9
-#define FOREGROUND_DIST 1.1
+#define BACKGROUND_DIST 1.9
+#define FOREGROUND_DIST 0.7
 
 class Camera {
 public:
     Camera();
     Camera(const Camera& orig);
     virtual ~Camera();
+    
+    void update();
     
     void updateViewport();
     SDL_Rect getViewport(int xOff, int yOff);

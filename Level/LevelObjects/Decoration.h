@@ -14,13 +14,36 @@
 #ifndef DECORATION_H
 #define DECORATION_H
 
+#include "../../GameObject/Vec2.h"
+#include "../../Graphics/Graphic.h"
+
 class Decoration {
 public:
     Decoration();
+    Decoration(Vec2 pos, int z, double w, double h);
+    Decoration(double x, double y, int z, double w, double h);
     Decoration(const Decoration& orig);
     virtual ~Decoration();
+    
+    void init();
+    void render();
+    
+    void setGraphic(Graphic* gr);
+    virtual void setGraphicDimensions(double x, double y, double _w, double _h);
+    
+    Vec2 pos;
+    int z;
+    
+    Graphic* graphic;
+    
 private:
-
+    double w;
+    double h;
+    double graphX;
+    double graphY;
+    double graphW;
+    double graphH;
+    
 };
 
 #endif /* DECORATION_H */

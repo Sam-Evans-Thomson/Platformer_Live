@@ -66,7 +66,7 @@ void InputComponent::axisMotion(SDL_Event& _event) {
     
     if ( (value < -AXIS_BUFFER ) || ( value > AXIS_BUFFER ) ) {
         
-        testAxis(axis, value);
+        //testAxis(axis, value);
         
              if( axis == 0 ) lTh_X = value;
         else if( axis == 1 ) lTh_Y = value;
@@ -121,7 +121,7 @@ void InputComponent::buttonEvent(SDL_Event& _event, bool state) {
 }
 
 void InputComponent::updateButton(unsigned int* button, bool state) {
-    testButton(*button, state);
+    //testButton(*button, state);
          if(state == BUTTON_DOWN) *button = 1;
     else if(state == BUTTON_UP)   *button = 0;
           

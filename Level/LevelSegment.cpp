@@ -28,7 +28,7 @@ LevelSegment::LevelSegment(const LevelSegment& orig) { }
 
 LevelSegment::~LevelSegment() {
     for (BasicPlatform* bp : platforms) delete bp;
-    //delete &decorations;
+    for (Decoration* dec : decorations) delete dec;
 }
 
 void LevelSegment::setXY(int _x, int _y) { x=  _x; y = _y; }
@@ -38,8 +38,11 @@ int LevelSegment::getPlatformCount() { return platforms.size(); }
 BasicPlatform* LevelSegment::getPlatform(int i) { return platforms.at(i); }
 
 void LevelSegment::render() {
-    //for ( Decoration* d : decorations) d->render();
+    for ( Decoration* d : decorations) d->render();
     for ( BasicPlatform* bp : platforms) bp->render();
+}
+
+void LevelSegment::renderBackground() {
     background->render((double)x*SEGMENT_WIDTH,(double)y*SEGMENT_HEIGHT,Z_BACKGROUND,1.0,0.0);
 }
 
@@ -47,7 +50,6 @@ void LevelSegment::render() {
 //////////// SEGMENT LOADING //////////////////////
 
 void LevelSegment::loadSegment() {
-    std::cout << "LevelSegment - loadSegment " << x << " " << y << std::endl;
     
     std::string path = std::string("Level/LevelSegments/seg_" + 
             std::to_string(x) + "_" + std::to_string(y) +".txt");
@@ -73,18 +75,28 @@ void LevelSegment::loadSegment() {
             if (line == "BP") {
                 while (line != "SP" && std::getline(segFile, line)) {
                     std::istringstream iss(line);
-                    int X; int Y; int z; int w; int h; int img;
-                    iss >> X; iss >> Y; iss >> z; iss >> w; iss >> h; iss >> img;
-                    addPlatform(X,Y,z,w,h,img);
+                    int X; int Y; int z; int w; int h; int img; bool drop;
+                    iss >> X; iss >> Y; iss >> z; iss >> w; iss >> h; iss >> img; iss >> drop;
+                    addPlatform(X,Y,z,w,h,img, drop);
                 }
             }
             if (line == "SP") {
-                while (std::getline(segFile, line)) {
+                while (line != "DEC" && std::getline(segFile, line)) {
+                    std::cout << "SP " << line << std::endl;
                     std::istringstream iss(line);
-                    int X; int Y; int z; int w; int h; int img; double angle;
+                    int X; int Y; int z; int w; int h; int img; double angle; bool drop;
+                    iss >> X; iss >> Y; iss >> z; iss >> w; iss >> h; iss >> img; 
+                    iss >> angle; iss >> drop;
+                    addSlopePlatform(X,Y,z,w,h,img, angle, drop);
+                }
+            }
+            if (line == "DEC") {
+                while (std::getline(segFile, line)) {
+                    std::cout << "DEC " << line << std::endl;
+                    std::istringstream iss(line);
+                    int X; int Y; int z; int w; int h; int img;
                     iss >> X; iss >> Y; iss >> z; iss >> w; iss >> h; iss >> img;
-                    iss >> angle;
-                    addSlopePlatform(X,Y,z,w,h,img, angle);
+                    addDecoration(X,Y,z,w,h,img);
                 }
             }
         }
@@ -94,10 +106,10 @@ void LevelSegment::loadSegment() {
 }
 
 
-void LevelSegment::addPlatform(int X, int Y, int z, int w, int h, int img) {
+void LevelSegment::addPlatform(int X, int Y, int z, int w, int h, int img, bool drop) {
     BasicPlatform* pfrm = 
             new BasicPlatform((double)X,(double)Y, z, (double)w, (double)h);
-    
+    pfrm->setDropThrough(drop);
     pfrm->setGraphic(resourceManager.platforms.at(0)); // resource manager.
     pfrm->setGraphicDimensions(0,0,0,0);
     pfrm->init();
@@ -105,16 +117,28 @@ void LevelSegment::addPlatform(int X, int Y, int z, int w, int h, int img) {
     
 }
 
-void LevelSegment::addSlopePlatform(int X, int Y, int z, int w, int h, int img, double angle) {
+void LevelSegment::addSlopePlatform(int X, int Y, int z, int w, int h, int img, double angle, bool drop) {
     SlopePlatform* pfrm = 
             new SlopePlatform((double)X,(double)Y, z, (double)w, (double)h, angle);
     
-    pfrm->setGraphic(resourceManager.platforms.at(0)); // resource manager.
-    pfrm->setGraphicDimensions(0,0,0,0);
+    pfrm->setDropThrough(drop);
+    pfrm->setGraphic(resourceManager.stair); // resource manager.
     pfrm->init();
+    pfrm->setGraphicDimensions(0,0,0,0);
     platforms.push_back(pfrm);
     
 }
+
+void LevelSegment::addDecoration(int X, int Y, int z, int w, int h, int img) {
+    Decoration* dec = 
+            new Decoration((double)X,(double)Y, z, (double)w, (double)h);
+    
+    dec->setGraphic(resourceManager.decorations.at(0)); // resource manager.
+    dec->setGraphicDimensions(0,0,0,0);
+    dec->init();
+    decorations.push_back(dec);
+}
+
 
 void LevelSegment::addBackground(Graphic* gr) {
     background = gr;

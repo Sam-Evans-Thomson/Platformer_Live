@@ -46,6 +46,9 @@ public:
     
     int getCameraXOffset();
     int getCameraYOffset();
+    int getBackgroundXOffset();
+    int getBackgroundYOffset();
+    
     int getSegCountX(double x);
     int getSegCountY(double y);
     
@@ -57,7 +60,9 @@ public:
     
     void update();
     void render();
-  
+    
+    int xOffset = 0;  // number of segments left of loaded.
+    int yOffset = 0;  // number of segments above loaded
 private:
     
     void initialLoadSegments();
@@ -82,8 +87,7 @@ private:
     
     /// STACK
     
-    int xOffset = 0;  // number of segments left of loaded.
-    int yOffset = 0;  // number of segments above loaded
+    
     
     int renderOffsetX = 0;
     int renderOffsetY = 0;

@@ -18,6 +18,7 @@
 #include "PhysicsComponent.h"
 #include "PlayerStates/JumpingState.h"
 #include "PlayerStates/RunningState.h"
+#include "PlayerStates/DodgeState.h"
 #include "PlayerStates/PrimaryState.h"
 #include "PlayerStates/SecondaryState.h"
 #include "../Level/LevelObjects/BasicPlatform.h"
@@ -36,6 +37,7 @@ Player::~Player() {
     delete statsComp;
     delete running;
     delete jumping;
+    delete dodge;
     delete physicsComp;
     delete graphicsComp;
     secondary = nullptr;
@@ -53,6 +55,7 @@ void Player::init() {
 
     running = new RunningState();
     jumping = new JumpingState();
+    dodge   = new DodgeState();
     primary = running;
     
     graphicsComp = new GraphicsComponent();
@@ -65,7 +68,9 @@ void Player::render() {
 }
 
 void Player::update(double time) { 
-    std::cout << "player update: " << statsComp->stamina << std::endl;
+    physicsComp->prevPos->setX(physicsComp->pos->getX());
+    physicsComp->prevPos->setY(physicsComp->pos->getY());
+    
     handleInputs();
     physicsComp->update(time); 
     statsComp->update();
@@ -107,9 +112,18 @@ void Player::changeSecondaryState(SecondaryState* secondState) {
 
     // PRIMARY
 
+void Player::move(int dir) {
+    physicsComp->useFric(false);
+    double runSpeed = PLAYER_RUN_SPEED*dir;
+    physicsComp->addForce(runSpeed, 0.0);
+}
+
+
 void Player::run(int dir) {
     physicsComp->useFric(false);
-    physicsComp->addForce(Vec2(50.0*dir,50.0*dir*tan(runAngle)));
+    double runSpeed = PLAYER_RUN_SPEED*dir;
+    if (runSpeed*runRatio > 0) physicsComp->addForce(runSpeed, 0.0);
+    else physicsComp->addForce(runSpeed, runSpeed*runRatio);
 }
 
 void Player::stopRun() {
@@ -117,14 +131,15 @@ void Player::stopRun() {
 }
 
 void Player::hitWall(int dir) {
+    //std::cout << "hitwall " << std::endl;
     physicsComp->pos->setX(physicsComp->prevPos->getX());
-    //physicsComp->force.setX(-2.0*physicsComp->force.getX());
     physicsComp->force.setX(0);
     restrictedMovement = direction;
 }
 
 void Player::hitRoof() {
-
+    //physicsComp->pos->setY(physicsComp->prevPos->getY());
+    physicsComp->force.setY(-0.5*physicsComp->force.getY());
 }
 
 void Player::setJumpCount(int i) { jumpCount = i; }
@@ -150,42 +165,32 @@ void Player::jump() {
 
 
 void Player::flap() {
-    std::cout<< "flap" <<std::endl;
     if (statsComp->stamina > 0) {
         physicsComp->addForce(0.0,-statsComp->flapPower);
         statsComp->useStamina(statsComp->flapPower);
     }
-    
 }
 
+void Player::changePlatform(BasicPlatform* platform) {
+    if (currPlatform != platform) {
+        currPlatform = platform;
+        if (platform->hb->isAA)         runRatio = 0.0; 
+        else if(!platform->hb->isAA)    runRatio = platform->getRatio(); 
+    }
+    physicsComp->correctPosY();
+}
+
+
 void Player::land(BasicPlatform* platform) {
+    changePlatform(platform);
+    droppingThrough = false;
     double xDelta = physicsComp->force.getY();
     if (xDelta > FALL_FORCE_STAGGER) landStagger(xDelta - FALL_FORCE_STAGGER);
     {
         physicsComp->force = Vec2(physicsComp->force.getX(),0.0);
-        
-        if (platform->hb->isAA) { 
-            runAngle = 0.0;
-            physicsComp->applyMoveTo( 
-            Vec2(
-                physicsComp->pos->getX(), 
-                platform->hb->getY() - physicsComp->bodyHB->getH() - 1));
-        } 
-        
-        else if(!platform->hb->isAA) {
-            runAngle = platform->getAngle();
-            double moveX = getX();
-            double moveY;
-            double checkX;
-            
-            if (platform->getAngle() > 0) checkX = moveX;
-            else checkX = moveX + physicsComp->bodyHB->getW();
-                
-            moveY = platform->getYatX(checkX) - physicsComp->bodyHB->getH() - 1;
-            physicsComp->applyMoveTo( Vec2(moveX, moveY) );
-        }
-        
+
         changePrimaryState(running);
+        physicsComp->correctPosY();
         physicsComp->useGrav(false);
     }
 }
@@ -198,17 +203,27 @@ void Player::landStagger(double xDelta) {
 }
 
 void Player::dropThrough() {
-//    if(platform->isDropThrough) {
-//        move(0,-10);
-//    }
+    //std::cout << "Drop through: " << currPlatform->isDropThrough << std::endl;
+    if(currPlatform->isDropThrough) {
+        
+        dropPlatform = currPlatform;
+        droppingThrough = true;
+        changePrimaryState(jumping);
+        physicsComp->useFric(false);
+        physicsComp->useGrav(true);
+    }
 }
 
 void Player::climb() {
 
 }
 
-void Player::dodge() {
-
+void Player::performDodge() {
+    if (statsComp->useStamina(DODGE_STAMINA)) {
+        dodge->prevState = primary;
+        changePrimaryState(dodge);   
+    }
+    
 }
 
 void Player::activate() {

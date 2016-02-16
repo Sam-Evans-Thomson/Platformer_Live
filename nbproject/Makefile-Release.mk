@@ -53,6 +53,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/417fd003/GraphicsComponent.o \
 	${OBJECTDIR}/_ext/417fd003/PhysicsComponent.o \
 	${OBJECTDIR}/_ext/417fd003/Player.o \
+	${OBJECTDIR}/_ext/314faef/DodgeState.o \
 	${OBJECTDIR}/_ext/314faef/JumpingState.o \
 	${OBJECTDIR}/_ext/314faef/PrimaryState.o \
 	${OBJECTDIR}/_ext/314faef/RunningState.o \
@@ -189,6 +190,11 @@ ${OBJECTDIR}/_ext/417fd003/Player.o: /home/sam/NetBeansProjects/Platformer_Live/
 	${MKDIR} -p ${OBJECTDIR}/_ext/417fd003
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/417fd003/Player.o /home/sam/NetBeansProjects/Platformer_Live/Player/Player.cpp
+
+${OBJECTDIR}/_ext/314faef/DodgeState.o: /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/DodgeState.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/314faef
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/314faef/DodgeState.o /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/DodgeState.cpp
 
 ${OBJECTDIR}/_ext/314faef/JumpingState.o: /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/JumpingState.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/314faef
@@ -494,6 +500,19 @@ ${OBJECTDIR}/_ext/417fd003/Player_nomain.o: ${OBJECTDIR}/_ext/417fd003/Player.o 
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/417fd003/Player_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Player/Player.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/417fd003/Player.o ${OBJECTDIR}/_ext/417fd003/Player_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/314faef/DodgeState_nomain.o: ${OBJECTDIR}/_ext/314faef/DodgeState.o /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/DodgeState.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/314faef
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/314faef/DodgeState.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/314faef/DodgeState_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/DodgeState.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/314faef/DodgeState.o ${OBJECTDIR}/_ext/314faef/DodgeState_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/314faef/JumpingState_nomain.o: ${OBJECTDIR}/_ext/314faef/JumpingState.o /home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/JumpingState.cpp 

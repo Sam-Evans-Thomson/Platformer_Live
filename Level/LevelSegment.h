@@ -16,6 +16,7 @@
 
 
 #include "../Graphics/Graphic.h"
+#include "LevelObjects/Decoration.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -40,12 +41,14 @@ public:
     BasicPlatform* getPlatform(int i);
     
     void render();
+    void renderBackground();
     
     ////// SEGMENT CREATION
     
     void loadSegment();
-    void addPlatform(int X, int Y, int z, int w, int h, int img);
-    void addSlopePlatform(int X, int Y, int z, int w, int h, int img, double angle);
+    void addPlatform(int X, int Y, int z, int w, int h, int img, bool drop);
+    void addSlopePlatform(int X, int Y, int z, int w, int h, int img, double angle, bool drop);
+    void addDecoration(int X, int Y, int z, int w, int h, int img);
     
     void addBackground(Graphic* gr);
     // void addDecoration();)
@@ -57,7 +60,7 @@ private:
     // HEAP
     Graphic* background;
     std::vector <BasicPlatform*> platforms;
-    //std::vector <Decoration*> decorations;
+    std::vector <Decoration*> decorations;
     
     // STACK
     

@@ -18,19 +18,23 @@
 
 class SlopePlatform : public BasicPlatform {
 public:
-    SlopePlatform(Vec2 _pos, int _z, double _w, double _h, double _angle);
-    SlopePlatform(double x, double y, int _z, double _w, double _h, double _angle);
+    SlopePlatform(Vec2 _pos, int _z, double _w, double _h, double _ratio);
+    SlopePlatform(double x, double y, int _z, double _w, double _h, double _ratio);
     SlopePlatform(const SlopePlatform& orig);
     virtual ~SlopePlatform();
+
+    void setGraphicDimensions(double x, double y, double _w, double _h) override;
+    void render() override;
+
     
     double getYatX(double x) override;
-    double getAngle() override;
+    double getRatio() override;
     
     void init() override;
     
 private:
 
-    double angle;
+    double ratio;
 };
 
 #endif /* SLOPEPLATFORM_H */

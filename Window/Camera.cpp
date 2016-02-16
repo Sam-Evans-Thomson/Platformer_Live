@@ -30,7 +30,9 @@ Camera::Camera(const Camera& orig) {
 Camera::~Camera() {
 }
 
-
+void Camera::update() {
+    updateViewport();
+}
 
 SDL_Rect Camera::getViewport(int xOff, int yOff) { 
     SDL_Rect temp;
@@ -43,12 +45,17 @@ SDL_Rect Camera::getViewport(int xOff, int yOff) {
 
 SDL_Rect Camera::getParallaxViewport(double dist, int xOff, int yOff) {
 
-    return getViewport(xOff,yOff);
+    SDL_Rect temp;
+    temp.x = (viewport.x - xOff) + (1.0-dist)*DEFAULT_CAMERA_W/2.0;
+    temp.y = (viewport.y - yOff) + (1.0-dist)*DEFAULT_CAMERA_H/2.0;
+    temp.w = viewport.w*dist;
+    temp.h = viewport.h*dist;
+    return temp;
 }
 
 
 void Camera::updateViewport() {
-    zoom = 1.5 - 0.3*inputComponent.rTh_Y*inputComponent.rTh_Y;
+    zoom = 1.6 - 0.3*inputComponent.rTh_Y*inputComponent.rTh_Y;
     
     double xSpeed = player.getX() - player.getPrevX();
     double ySpeed = player.getY() - player.getPrevY();

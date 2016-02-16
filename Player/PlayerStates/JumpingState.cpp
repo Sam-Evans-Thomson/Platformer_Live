@@ -65,8 +65,8 @@ void JumpingState::handleInputs(InputComponent* ic) {
     
     graphic->resume();
     // Movement Running
-    if (ic->L > 0&& player.restrictedMovement != FACING_L) {
-        player.run(-1);
+    if (ic->L > 0 && player.restrictedMovement != FACING_L) {
+        player.move(-1);
         player.restrictedMovement = NO_RESTRICTION;
         if(player.direction == FACING_R) {
             graphic->flip();
@@ -74,7 +74,7 @@ void JumpingState::handleInputs(InputComponent* ic) {
         }
     }
     else if (ic->R > 0 && player.restrictedMovement != FACING_R) {
-        player.run(1);
+        player.move(1);
         player.restrictedMovement = NO_RESTRICTION;
         if(player.direction == FACING_L) {
             graphic->flip();
@@ -82,6 +82,7 @@ void JumpingState::handleInputs(InputComponent* ic) {
         }
     }
         
+    if (ic->B == 1)                player.performDodge(); 
     
     //if (ic->A == 1)                     player.flap();
     
@@ -107,25 +108,37 @@ void JumpingState::handleInputs(InputComponent* ic) {
 
 void JumpingState::resolvePlatformCollisions() {
     for (int i = 0; i<levelManager.playerPlatformCount(); i++) {
-        resolvePlatformCollision(levelManager.getPlayerPlatform(i));
+        if (levelManager.getPlayerPlatform(i)->getZ() == player.getZ()) {
+            resolvePlatformCollision(levelManager.getPlayerPlatform(i));
+        }
     }
 }
 
 void JumpingState::resolvePlatformCollision(BasicPlatform* platform) {
-    RectHitbox* feet = player.physicsComp->underFeetHB;
-    RectHitbox* platfrm = platform->hb;
-    RectHitbox* body = player.physicsComp->bodyHB;
     
-    if ( platfrm->collision(*feet) && platfrm->collision(*body) ) { 
-        std::cout << "landing " << std::endl;
-        player.land(platform); 
-    }
-    if ( platfrm->collision(*body) )  { 
-        int side = platfrm->getCollisionFace(*body,*player.physicsComp->prevPos);
-        std::cout << "jumping state  side: " << side << std::endl;   
-        if (side == 0) player.hitWall(FACING_R); 
-        else if (side == 2) player.hitWall(FACING_L);
-        else if (side = 1) player.hitRoof();
+    if (!(platform == player.dropPlatform && player.droppingThrough)) {
+        
+        RectHitbox* feet = player.physicsComp->underFeetHB;
+        RectHitbox* platfrm = platform->hb;
+        RectHitbox* body = player.physicsComp->bodyHB;
+        
+        if ( platfrm->collision(*feet) && platfrm->collision(*body) ) { 
+            Vec2 prevBody;
+            prevBody.setX(player.physicsComp->prevPos->getX());
+            prevBody.setY(player.physicsComp->prevPos->getY());
+            if (platfrm->getCollisionFace(*body, prevBody) == 3) {
+                player.land(platform);
+            }
+
+        }
+        if ( platfrm->collision(*body))  { 
+            int side = platfrm->getCollisionFace(*body,*player.physicsComp->prevPos);
+            if (!platform->isDropThrough) {
+                if (side == 0) player.hitWall(FACING_R); 
+                else if (side == 2 ) player.hitWall(FACING_L);
+                else if (side == 1) player.hitRoof();
+            }
+        }
     }
 }
 

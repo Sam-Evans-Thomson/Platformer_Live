@@ -42,19 +42,13 @@ public:
     RectHitbox(const RectHitbox& orig);
     virtual ~RectHitbox();
     
-    LineHitbox getLine(int i);
     Vec2 getCorner(int i);
     Vec2 getCentre();
     
     double getW();
     double getH();
     double getYatX(double _x);
-    double getAngle();
-    
-    LineHitbox* left;
-    LineHitbox* right;
-    LineHitbox* up;
-    LineHitbox* down;
+    double getRatio();
     
     bool isAA;
     
@@ -64,7 +58,7 @@ protected:
     
     void makeLines();
         
-    double angle;
+    double ratio;
     double w;
     double h;
 };

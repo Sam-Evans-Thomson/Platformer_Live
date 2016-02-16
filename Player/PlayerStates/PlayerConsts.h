@@ -21,6 +21,14 @@
 #define MAX_Y_FORCE 1800
 #define MAX_Y_FORCE_UP -600
 
+#define PLAYER_RUN_SPEED 50.0
+
+#define DODGE_STAMINA 500
+#define PLAYER_DODGE_FORCE 35.0
+#define DODGE_LENGTH 0.20
+#define INVIN_START 0.10
+#define INVIN_END 0.20
+
 #define PLAYR_W 100
 #define PLAYR_H 140
 

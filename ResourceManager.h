@@ -35,11 +35,15 @@ public:
     
     Graphic* background;
     std::vector<Graphic*> platforms;
+    std::vector<Graphic*> decorations;
     Graphic* running;
+    Graphic* dodge;
     
     Graphic* column;
     Graphic* stamina;
     Graphic* health;
+    
+    Graphic* stair;
     
     
 private:

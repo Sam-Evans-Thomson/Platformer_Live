@@ -23,15 +23,18 @@ ResourceManager::ResourceManager(const ResourceManager& orig) {
 ResourceManager::~ResourceManager() {
     delete background;
     for (Graphic* grptr : platforms) delete grptr;
+    for (Graphic* dec : decorations) delete dec;
     delete running;
     delete column;
     delete stamina;
     delete health;
+    delete stair;
+    delete dodge;
 }
 
 void ResourceManager::init() {
     
-    Graphic* pfm = new Graphic(1,"/home/sam/NetBeansProjects/Platformer_Live/ground");
+    Graphic* pfm = new Graphic(1,"/home/sam/NetBeansProjects/Platformer_Live/Sprites/ground");
     pfm->setFrameTime(0.1);
     pfm->loadTextures();
     pfm->start();
@@ -41,6 +44,9 @@ void ResourceManager::init() {
     bgd->loadTextures();
     background = bgd;
 
+    dodge = new Graphic(2,"/home/sam/NetBeansProjects/Platformer_Live/Sprites/Dodge/basic");
+    dodge->setFrameTime(0.1);
+    dodge->loadTextures();
     
     running = new Graphic(6,"/home/sam/NetBeansProjects/Platformer_Live/Sprites/Running/basic");
     running->setFrameTime(0.1);
@@ -49,6 +55,9 @@ void ResourceManager::init() {
     
     column = new Graphic(1,"/home/sam/NetBeansProjects/Platformer_Live/Sprites/Bars/column");
     column->loadTextures();
+    
+    stair = new Graphic(1,"/home/sam/NetBeansProjects/Platformer_Live/Sprites/stair_30_");
+    stair->loadTextures();
     
     stamina = new Graphic(10,"/home/sam/NetBeansProjects/Platformer_Live/Sprites/Bars/stam");
     stamina->setFrameTime(0.1);
@@ -59,6 +68,10 @@ void ResourceManager::init() {
     health->setFrameTime(0.1);
     health->loadTextures();
     health->start();
+    
+    Graphic* vine = new Graphic(1,"/home/sam/NetBeansProjects/Platformer_Live/Sprites/vine");
+    vine->loadTextures();
+    decorations.push_back(vine);
 }
 
 

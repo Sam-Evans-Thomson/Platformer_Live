@@ -49,8 +49,11 @@ public:
     void addForce(Vec2 frc);
     void addForce(double x, double y);
     void addImpulse(Vec2 _impulse);
-    void applyMove(Vec2 mvmnt);
-    void applyMoveTo(Vec2 _pos);
+    
+    void applyMove(Vec2 mvmnt, bool collCheck);
+    void applyMoveTo(Vec2 _pos, bool collCheck);
+    
+    void correctPosY();
 
     void applyGravity();
     void applyFriction();

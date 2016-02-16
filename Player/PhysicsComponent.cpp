@@ -43,7 +43,7 @@ void PhysicsComponent::init() {
     frictionY = BASE_FRICTION;
     gravity = BASE_GRAVITY;
     angle = 0.0;
-    z = 5;
+    z = 1;
     pos = new Vec2(4000,2700);
     prevPos = new Vec2(4000,2700);
     bodyHB = new RectHitbox(*pos, PLAYR_W ,PLAYR_H);
@@ -57,20 +57,20 @@ void PhysicsComponent::init() {
 }
 
 void PhysicsComponent::update(double delta) {
-    prevPos->setX(pos->getX());
-    prevPos->setY(pos->getY());
-    
+
     timeDelta = delta;
     if (useGravity) applyGravity();
     if (useFriction) applyFriction();
+    
     
     force = checkForce(force);
     
     movement = (impulse+force)*timeDelta;
 
-    applyMove(movement);
+    applyMove(movement, true);
     
     impulse = Vec2(0,0);
+
 }
 
 void PhysicsComponent::addForce(Vec2 frc) { force+=frc;}
@@ -90,7 +90,7 @@ void PhysicsComponent::applyGravity() {
     force += grav; 
 }
 
-void PhysicsComponent::addImpulse(Vec2 _impulse) { impulse = _impulse*timeDelta; }
+void PhysicsComponent::addImpulse(Vec2 _impulse) { impulse = _impulse; }
 
 Vec2 PhysicsComponent::checkForce(Vec2 frc) {
     //check X force;
@@ -105,16 +105,64 @@ Vec2 PhysicsComponent::checkForce(Vec2 frc) {
 }
 
 
-void PhysicsComponent::applyMove(Vec2 mvmnt) {
+void PhysicsComponent::applyMove(Vec2 mvmnt, bool collCheck) {
 
     *pos += mvmnt;
     
     bodyHB->moveTo(*pos);
     underFeetHB->move(mvmnt);
     
-    player.primary->resolvePlatformCollisions();
+    if (player.primary == player.running && player.currPlatform != nullptr) {
+        correctPosY();
+    }
+    
+    if (collCheck) player.primary->resolvePlatformCollisions();
     
 }
+
+void PhysicsComponent::applyMoveTo(Vec2 _pos, bool collCheck) {
+
+    *pos = _pos;
+    
+    bodyHB->moveTo(*pos);
+    underFeetHB->moveTo(pos->getX(), pos->getY() + PLAYR_H);
+    
+    if (player.primary == player.running && player.currPlatform != nullptr) {
+        correctPosY();
+    }
+    
+    //resolveEnemyCollisions();
+   if (collCheck) player.primary->resolvePlatformCollisions();
+    
+}
+
+void PhysicsComponent::correctPosY() {
+    
+    double moveX = X();
+    double moveY;
+    double checkX;
+    BasicPlatform* plat = player.currPlatform;
+    
+    if (plat->getRatio() != 0) {
+        if (plat->getRatio() > 0) checkX = moveX;
+
+        else {
+            if (X()+ bodyHB->getW() > plat->getX() + plat->getW()) {
+                checkX = plat->getX() + plat->getW();
+            }
+            else checkX = moveX + bodyHB->getW();
+        }
+        moveY = plat->getYatX(checkX) - bodyHB->getH();
+    } else {
+        moveY = plat->hb->getY() - bodyHB->getH();
+    }
+    
+    pos->setY(moveY - 1);
+
+    bodyHB->moveTo(moveX, moveY);
+    underFeetHB->moveTo(moveX, moveY + PLAYR_H);
+}
+
 
 void PhysicsComponent::previousPos() {
     pos->setX(prevPos->getX());
@@ -122,20 +170,6 @@ void PhysicsComponent::previousPos() {
     bodyHB->moveTo(*pos);
     underFeetHB->moveTo(pos->getX(), pos->getY() + PLAYR_H);
 }
-
-
-void PhysicsComponent::applyMoveTo(Vec2 _pos) {
-
-    *pos = _pos;
-    
-    bodyHB->moveTo(_pos);
-    underFeetHB->moveTo(pos->getX() + 15, pos->getY() + PLAYR_H);
-    
-    //resolveEnemyCollisions();
-    player.primary->resolvePlatformCollisions();
-    
-}
-
 
 void PhysicsComponent::setForce(Vec2 frc) { force = checkForce(frc); }
 

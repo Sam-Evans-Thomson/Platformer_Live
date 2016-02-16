@@ -31,25 +31,32 @@ public:
     virtual ~BasicPlatform();
     
     void setGraphic(Graphic* gr);
-    void setGraphicDimensions(double x, double y, double _w, double _h);
+    virtual void setGraphicDimensions(double x, double y, double _w, double _h);
     
     virtual void init();
-    void render();
+    virtual void render();
+    
+    void setDropThrough(bool drop);
     
     Vec2 getPos();
     double getX();
     double getW();
     double getY();
     double getH();
+    int getZ();
     
     virtual double getYatX(double x);
-    virtual double getAngle();
+    virtual double getRatio();
+    
+    bool isDropThrough = false;
     
     // HEAP
     RectHitbox* hb = nullptr; // RectHitbox owned by this class.
     Graphic* graphic; // ptr to Graphic owned by ResourceManager.
     
 protected: 
+    
+    
 
     Vec2 pos;
     double w;

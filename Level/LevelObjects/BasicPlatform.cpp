@@ -60,14 +60,13 @@ void BasicPlatform::render() {
     graphic->render(graphX, graphY, z, 1.0, 0.0);    
 }
 
-double BasicPlatform::getAngle() {
+double BasicPlatform::getRatio() { return hb->getRatio(); }
 
-}
+double BasicPlatform::getYatX(double x) { return pos.getY(); }
 
-double BasicPlatform::getYatX(double x) {
+int BasicPlatform::getZ() { return z; }
 
-}
-
+void BasicPlatform::setDropThrough(bool drop) { isDropThrough = drop; }
 
 
 

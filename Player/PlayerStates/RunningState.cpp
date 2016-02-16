@@ -72,10 +72,10 @@ void RunningState::handleInputs(InputComponent* ic) {
     }
         
 
-    if (ic->A == 1)                     player.jumpFirst();
-    else if (ic->D > 0 && ic->A > 0)    player.dropThrough();    
+    if (ic->A == 1 && ic->D < 1)        player.jumpFirst();
+    else if (ic->D > 0 && ic->A == 1)   player.dropThrough();    
     else if (ic->U == 1)                player.climb();
-    else if (ic->B == 1)                player.dodge();    
+    else if (ic->B == 1)                player.performDodge();    
     else if (ic->Y == 1)                player.activate();
 
     // changing items or attacking/dodging/con.ming
@@ -96,19 +96,46 @@ void RunningState::handleInputs(InputComponent* ic) {
 void RunningState::resolvePlatformCollisions() {
     clearFlags();
     for (int i = 0; i<levelManager.playerPlatformCount(); i++) {
-        resolvePlatformCollision(levelManager.getPlayerPlatform(i));
+        if (levelManager.getPlayerPlatform(i)->getZ() == player.getZ()) {
+            resolvePlatformCollision(levelManager.getPlayerPlatform(i));
+        }
     }
     
     if (player.fallFlag == FLAG_FALLING) player.falling();
 }
 
 void RunningState::resolvePlatformCollision(BasicPlatform* platform) {
-    RectHitbox* feet = player.physicsComp->underFeetHB;
-    RectHitbox* plfm = platform->hb;
-    RectHitbox* body = player.physicsComp->bodyHB;
     
-    if ( plfm->collision(*feet) ) {  player.fallFlag = FLAG_ONGROUND; }
-    if ( plfm->collision(*body) ) {  player.hitWall(-1); }
+    if (!(platform == player.dropPlatform && player.droppingThrough)) {
+    
+        RectHitbox* feet = player.physicsComp->underFeetHB;
+        RectHitbox* plfm = platform->hb;
+        RectHitbox* body = player.physicsComp->bodyHB;
+
+        bool feetC = plfm->collision(*feet);
+        bool bodyC = plfm->collision(*body);
+
+        if ( feetC ) {  player.fallFlag = FLAG_ONGROUND; }
+
+        if ( bodyC ) {  
+
+            int face = plfm->getCollisionFace(*body, *player.physicsComp->prevPos);
+
+            if ( feetC ) {
+                if (face == 3) {
+                    player.changePlatform(platform);
+                    //std::cout << "hit top" << std::endl;
+                }            
+            }
+
+            if (!platform->isDropThrough) {
+                if (face == 0 || face == 2) {
+                    player.hitWall(-1); 
+                    //std::cout << "hit side" << std::endl;
+                }
+            }
+        } 
+    }
 }
 
 

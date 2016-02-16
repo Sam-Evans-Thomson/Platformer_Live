@@ -28,6 +28,9 @@ class Window;
 #define CANVAS_SIZE_W 3840
 #define CANVAS_SIZE_H 2160
 
+#define BACKGROUND_SIZE_W 5760
+#define BACKGROUND_SIZE_H 3240
+
 #define Z_BACKGROUND -1
 #define Z_FOREGROUND -2
 
@@ -62,6 +65,8 @@ private:
     
     int xOffset = 0;
     int yOffset = 0;
+    int backgroundXOffset = 0;
+    int backgroundYOffset = 0;
     
     SDL_Rect viewport;
     SDL_Rect backgroundViewport;

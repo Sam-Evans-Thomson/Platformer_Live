@@ -25,6 +25,7 @@ class PrimaryState;
 class SecondaryState;
 class RunningState;
 class JumpingState;
+class DodgeState;
 
 class BasicPlatform;
 
@@ -64,7 +65,7 @@ public:
     // HEAP
     PrimaryState*        running;
     PrimaryState*        jumping;
-//    DodgeState          dodge;
+    DodgeState*          dodge;
 //    DropAttackState     dropAttack;
 //    StunState           stun;
 //    ClimbingState       climbing;
@@ -92,13 +93,20 @@ public:
     int direction;
     int jumpCount; 
     int flapCount;
-    double runAngle;
+    double runRatio;
     
     ///// FLAGS ///////
     int fallFlag;
     int restrictedMovement;
+    bool droppingThrough = false;
+    
+    ///// CURRENT PLATFORM ///////
+    BasicPlatform* currPlatform;
+    BasicPlatform* dropPlatform;
     
     ///// ACTIONS //////////////
+    void move(int dir);
+    void changePlatform(BasicPlatform* platform);
     
     void run(int dir);
     void stopRun();
@@ -119,7 +127,7 @@ public:
     
     void dropThrough();
     void climb();
-    void dodge();
+    void performDodge();
     void activate();
     
     
