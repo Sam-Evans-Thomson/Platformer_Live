@@ -75,10 +75,10 @@ void Canvas::render() {
     double zoom = camera->getZoom();
     if (zoom > 1.4) zoom = 1.4;
     SDL_Rect temp = {
-        (int)((1.4 - zoom) * 500.0),
         0,
-        (int)(1920 - (1.4-zoom) * 1000.0),
-        1080};
+        (int)((1.4 - zoom) * 500.0),
+        1920,
+        (int)(1080 - (1.4-zoom) * 1000.0)};
     
     overlay->setClip(&temp);
     overlay->render(0.0,0.0,1920,1080);
@@ -143,7 +143,7 @@ void Canvas::addTexture(Texture* tex, SDL_Rect* dest, SDL_Rect* clip, int z, dou
 
 void Canvas::addOverlay(Texture* tex, SDL_Rect* dest, SDL_Rect* clip, double scale, double rot, SDL_RendererFlip flip) {
     tex->setRenderSettings(clip, rot, scale, scale, flip);
-    tex->renderToTexture(overlay, dest->x, dest->y, dest->w, dest->h);
+    tex->renderToTexture(overlay, dest->x, dest->y, scale*dest->w, scale*dest->h);
 }
 
 

@@ -18,7 +18,7 @@
 #define BASE_FRICTION 1
 
 #define MAX_X_FORCE 500
-#define MAX_Y_FORCE 1800
+#define MAX_Y_FORCE 2000
 #define MAX_Y_FORCE_UP -600
 
 #define PLAYER_RUN_SPEED 50.0
@@ -38,7 +38,7 @@
 #define FLAP_COUNT_MAX 60
 #define FLAP_FORCE 3
 
-#define FALL_FORCE_STAGGER 1500
+#define FALL_FORCE_STAGGER 1400
 
 #define NO_RESTRICTION -1
 #define FACING_L 0

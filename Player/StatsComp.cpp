@@ -13,6 +13,7 @@
 
 #include "StatsComp.h"
 #include "Player.h"
+#include "../GameObject/Characters/Deity.h"
 
 extern Player player;
 
@@ -34,12 +35,17 @@ void StatsComp::init() {
     
     healthMax           = 500.0;
     healthRegen         = 0.0;
+    healthFoodMult      = 1.0;
+    healthOnHit         = 0.0;
+    foodPoisons         = false;
     
     poisonRes           = 1.0;
     poisonMax           = 100.0;
+    isPoisoned          = false;
     
     curseRes            = 1.0;
     curseMax            = 1000;
+    isCursed            = false;
     
     staggerRes          = 0.0;
     staggerMax          = 50.0;
@@ -49,15 +55,16 @@ void StatsComp::init() {
     
     damageBasePower     = 10.0;
     damageBaseControl   = 10.0;
-    damageMelee1        = 10.0;
-    damageMelee2        = 10.0;
-    damageRange         = 10.0;
+    
+    damagePoison        = 0.0;
     
     distanceRange       = 10.0;
     
     flapPower           = 50.0;
+    flapMult            = 1.0;
     
     level               = 1;
+    expMult             = 1.0;
     
     power               = 10;
     control             = 10;
@@ -65,7 +72,7 @@ void StatsComp::init() {
     favour              = 0;
     wealth              = 0;
     
-    alignment           = NO_DEITY;
+    alignment           = nullptr;
         
 }
 
@@ -82,41 +89,15 @@ void StatsComp::refresh() {
 
 void StatsComp::updateLevelStats() {
     damageBasePower     = POWER_DAMAGE_FACTOR      *sqrt(power);
-    flapPower           = POWER_FLAP_FACTOR        *sqrt(power);   
+    flapPower           = POWER_FLAP_FACTOR        *sqrt(power) * flapMult;   
     distanceRange       = POWER_DAMAGE_FACTOR      *sqrt(power);
     defenseBase         = CONTROL_DEFENSE_FACTOR   *sqrt(control);
     damageBaseControl   = CONTROL_DAMAGE_FACTOR    *sqrt(control);
     
     curseRes            = 0.1*level;
     poisonRes           = 0.1*level;
-    
-    updateEquipStats();
+
 }
-
-void StatsComp::updateEquipStats() {
-//    damageMelee1    = (weaponMelee1->controlFactor * damageBaseControl) 
-//                      + (weaponMelee1->powerFactor * damageBasePower) 
-//                      + weaponMelee1->damageBase);
-//                           
-//    damageMelee2    = (weaponMelee2->controlFactor * damageBaseControl) 
-//                      + (weaponMelee2->powerFactor * damageBasePower) 
-//                      + weaponMelee2->damageBase);
-//    
-//    damageRange     = (weaponRange->controlFactor * damageBaseControl) 
-//                      + (weaponRange->powerFactor * damageBasePower) 
-//                      + weaponRange->damageBase);
-//    
-//    defense         = (armour->defenseFactor * sqrt(control) + defenseBase);
-//    
-//    weaponMelee->applyStats();
-//    weaponRange->applyStats();
-//    armour->aplyStats();
-//    boots->applyStats();
-//    helmet->applyStats();
-//    for(Ring r : rings) r->applyStats();
-}
-
-
 
 void StatsComp::update() {
     if (staminaTimer->getSeconds() > STAMINA_DELAY && stamina < staminaMax) {
@@ -174,8 +155,16 @@ bool StatsComp::takeStaggerDamage(float i) {
     return true;
 }
 
-void StatsComp::gainFavour(int i) { favour += i; }
+void StatsComp::gainFavour(int i) { favour += (int)(expMult*i);
+}
 
+void StatsComp::healFood(float i) {
+    isPoisoned = foodPoisons;
+    health += healthFoodMult*i;
+    if (health > healthMax) health = healthMax;
+}
 
-
-
+void StatsComp::heal(int i) {
+    health += i;
+    if (health > healthMax) health = healthMax;
+}

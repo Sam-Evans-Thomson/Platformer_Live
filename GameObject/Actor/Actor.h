@@ -16,11 +16,15 @@
 
 #include "../GameObject.h"
 
+class StatsComp;
+
 class Actor : public GameObject {
 public:
     Actor();
     Actor(const Actor& orig);
     virtual ~Actor();
+    
+    StatsComp* statsComp;
     
 private:
 

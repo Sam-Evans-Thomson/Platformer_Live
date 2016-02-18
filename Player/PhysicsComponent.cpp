@@ -43,7 +43,7 @@ void PhysicsComponent::init() {
     frictionY = BASE_FRICTION;
     gravity = BASE_GRAVITY;
     angle = 0.0;
-    z = 1;
+    z = 5;
     pos = new Vec2(4000,2700);
     prevPos = new Vec2(4000,2700);
     bodyHB = new RectHitbox(*pos, PLAYR_W ,PLAYR_H);

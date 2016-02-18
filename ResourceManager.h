@@ -23,7 +23,12 @@
 #include <sstream>
 #include <vector>
 
+#include "Items/ItemEffects.h"
+
 class Graphic;
+class MeleeWeapon;
+class MeleeAttack;
+
 
 class ResourceManager {
 public:
@@ -32,6 +37,13 @@ public:
     virtual ~ResourceManager();
     
     void init();
+    void initGraphics();
+    void initSounds();
+    void initAttacks();
+    void initWeapons();
+    
+    
+    /******************************* GRAPHICS *********************************/
     
     Graphic* background;
     std::vector<Graphic*> platforms;
@@ -45,6 +57,18 @@ public:
     
     Graphic* stair;
     
+    std::vector<Graphic*> meleeCarryGraphic;
+    std::vector<Graphic*> meleeAttackGraphic;
+    
+    std::vector<Graphic*> rangeCarryGraphic;
+    std::vector<Graphic*> rangeAttackGraphic;
+    
+    /**************************************************************************/
+    
+    std::vector<MeleeWeapon*> meleeWeapons;
+    std::vector<MeleeAttack*> meleeAttacks;
+    
+    ItemEffects itemEffects;
     
 private:
 

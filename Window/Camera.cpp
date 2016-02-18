@@ -55,7 +55,7 @@ SDL_Rect Camera::getParallaxViewport(double dist, int xOff, int yOff) {
 
 
 void Camera::updateViewport() {
-    zoom = 1.6 - 0.3*inputComponent.rTh_Y*inputComponent.rTh_Y;
+    zoom = 1.6 - 0.4*inputComponent.rTh_Y*inputComponent.rTh_Y;
     
     double xSpeed = player.getX() - player.getPrevX();
     double ySpeed = player.getY() - player.getPrevY();

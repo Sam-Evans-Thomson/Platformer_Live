@@ -23,6 +23,7 @@
 #include "PlayerStates/SecondaryState.h"
 #include "../Level/LevelObjects/BasicPlatform.h"
 #include "../Level/LevelObjects/SlopePlatform.h"
+#include "../GameObject/../Items/MeleeWeapon.h"
 
 extern InputComponent inputComponent;
 
@@ -61,13 +62,17 @@ void Player::init() {
     graphicsComp = new GraphicsComponent();
     graphicsComp->updatePrimaryState(primary);
     graphicsComp->updateGraphics(); 
+    
+    meleeWeapon = resourceManager.meleeWeapons.at(0);
 }
 
 void Player::render() { 
     graphicsComp->render(getX(), getY(), getZ(), 1.0,  0.0); 
+    meleeWeapon->render();
 }
 
 void Player::update(double time) { 
+    meleeWeapon->update();
     physicsComp->prevPos->setX(physicsComp->pos->getX());
     physicsComp->prevPos->setY(physicsComp->pos->getY());
     
@@ -148,6 +153,7 @@ void Player::setFlapCount(int i) { flapCount = i; }
 void Player::jumpFirst() {
     changePrimaryState(jumping);
     setJumpCount(0);
+    flapCount = -1;
     physicsComp->useFric(false);
     physicsComp->useGrav(true);
 }
@@ -166,6 +172,9 @@ void Player::jump() {
 
 void Player::flap() {
     if (statsComp->stamina > 0) {
+        if (physicsComp->force.getY() > 0) { 
+            physicsComp->force.setY(physicsComp->force.getY()/2.0); 
+        }
         physicsComp->addForce(0.0,-statsComp->flapPower);
         statsComp->useStamina(statsComp->flapPower);
     }
@@ -231,11 +240,20 @@ void Player::activate() {
 }
 
 void Player::melee1() {
-
+    if (meleeWeapon->attackState == ATTACK_NONE) {
+        if (statsComp->useStamina(meleeWeapon->attack_Weak->stamina)) {
+            meleeWeapon->attackWeak(nullptr);
+        }
+    }
 }
 
 void Player::melee2() {
-
+    std::cout << meleeWeapon->attackState << std::endl;
+    if (meleeWeapon->attackState == ATTACK_NONE) {
+        if (statsComp->useStamina(meleeWeapon->attack_Strong->stamina)) {
+            meleeWeapon->attackStrong(nullptr);
+        }
+    }
 }
 
 void Player::range() {

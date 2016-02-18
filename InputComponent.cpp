@@ -64,6 +64,8 @@ void InputComponent::axisMotion(SDL_Event& _event) {
     Sint16 axis = _event.jaxis.axis;
     double value = (double)_event.jaxis.value/(double)32768;
     
+    std::cout << lTr << std::endl;
+    
     if ( (value < -AXIS_BUFFER ) || ( value > AXIS_BUFFER ) ) {
         
         //testAxis(axis, value);
@@ -73,13 +75,13 @@ void InputComponent::axisMotion(SDL_Event& _event) {
         else if( axis == 3 ) rTh_X = value;
         else if( axis == 4 ) rTh_Y = value;
         else if( axis == 2 ) {
-            if (lTr < TR_BFR && value > TR_BFR) lTr   = 1;
-            else lTr = 0;
+            if (value < TR_BFR) lTr = 0;
+            else lTr = 1;
             lTrig = value;
         }
         else if( axis == 5 ) {
-            if( rTr < TR_BFR && value > TR_BFR) rTr   = 1;
-            else rTr = 0;
+            if(value < TR_BFR) rTr = 0;
+            else rTr = 1;
             rTrig = value;
         }    
     }
@@ -99,6 +101,7 @@ void InputComponent::incrementAllButtons() {
     inc(&A);   inc(&B);    inc(&X);  inc(&Y); 
     inc(&Sel); inc(&Strt); inc(&LB); inc(&RB);
     inc(&U);   inc(&D);    inc(&L);  inc(&R); 
+    inc(&lTr); inc(&rTr); 
 }
 
 void InputComponent::inc(unsigned int* button) { 
@@ -112,8 +115,8 @@ void InputComponent::buttonEvent(SDL_Event& _event, bool state) {
     else if (button == 1)  updateButton(&B,    state);
     else if (button == 2)  updateButton(&X,    state);
     else if (button == 3)  updateButton(&Y,    state);
-    else if (button == 4)  updateButton(&RB,   state);
-    else if (button == 5)  updateButton(&LB,   state);
+    else if (button == 4)  updateButton(&LB,   state);
+    else if (button == 5)  updateButton(&RB,   state);
     else if (button == 6)  updateButton(&Sel,  state);
     else if (button == 7)  updateButton(&Strt, state);
     else if (button == 8)  updateButton(&LTh,  state);

@@ -51,8 +51,8 @@ void JumpingState::handleInputs(InputComponent* ic) {
         if (player.jumpCount < JUMP_COUNT_MAX) {
             player.jumpCount++;
             player.jump();
-            player.flapCount = FLAP_COUNT_MAX + 1;
-        } else {
+            player.flapCount = -1;
+        } else if (player.flapCount > -1) {
             player.flapCount++;
             player.flap();
         }

@@ -133,7 +133,7 @@ void LevelSegment::addDecoration(int X, int Y, int z, int w, int h, int img) {
     Decoration* dec = 
             new Decoration((double)X,(double)Y, z, (double)w, (double)h);
     
-    dec->setGraphic(resourceManager.decorations.at(0)); // resource manager.
+    dec->setGraphic(resourceManager.decorations.at(img)); // resource manager.
     dec->setGraphicDimensions(0,0,0,0);
     dec->init();
     decorations.push_back(dec);

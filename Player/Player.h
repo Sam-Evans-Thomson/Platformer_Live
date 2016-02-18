@@ -13,7 +13,7 @@
 
 #ifndef PLAYER_H
 #define PLAYER_H
-#include "PlayerStates/PlayerConsts.h"
+#include "PlayerConsts.h"
 #include "StatsComp.h"
 
 
@@ -28,6 +28,8 @@ class JumpingState;
 class DodgeState;
 
 class BasicPlatform;
+
+class MeleeWeapon;
 
 
 class Player {
@@ -103,6 +105,10 @@ public:
     ///// CURRENT PLATFORM ///////
     BasicPlatform* currPlatform;
     BasicPlatform* dropPlatform;
+    
+    ///// INVENTORY //////////////////////
+    
+    MeleeWeapon* meleeWeapon;
     
     ///// ACTIONS //////////////
     void move(int dir);

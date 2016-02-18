@@ -10,20 +10,30 @@
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Canvas.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/CircleHitbox.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/Decoration.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deity.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/DodgeState.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Friima.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Game.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/GameObject.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Graphics/Graphic.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/GraphicsComponent.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Items/HitEffects.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/Hitbox.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/InputComponent.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/Inventory.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Items/Item.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Items/ItemEffects.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/JumpingState.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelManager.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegment.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/LineHitbox.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Malloc.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeAttack.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapon.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Normont.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PhysicsComponent.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/Player.h</itemPath>
-      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/PlayerConsts.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerConsts.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/PrimaryState.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/RectHitbox.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/ResourceManager.h</itemPath>
@@ -34,6 +44,8 @@
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Texture.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Vec2.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Virvra.h</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Walabon.h</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Window.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -49,17 +61,26 @@
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Canvas.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/CircleHitbox.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/Decoration.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deity.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/DodgeState.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Friima.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Game.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/GameObject.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Graphics/Graphic.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/GraphicsComponent.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/Hitbox.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/InputComponent.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/Inventory.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Items/Item.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Items/ItemEffects.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/JumpingState.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelManager.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegment.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/LineHitbox.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Malloc.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeAttack.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapon.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Normont.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PhysicsComponent.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/Player.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/PrimaryState.cpp</itemPath>
@@ -72,6 +93,8 @@
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Texture.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Utilities/Timer.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Vec2.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Virvra.cpp</itemPath>
+      <itemPath>/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Walabon.cpp</itemPath>
       <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Window/Window.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -91,6 +114,10 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapons/MeleeAttacks/Attack FOrmat</itemPath>
+    <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapons/Basic_Sword</itemPath>
+    <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapons/Weapon Format</itemPath>
+    <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapons/basicSwordWeak</itemPath>
     <itemPath>/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegments/seg_0_0.txt</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
@@ -129,6 +156,66 @@
             flavor2="0">
       </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Actor/Actor.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Friima.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Friima.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Malloc.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Malloc.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Normont.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Normont.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Virvra.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Virvra.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Walabon.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Walabon.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deity.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deity.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -213,6 +300,71 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/HitEffects.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/Item.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/Item.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/ItemEffects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/ItemEffects.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeAttack.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeAttack.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapon.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapon.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapons/Basic_Sword"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapons/MeleeAttacks/Attack FOrmat"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapons/Weapon Format"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapons/basicSwordWeak"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelManager.cpp"
             ex="false"
             tool="1"
@@ -278,6 +430,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/Inventory.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/Inventory.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PhysicsComponent.cpp"
             ex="false"
             tool="1"
@@ -298,6 +460,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerConsts.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/DodgeState.cpp"
             ex="false"
             tool="1"
@@ -314,11 +481,6 @@
             flavor2="0">
       </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/JumpingState.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/PlayerConsts.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -481,6 +643,66 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Friima.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Friima.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Malloc.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Malloc.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Normont.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Normont.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Virvra.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Virvra.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Walabon.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Walabon.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deity.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deity.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/GameObject/GameObject.cpp"
             ex="false"
             tool="1"
@@ -561,6 +783,71 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/HitEffects.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/Item.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/Item.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/ItemEffects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/ItemEffects.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeAttack.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeAttack.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapon.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapon.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapons/Basic_Sword"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapons/MeleeAttacks/Attack FOrmat"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapons/Weapon Format"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapons/basicSwordWeak"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Level/LevelManager.cpp"
             ex="false"
             tool="1"
@@ -626,6 +913,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/Inventory.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/Inventory.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PhysicsComponent.cpp"
             ex="false"
             tool="1"
@@ -646,6 +943,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerConsts.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/DodgeState.cpp"
             ex="false"
             tool="1"
@@ -662,11 +964,6 @@
             flavor2="0">
       </item>
       <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/JumpingState.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/PlayerConsts.h"
             ex="false"
             tool="3"
             flavor2="0">

@@ -37,6 +37,12 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/_ext/20e7374d/Game.o \
 	${OBJECTDIR}/_ext/8e7b6eb9/Actor.o \
+	${OBJECTDIR}/_ext/b07520e2/Friima.o \
+	${OBJECTDIR}/_ext/b07520e2/Malloc.o \
+	${OBJECTDIR}/_ext/b07520e2/Normont.o \
+	${OBJECTDIR}/_ext/b07520e2/Virvra.o \
+	${OBJECTDIR}/_ext/b07520e2/Walabon.o \
+	${OBJECTDIR}/_ext/d6b64026/Deity.o \
 	${OBJECTDIR}/_ext/7e1371f3/GameObject.o \
 	${OBJECTDIR}/_ext/e1d0c8c2/CircleHitbox.o \
 	${OBJECTDIR}/_ext/e1d0c8c2/Hitbox.o \
@@ -45,12 +51,17 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/7e1371f3/Vec2.o \
 	${OBJECTDIR}/_ext/76c91f2d/Graphic.o \
 	${OBJECTDIR}/_ext/20e7374d/InputComponent.o \
+	${OBJECTDIR}/_ext/4c10865e/Item.o \
+	${OBJECTDIR}/_ext/4c10865e/ItemEffects.o \
+	${OBJECTDIR}/_ext/4c10865e/MeleeAttack.o \
+	${OBJECTDIR}/_ext/4c10865e/MeleeWeapon.o \
 	${OBJECTDIR}/_ext/4c343a22/LevelManager.o \
 	${OBJECTDIR}/_ext/2499d7dd/BasicPlatform.o \
 	${OBJECTDIR}/_ext/2499d7dd/Decoration.o \
 	${OBJECTDIR}/_ext/2499d7dd/SlopePlatform.o \
 	${OBJECTDIR}/_ext/4c343a22/LevelSegment.o \
 	${OBJECTDIR}/_ext/417fd003/GraphicsComponent.o \
+	${OBJECTDIR}/_ext/417fd003/Inventory.o \
 	${OBJECTDIR}/_ext/417fd003/PhysicsComponent.o \
 	${OBJECTDIR}/_ext/417fd003/Player.o \
 	${OBJECTDIR}/_ext/314faef/DodgeState.o \
@@ -111,6 +122,36 @@ ${OBJECTDIR}/_ext/8e7b6eb9/Actor.o: /home/sam/NetBeansProjects/Platformer_Live/G
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/8e7b6eb9/Actor.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Actor/Actor.cpp
 
+${OBJECTDIR}/_ext/b07520e2/Friima.o: /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Friima.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/b07520e2
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b07520e2/Friima.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Friima.cpp
+
+${OBJECTDIR}/_ext/b07520e2/Malloc.o: /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Malloc.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/b07520e2
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b07520e2/Malloc.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Malloc.cpp
+
+${OBJECTDIR}/_ext/b07520e2/Normont.o: /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Normont.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/b07520e2
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b07520e2/Normont.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Normont.cpp
+
+${OBJECTDIR}/_ext/b07520e2/Virvra.o: /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Virvra.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/b07520e2
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b07520e2/Virvra.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Virvra.cpp
+
+${OBJECTDIR}/_ext/b07520e2/Walabon.o: /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Walabon.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/b07520e2
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b07520e2/Walabon.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Walabon.cpp
+
+${OBJECTDIR}/_ext/d6b64026/Deity.o: /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deity.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/d6b64026
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d6b64026/Deity.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deity.cpp
+
 ${OBJECTDIR}/_ext/7e1371f3/GameObject.o: /home/sam/NetBeansProjects/Platformer_Live/GameObject/GameObject.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/7e1371f3
 	${RM} "$@.d"
@@ -151,6 +192,26 @@ ${OBJECTDIR}/_ext/20e7374d/InputComponent.o: /home/sam/NetBeansProjects/Platform
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/20e7374d/InputComponent.o /home/sam/NetBeansProjects/Platformer_Live/InputComponent.cpp
 
+${OBJECTDIR}/_ext/4c10865e/Item.o: /home/sam/NetBeansProjects/Platformer_Live/Items/Item.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/4c10865e
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4c10865e/Item.o /home/sam/NetBeansProjects/Platformer_Live/Items/Item.cpp
+
+${OBJECTDIR}/_ext/4c10865e/ItemEffects.o: /home/sam/NetBeansProjects/Platformer_Live/Items/ItemEffects.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/4c10865e
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4c10865e/ItemEffects.o /home/sam/NetBeansProjects/Platformer_Live/Items/ItemEffects.cpp
+
+${OBJECTDIR}/_ext/4c10865e/MeleeAttack.o: /home/sam/NetBeansProjects/Platformer_Live/Items/MeleeAttack.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/4c10865e
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4c10865e/MeleeAttack.o /home/sam/NetBeansProjects/Platformer_Live/Items/MeleeAttack.cpp
+
+${OBJECTDIR}/_ext/4c10865e/MeleeWeapon.o: /home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapon.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/4c10865e
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4c10865e/MeleeWeapon.o /home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapon.cpp
+
 ${OBJECTDIR}/_ext/4c343a22/LevelManager.o: /home/sam/NetBeansProjects/Platformer_Live/Level/LevelManager.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/4c343a22
 	${RM} "$@.d"
@@ -180,6 +241,11 @@ ${OBJECTDIR}/_ext/417fd003/GraphicsComponent.o: /home/sam/NetBeansProjects/Platf
 	${MKDIR} -p ${OBJECTDIR}/_ext/417fd003
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/417fd003/GraphicsComponent.o /home/sam/NetBeansProjects/Platformer_Live/Player/GraphicsComponent.cpp
+
+${OBJECTDIR}/_ext/417fd003/Inventory.o: /home/sam/NetBeansProjects/Platformer_Live/Player/Inventory.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/417fd003
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/417fd003/Inventory.o /home/sam/NetBeansProjects/Platformer_Live/Player/Inventory.cpp
 
 ${OBJECTDIR}/_ext/417fd003/PhysicsComponent.o: /home/sam/NetBeansProjects/Platformer_Live/Player/PhysicsComponent.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/417fd003
@@ -294,6 +360,84 @@ ${OBJECTDIR}/_ext/8e7b6eb9/Actor_nomain.o: ${OBJECTDIR}/_ext/8e7b6eb9/Actor.o /h
 	    ${CP} ${OBJECTDIR}/_ext/8e7b6eb9/Actor.o ${OBJECTDIR}/_ext/8e7b6eb9/Actor_nomain.o;\
 	fi
 
+${OBJECTDIR}/_ext/b07520e2/Friima_nomain.o: ${OBJECTDIR}/_ext/b07520e2/Friima.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Friima.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/b07520e2
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/b07520e2/Friima.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b07520e2/Friima_nomain.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Friima.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/b07520e2/Friima.o ${OBJECTDIR}/_ext/b07520e2/Friima_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/b07520e2/Malloc_nomain.o: ${OBJECTDIR}/_ext/b07520e2/Malloc.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Malloc.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/b07520e2
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/b07520e2/Malloc.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b07520e2/Malloc_nomain.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Malloc.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/b07520e2/Malloc.o ${OBJECTDIR}/_ext/b07520e2/Malloc_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/b07520e2/Normont_nomain.o: ${OBJECTDIR}/_ext/b07520e2/Normont.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Normont.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/b07520e2
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/b07520e2/Normont.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b07520e2/Normont_nomain.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Normont.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/b07520e2/Normont.o ${OBJECTDIR}/_ext/b07520e2/Normont_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/b07520e2/Virvra_nomain.o: ${OBJECTDIR}/_ext/b07520e2/Virvra.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Virvra.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/b07520e2
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/b07520e2/Virvra.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b07520e2/Virvra_nomain.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Virvra.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/b07520e2/Virvra.o ${OBJECTDIR}/_ext/b07520e2/Virvra_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/b07520e2/Walabon_nomain.o: ${OBJECTDIR}/_ext/b07520e2/Walabon.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Walabon.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/b07520e2
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/b07520e2/Walabon.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b07520e2/Walabon_nomain.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deities/Walabon.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/b07520e2/Walabon.o ${OBJECTDIR}/_ext/b07520e2/Walabon_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/d6b64026/Deity_nomain.o: ${OBJECTDIR}/_ext/d6b64026/Deity.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deity.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/d6b64026
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/d6b64026/Deity.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d6b64026/Deity_nomain.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/Characters/Deity.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/d6b64026/Deity.o ${OBJECTDIR}/_ext/d6b64026/Deity_nomain.o;\
+	fi
+
 ${OBJECTDIR}/_ext/7e1371f3/GameObject_nomain.o: ${OBJECTDIR}/_ext/7e1371f3/GameObject.o /home/sam/NetBeansProjects/Platformer_Live/GameObject/GameObject.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/7e1371f3
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/7e1371f3/GameObject.o`; \
@@ -398,6 +542,58 @@ ${OBJECTDIR}/_ext/20e7374d/InputComponent_nomain.o: ${OBJECTDIR}/_ext/20e7374d/I
 	    ${CP} ${OBJECTDIR}/_ext/20e7374d/InputComponent.o ${OBJECTDIR}/_ext/20e7374d/InputComponent_nomain.o;\
 	fi
 
+${OBJECTDIR}/_ext/4c10865e/Item_nomain.o: ${OBJECTDIR}/_ext/4c10865e/Item.o /home/sam/NetBeansProjects/Platformer_Live/Items/Item.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/4c10865e
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/4c10865e/Item.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4c10865e/Item_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Items/Item.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/4c10865e/Item.o ${OBJECTDIR}/_ext/4c10865e/Item_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/4c10865e/ItemEffects_nomain.o: ${OBJECTDIR}/_ext/4c10865e/ItemEffects.o /home/sam/NetBeansProjects/Platformer_Live/Items/ItemEffects.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/4c10865e
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/4c10865e/ItemEffects.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4c10865e/ItemEffects_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Items/ItemEffects.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/4c10865e/ItemEffects.o ${OBJECTDIR}/_ext/4c10865e/ItemEffects_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/4c10865e/MeleeAttack_nomain.o: ${OBJECTDIR}/_ext/4c10865e/MeleeAttack.o /home/sam/NetBeansProjects/Platformer_Live/Items/MeleeAttack.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/4c10865e
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/4c10865e/MeleeAttack.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4c10865e/MeleeAttack_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Items/MeleeAttack.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/4c10865e/MeleeAttack.o ${OBJECTDIR}/_ext/4c10865e/MeleeAttack_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/4c10865e/MeleeWeapon_nomain.o: ${OBJECTDIR}/_ext/4c10865e/MeleeWeapon.o /home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapon.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/4c10865e
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/4c10865e/MeleeWeapon.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4c10865e/MeleeWeapon_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapon.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/4c10865e/MeleeWeapon.o ${OBJECTDIR}/_ext/4c10865e/MeleeWeapon_nomain.o;\
+	fi
+
 ${OBJECTDIR}/_ext/4c343a22/LevelManager_nomain.o: ${OBJECTDIR}/_ext/4c343a22/LevelManager.o /home/sam/NetBeansProjects/Platformer_Live/Level/LevelManager.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/4c343a22
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/4c343a22/LevelManager.o`; \
@@ -474,6 +670,19 @@ ${OBJECTDIR}/_ext/417fd003/GraphicsComponent_nomain.o: ${OBJECTDIR}/_ext/417fd00
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/417fd003/GraphicsComponent_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Player/GraphicsComponent.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/_ext/417fd003/GraphicsComponent.o ${OBJECTDIR}/_ext/417fd003/GraphicsComponent_nomain.o;\
+	fi
+
+${OBJECTDIR}/_ext/417fd003/Inventory_nomain.o: ${OBJECTDIR}/_ext/417fd003/Inventory.o /home/sam/NetBeansProjects/Platformer_Live/Player/Inventory.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/417fd003
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/417fd003/Inventory.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/417fd003/Inventory_nomain.o /home/sam/NetBeansProjects/Platformer_Live/Player/Inventory.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/_ext/417fd003/Inventory.o ${OBJECTDIR}/_ext/417fd003/Inventory_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/417fd003/PhysicsComponent_nomain.o: ${OBJECTDIR}/_ext/417fd003/PhysicsComponent.o /home/sam/NetBeansProjects/Platformer_Live/Player/PhysicsComponent.cpp 

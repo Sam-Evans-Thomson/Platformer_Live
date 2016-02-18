@@ -7,24 +7,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/sam/NetBeansProjects/Platformer_Live/ResourceManager.cpp</file>
-            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/RunningState.h</file>
+            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerConsts.h</file>
+            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapon.cpp</file>
+            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Player/PhysicsComponent.h</file>
+            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeWeapon.h</file>
             <file>file:/home/sam/NetBeansProjects/Platformer_Live/Player/Player.cpp</file>
+            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Player/Inventory.cpp</file>
             <file>file:/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegment.cpp</file>
+            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeAttack.cpp</file>
+            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Items/MeleeAttack.h</file>
             <file>file:/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/Hitbox.h</file>
             <file>file:/home/sam/NetBeansProjects/Platformer_Live/Player/Player.h</file>
-            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/BasicPlatform.h</file>
+            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Items/Item.cpp</file>
+            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegments/seg_2_2.txt</file>
+            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Player/StatsComp.cpp</file>
             <file>file:/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/Hitbox.cpp</file>
-            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/SlopePlatform.cpp</file>
-            <file>file:/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/RectHitbox.h</file>
-            <file>file:/home/sam/NetBeansProjects/Platformer_Live/ResourceManager.h</file>
-            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Player/PlayerStates/RunningState.cpp</file>
-            <file>file:/home/sam/NetBeansProjects/Platformer_Live/GameObject/Hitboxes/RectHitbox.cpp</file>
-            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/BasicPlatform.cpp</file>
-            <file>file:/home/sam/NetBeansProjects/Platformer_Live/main.cpp</file>
-            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Player/PhysicsComponent.cpp</file>
-            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Level/LevelObjects/SlopePlatform.h</file>
-            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Level/LevelSegment.h</file>
+            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Player/StatsComp.h</file>
+            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Items/Item.h</file>
+            <file>file:/home/sam/NetBeansProjects/Platformer_Live/Player/Inventory.h</file>
         </group>
     </open-files>
 </project-private>

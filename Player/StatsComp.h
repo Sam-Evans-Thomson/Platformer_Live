@@ -25,15 +25,9 @@
 
 #define CONTROL_DAMAGE_FACTOR 1.0
 
-enum deity {
-    NORMONT,        // General Deity
-    MALLOC,         // VIOLENT - Damage - power control stamina
-    FRIIMA,         // FLYING - stamina power health
-    VIRVRA,         // POISON/Secondaries
-    WALABON,        // VAMPIRE  -Health/control
-    NO_DEITY,       // nothing
-    DEMON_DEITY,    // everythig is harder, gets harder as you level 
-};
+class Deity;
+     
+
 
 class StatsComp {
 public:
@@ -47,7 +41,6 @@ public:
     
     void update();
     void updateLevelStats();
-    void updateEquipStats();
     
     void incPower(int i);
     void incControl(int i);
@@ -59,6 +52,9 @@ public:
     bool takePoisonDamage(float i);
     bool takeCurseDamage(float i);
     bool takeStaggerDamage(float i);
+    
+    void healFood(float i);
+    void heal(int i);
     
     void gainFavour(int i);
     
@@ -73,14 +69,19 @@ public:
     float health;
     float healthMax;
     float healthRegen;
+    float healthFoodMult;
+    float healthOnHit;
+    bool foodPoisons;
     
     float poison;             // poison build up
     float poisonRes;          // resistance to buildup
     float poisonMax;          // poisoned when poison exceeds this.
+    bool isPoisoned;
     
     float curse;              // curse build up
     float curseRes;           // resistance to buildup
     float curseMax;           // cursed when curse exceeds this.
+    bool isCursed;
     
     float stagger;            // stagger buildup    
     float staggerRes;         // resistance to stagger
@@ -91,16 +92,19 @@ public:
 
     float damageBasePower;    // damage based on Power.
     float damageBaseControl;  // damage based on Control;
-    float damageMelee1;       // damage with equipment factored.
-    float damageMelee2;       // damage with equipment factored.
-    float damageRange;        // damage with equipment factored.
+    
+    float damagePoison;
     
     float distanceRange;      // How far range attacks go.
 
     float flapPower;          // Force of flapping;
+    float flapMult;
+    
+    
     
     /// stats
     int level;
+    float expMult;
     
     /* POWER:   Power weapons do more damage.
      *          Range attacks go further.
@@ -116,7 +120,10 @@ public:
     int favour;
     int wealth;
     
-    deity alignment;
+    int lastCamp;
+    int currCamp;
+    
+    Deity* alignment;
     
     
 private:

@@ -58,15 +58,15 @@ void GraphicsComponent::render(double x, double y, int z, double scale, double r
 
 void GraphicsComponent::renderBars() {
     resourceManager.health->renderAsOverlay(
-            0 ,
-            10 + (1 - player.statsComp->health/player.statsComp->healthMax)* 1000,
-            1.0,0.0);
+            220 - (1 - player.statsComp->health/player.statsComp->healthMax)*540,
+            -210,
+            0.5,90);
     resourceManager.stamina->renderAsOverlay(
-            1920 - 60,
-            10 + (1 - player.statsComp->stamina/player.statsComp->staminaMax)* 1000,
-            1.0,0.0);
-    resourceManager.column->renderAsOverlay(0,0,1.0,0.0 );
-    resourceManager.column->renderAsOverlay(1920 - 65,0,1.0,0.0 );
+            1920 - 320 + (1 - player.statsComp->stamina/player.statsComp->staminaMax) * 540,
+            -280,
+            0.5,-90);
+    resourceManager.column->renderAsOverlay(220,-212,0.5,90 );
+    resourceManager.column->renderAsOverlay(1920-320,-280,0.5,-90 );
 }
 
 

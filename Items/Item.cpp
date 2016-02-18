@@ -5,21 +5,22 @@
  */
 
 /* 
- * File:   Actor.cpp
+ * File:   Item.cpp
  * Author: sam
  * 
- * Created on 3 February 2016, 10:33 AM
+ * Created on 17 February 2016, 9:22 AM
  */
 
-#include "Actor.h"
-#include "../../Player/StatsComp.h"
+#include "Item.h"
 
-Actor::Actor() {
+#include "../Graphics/Graphic.h"
+
+Item::Item() {
 }
 
-Actor::Actor(const Actor& orig) {
+Item::Item(const Item& orig) {
 }
 
-Actor::~Actor() {
+Item::~Item() {
 }
 
